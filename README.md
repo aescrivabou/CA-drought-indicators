@@ -6,8 +6,8 @@
 **Other members of the team:** Andrew Ayres, Annabelle Rosser and Spencer Cole (PPIC)
 
 **Funded by:** NOAA, NIDIS, 2808189 National Integrated Drought Information Systems (NIDIS): Coping with Drought
-##1. Objective
+## 1. Objective
 This repository serves to fulfil the commitment to deliver deliverables of the project 
 
-##2. Contents
+## 2. Contents
 
