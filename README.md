@@ -1,7 +1,7 @@
 # Linking Indicators of Drought Hazard to Multi-Sectoral Impacts: An Application to California
 **Principal Investigators:** Alvar Escriva-Bou (lead investigator) escriva@ucla.edu (UCLA); Ellen Hanak and Jeffrey Mount (Public Policy Institute of California)
 
-**External Collaborators:** Michael Dettinger (Scripps Institution of Oceanography, UC San Diego); Ted Grantham (UC Berkeley); Josué Medellín-Azuara (UC Merced); and Kurt Schwabe (UC Riverside)Cancel changes
+**External Collaborators:** Michael Dettinger (Scripps Institution of Oceanography, UC San Diego); Ted Grantham (UC Berkeley); Josué Medellín-Azuara (UC Merced); and Kurt Schwabe (UC Riverside)
 
 **Other members of the team:** Andrew Ayres, Annabelle Rosser and Spencer Cole (PPIC)
 
