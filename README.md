@@ -7,7 +7,7 @@
 
 **Supported with funding from:** The National Oceanic and Atmospheric Administration’s (NOAA) National Integrated Drought Information System (NIDIS) award number NA20OAR4310365
 
-**IMPORTANT NOTE: THIS REPOSITORY IS STILL UNDER DEVELOPMENT AND REVIEW (AS OF SEPTEMBER 5, 2023). PLEASE DON'T USE YET
+**IMPORTANT NOTE: THIS REPOSITORY IS STILL UNDER DEVELOPMENT AND REVIEW (AS OF SEPTEMBER 5, 2023). PLEASE DON'T USE YET**
 
 ## 1. Objective
 This repository serves to fulfill the commitments of the grant by compiling the deliverables developed during the project.
