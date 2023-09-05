@@ -5,7 +5,7 @@
 
 **Other members of the team:** Andrew Ayres, Annabelle Rosser and Spencer Cole (PPIC)
 
-**Funded by:** Supported with funding from the National Oceanic and Atmospheric Administration’s (NOAA) National Integrated Drought Information System (NIDIS) award number NA20OAR4310365
+**Supported with funding from:** The National Oceanic and Atmospheric Administration’s (NOAA) National Integrated Drought Information System (NIDIS) award number NA20OAR4310365
 ## 1. Objective
 This repository serves to fulfill the commitments of the grant by compiling the deliverables developed during the project.
 
@@ -19,4 +19,9 @@ The expected outputs of the project were:
 
 This repository contains the methods, code and data related to all the outputs except for the engagement process, which is included as a separated document.
 ## 2. Contents
+There are three folders in this directory, including:
 
+* Documents: includes the description of three methodologies developed during the project (linked below) and the slides of the final workshop:
+  * [Methodology 1. User-oriented drought indicators in California](https://github.com/aescrivabou/CA-drought-indicators/blob/main/Documents/01_User-oriented%20drought%20indicators.pdf)
+  * [Methodology 2. System drought indicator for users with complex supply portfolios](https://github.com/aescrivabou/CA-drought-indicators/blob/main/Documents/02_System%20drought%20indicator%20for%20users%20with%20complex%20portfolios.pdf)
+  * [Methodology 3. Linking drought indicators with impacts in highly-managed water systems](https://github.com/aescrivabou/CA-drought-indicators/blob/main/Documents/03_Linking%20drought%20indicators%20with%20impacts%20in%20managed%20systems.pdf)
