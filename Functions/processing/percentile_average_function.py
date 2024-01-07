@@ -104,7 +104,7 @@ def func_for_tperiod(df, date_column = 'date', value_column = 'VALUE',
         elif (period_dict[analysis_period][0] == "D") and (input_timestep == 'D'):
             dfgroup = dfgroup.groupby(pd.Grouper(key=date_column, freq="1D")).mean().reset_index()
         else:
-            dfgroup = dfgroup.groupby(pd.Grouper(key=date_column, freq="1M")).mean().reset_index()
+            dfgroup = dfgroup.groupby(pd.Grouper(key=date_column, freq="1M")).mean(numeric_only=True).reset_index()
             
         #Add a column with the average value for the period of analysis
         dfgroup['value_period'] = dfgroup[value_column].rolling(period_dict[analysis_period][1]).mean(nan='Ignore')
@@ -140,5 +140,3 @@ def func_for_tperiod(df, date_column = 'date', value_column = 'VALUE',
     if grouping_column is not None:
         newdf = newdf.sort_values(by = [grouping_column, date_column]).reset_index(drop=True)
     return newdf
-        
-        
