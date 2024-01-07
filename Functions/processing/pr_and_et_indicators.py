@@ -10,7 +10,7 @@ import pandas as pd
 import numpy as np
 import scipy.stats as stats
 import seaborn as sns
-from percentile_average_function_modified import func_for_tperiod
+from percentile_average_function import func_for_tperiod
 
 
 hr_ids = ['CC', 'CR', 'NC', 'NL', 'SC', 'SF', 'SJ', 'SL', 'SR', 'TL']
