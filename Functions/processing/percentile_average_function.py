@@ -102,12 +102,12 @@ def func_for_tperiod(df, date_column = 'date', value_column = 'VALUE',
         if (period_dict[analysis_period][0] == "D") and (input_timestep == 'M'):
             raise NameError('For the selected analysis_period, the input_timestep has to be daily (D)')
         elif (period_dict[analysis_period][0] == "D") and (input_timestep == 'D'):
-            dfgroup = dfgroup.groupby(pd.Grouper(key=date_column, freq="1D")).mean().reset_index()
+            dfgroup = dfgroup.groupby(pd.Grouper(key=date_column, freq="1D")).mean(numeric_only=True).reset_index()
         else:
             dfgroup = dfgroup.groupby(pd.Grouper(key=date_column, freq="1M")).mean(numeric_only=True).reset_index()
             
         #Add a column with the average value for the period of analysis
-        dfgroup['value_period'] = dfgroup[value_column].rolling(period_dict[analysis_period][1]).mean(nan='Ignore')
+        dfgroup['value_period'] = dfgroup[value_column].rolling(period_dict[analysis_period][1]).mean()
         dfgroup['month'] = pd.DatetimeIndex(dfgroup[date_column]).month
         if period_dict[analysis_period][0] == "M":
             dfgroup['day']=1

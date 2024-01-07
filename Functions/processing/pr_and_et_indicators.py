@@ -7,9 +7,6 @@ Created on Fri Apr 21 16:24:46 2023
 """
 
 import pandas as pd
-import numpy as np
-import scipy.stats as stats
-import seaborn as sns
 from percentile_average_function import func_for_tperiod
 
 

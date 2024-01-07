@@ -10,7 +10,7 @@ import pandas as pd
 from percentile_average_function import func_for_tperiod
 import numpy as np
 
-sflow_data = pd.read_csv('../../Data/Downloaded/usgs/streamflow_daily_data.csv')
+sflow_data = pd.read_csv('../../Data/Downloaded/usgs/streamflow_daily_data.csv',index_col=0)
 sflow_data['date'] = pd.to_datetime(sflow_data.datetime)
 sflow_data = sflow_data[['date', '00060_Mean', '00060_Mean_cd', 'site_no','lat', 'lon', 'HR_NAME']]
 sflow_data = sflow_data.rename(columns={"00060_Mean": 'flow'})

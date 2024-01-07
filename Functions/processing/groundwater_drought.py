@@ -10,7 +10,7 @@ import pandas as pd
 import numpy as np
 import geopandas as gpd
 from datetime import date
-
+import os
 
 #Data from: https://data.cnra.ca.gov/dataset/periodic-groundwater-level-measurements
 gwdata = pd.read_csv('../../Data/Downloaded/groundwater/periodic_gwl_bulkdatadownload/measurements.csv')
@@ -173,5 +173,6 @@ hrs = list(gwdata['HR_NAME'].unique())
 all_wells_individual_analysis = well_percentile(gwdata, subset = ['HR_NAME', hrs])
 all_wells_regional_analysis = regional_pctl_analysis(all_wells_individual_analysis, stat='median')
 
-all_wells_individual_analysis.to_csv('../../Data/Processed/groundwater/state_wells_individual_analysis_new.csv')
-all_wells_regional_analysis.to_csv('../../Data/Processed/groundwater/state_wells_regional_analysis_new.csv')
+os.makedirs('../../Data/Processed/groundwater/', exist_ok=True)
+all_wells_individual_analysis.to_csv('../../Data/Processed/groundwater/state_wells_individual_analysis.csv')
+all_wells_regional_analysis.to_csv('../../Data/Processed/groundwater/state_wells_regional_analysis.csv')

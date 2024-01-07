@@ -8,7 +8,6 @@ Created on Tue Apr  4 10:17:54 2023
 
 ## install packages
 
-from ulmo import cdec
 import pandas as pd
 import os
 from tqdm import tqdm
