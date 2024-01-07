@@ -9,13 +9,13 @@ Created on Fri Apr 21 18:20:45 2023
 import pandas as pd
 from percentile_average_function import func_for_tperiod
 import numpy as np
+import os
 
 sflow_data = pd.read_csv('../../Data/Downloaded/usgs/streamflow_daily_data.csv',index_col=0)
 sflow_data['date'] = pd.to_datetime(sflow_data.datetime)
 sflow_data = sflow_data[['date', '00060_Mean', '00060_Mean_cd', 'site_no','lat', 'lon', 'HR_NAME']]
 sflow_data = sflow_data.rename(columns={"00060_Mean": 'flow'})
 sflow_data.loc[sflow_data.flow<0] = np.nan
-
 
 
 sflow_percentile = func_for_tperiod(df=sflow_data, date_column = 'date', value_column = 'flow',
@@ -41,5 +41,6 @@ sflow_pctl_regional_corr = func_for_tperiod(df=sflow_pctl_regional, date_column 
                      baseline_start_year = 1991, baseline_end_year = 2020,
                      remove_zero=False)
 
+os.makedirs('../../Data/Processed/streamflow_indicator/', exist_ok=True)
 sflow_percentile.to_csv('../../Data/Processed/streamflow_indicator/streamflow_individual_gages_indicator.csv')
 sflow_pctl_regional_corr.to_csv('../../Data/Processed/streamflow_indicator/streamflow_regional_indicator.csv')
