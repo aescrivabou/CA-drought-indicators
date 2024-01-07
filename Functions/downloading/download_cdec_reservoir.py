@@ -11,7 +11,7 @@ Created on Tue Apr  4 10:17:54 2023
 from ulmo import cdec
 import pandas as pd
 import os
-
+from tqdm import tqdm
 
 ## define downloading function
 def download_reservoir_data(
@@ -60,24 +60,24 @@ def download_reservoir_data(
     reservoirs = pd.DataFrame()
     startdate = str(startyear-1) + '-01-01' #We use the previous year because data is for the last day of the month (and we update this as the first day of the following month)
     enddate = str(endyear) + '-12-31'
+    sensor_num = 15
+    dur_code = 'M' #monthly
+    reservoirs = pd.DataFrame()
+    for stn_name in tqdm(reservoirstations.station):
+        url = f'https://cdec.water.ca.gov/dynamicapp/req/CSVDataServlet?Stations={stn_name}&SensorNums={sensor_num}&dur_code={dur_code}&Start={startdate}&End={enddate}'
+        datares01 = pd.read_csv(url, on_bad_lines='skip')
+        reservoirs = pd.concat([reservoirs, datares01])
     
-    for station in reservoirstations.station:
-        try:
-            datares01 = cdec.historical.get_data(station_ids=[station],sensor_ids=[15],resolutions=['monthly'], start = startdate , end = enddate)
-            if bool(datares01[list(datares01.keys())[0]]) == True:
-                datares01 = datares01[list(datares01.keys())[0]]['RESERVOIR STORAGE'].reset_index()
-                reservoirs = pd.concat([reservoirs, datares01])
-        except ValueError:
-            print('Error with station :' + station)
-    del datares01
-    
-    reservoirs = reservoirs.rename(columns={'station_id': 'station'})
     #Updating value of mothly data (last day of the month) as first day of the following month
+    reservoirs['DATE TIME'] = pd.to_datetime(reservoirs['DATE TIME'])
     reservoirs['DATE TIME'] = reservoirs['DATE TIME'] + pd.DateOffset(months = 1)
     reservoirs['month'] = reservoirs['DATE TIME'].dt.month
     reservoirs['year'] = reservoirs['DATE TIME'].dt.year
+    reservoirs.columns = map(str.lower, reservoirs.columns)
+    reservoirs = reservoirs.rename(columns={'station_id': 'station'})
     reservoirs = reservoirs.merge(reservoirstations, on='station')
     reservoirs = reservoirs.merge(reservoircapacity, on = 'station' , how = 'outer')
+    
     reservoirs['date'] = pd.to_datetime(dict(year=reservoirs.year, month=reservoirs.month, day=1))
     reservoirs['year'] = reservoirs['date'].dt.year
     #Subseting data for the actual year we want to start
