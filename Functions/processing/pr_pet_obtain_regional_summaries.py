@@ -125,7 +125,7 @@ def obtainregionalsummary(input_folder = '../../Data/Downloaded/',
         pet['year'] = pet['date'].dt.year
         pet['day'] = 1
         pet['date']= pd.to_datetime(pet[['year','month','day']])
-        pet = pet.groupby(['year', 'month']).sum().reset_index()
+        pet = pet.groupby(['year', 'month'])['pet_value'].sum().reset_index()
         pet['day'] = 1
         pet['date']= pd.to_datetime(pet[['year','month','day']])
         pet = pet.drop(['year','month','day'], axis=1)
@@ -158,8 +158,7 @@ def obtainregionalsummary(input_folder = '../../Data/Downloaded/',
         precipitation['date'] = pd.to_datetime(precipitation['date'])    
         precipitation['month'] = precipitation['date'].dt.month
         precipitation['year'] = precipitation['date'].dt.year
-    
-        precipitation = precipitation.groupby(['year', 'month']).sum().reset_index()
+        precipitation = precipitation.groupby(['year', 'month'])['pr_value'].sum().reset_index()
         precipitation['day'] = 1
         precipitation['date']= pd.to_datetime(precipitation[['year','month','day']])
         precipitation = precipitation.drop(['year','month','day'], axis=1)
