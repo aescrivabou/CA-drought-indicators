@@ -36,7 +36,7 @@ snow['day'] = snow['DATE TIME'].dt.day
 snow['VALUE'] = pd.to_numeric(snow['VALUE'], errors='coerce')
 snow_normal = snow.loc[(snow['month'] == 4) & (snow['day'] == 1)]
 snow_normal = snow_normal.dropna(subset=['VALUE'])
-snow_normal_ave = snow_normal.groupby(['STATION_ID']).mean(numeric_only=True).reset_index() #numeric_only=True was added. In previous it used to worked, however in latest versions of pandas numeric_only=False.
+snow_normal_ave = snow_normal.groupby(['STATION_ID']).mean(numeric_only=True).reset_index()
 snow_normal_ave = snow_normal_ave[['STATION_ID', 'VALUE']]
 snow_normal_ave = snow_normal_ave.rename(columns={'VALUE': 'normal'})
 merged = pd.merge(snow, snow_normal_ave, on='STATION_ID')
