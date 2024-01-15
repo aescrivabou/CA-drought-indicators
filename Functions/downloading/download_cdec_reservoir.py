@@ -84,6 +84,7 @@ def download_reservoir_data(
     reservoirs = reservoirs[['station', 'sensor_type', 'value', 'data_flag', 'units', 'date', 'month', 'year', 'name', 
                              'Latitude', 'Longitude', 'River_Basin', 'HR_NAME' , 'capacity']]
     reservoirs = reservoirs.dropna(subset=['sensor_type'])
+    os.makedirs('../../Data/Downloaded/cdec/reservoir/', exist_ok=True)
     reservoirs.to_csv(directory + 'reservoir/reservoirs.csv')
 
 
