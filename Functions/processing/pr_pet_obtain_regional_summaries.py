@@ -165,7 +165,7 @@ def obtainregionalsummary(input_folder = '../../Data/Downloaded/',
         
         allindicators = allindicators.merge(precipitation, how='outer', on='date')
         
-        
+    os.makedirs(directory, exist_ok=True)    
     allindicators.to_csv(directory + output_filename)
         
 

@@ -7,6 +7,7 @@ Created on Sat Apr  8 22:49:49 2023
 """
 
 import pandas as pd
+import os
 from percentile_average_function import func_for_tperiod
 
 
@@ -69,6 +70,6 @@ tot_stor_perc.loc[tot_stor_perc.snow_pctl.isna() == True, 'snow_pctl'] = 0.5
 
 tot_stor_perc = tot_stor_perc.rename(columns={'percentile': 'SWDI'})
 
+os.makedirs('../../Data/Processed/surface_water_drougth_indicator/', exist_ok=True)
 res_ind.to_csv('../../Data/Processed/surface_water_drougth_indicator/individual_reservoir_percentiles.csv')
 tot_stor_perc.to_csv('../../Data/Processed/surface_water_drougth_indicator/total_storage_percentiles.csv')
-                             
