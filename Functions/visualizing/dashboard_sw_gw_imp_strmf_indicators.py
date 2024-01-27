@@ -60,7 +60,7 @@ def vis_sw_dashboard(hr='San Joaquin River', date='2001-04-30', hydrograph_lengt
     
     
     df = pd.read_csv('../../Data/Processed/surface_water_drougth_indicator/total_storage_percentiles.csv')
-    df_rsv = pd.read_csv('../../Data/Processed/surface_water_drougth_indicator/indivudual_reservoir_percentiles.csv')
+    df_rsv = pd.read_csv('../../Data/Processed/surface_water_drougth_indicator/individual_reservoir_percentiles.csv')
     hr_shapes = gpd.read_file('../../Data/Input_Data/HRs/i03_Hydrologic_Regions.shp').to_crs('epsg:3857')
     date = datetime.strptime(date, '%Y-%m-%d')
     
@@ -80,7 +80,7 @@ def vis_sw_dashboard(hr='San Joaquin River', date='2001-04-30', hydrograph_lengt
     df_rsv = gpd.GeoDataFrame(df_rsv, geometry=gpd.points_from_xy(df_rsv.Longitude, df_rsv.Latitude)).set_crs('epsg:4326').to_crs('epsg:3857')
     df_rsv = gpd.clip(df_rsv, hr_shapes)
     df_rsv['capacity_scaled'] = df_rsv.capacity/7000
-    df_rsv['color_pctl'] = color_function_df(df_rsv, 'corrected_percentile')
+    df_rsv['color_pctl'] = color_function_df(df_rsv, 'percentile')
     
     #  Create figure objects and develop gridding system to implement components of dashboard
     fig = plt.figure()
@@ -123,8 +123,8 @@ def vis_sw_dashboard(hr='San Joaquin River', date='2001-04-30', hydrograph_lengt
     plt.suptitle(hr+ "\n" + pd.to_datetime(date).strftime('%b %Y'), fontsize=16)
     plt.savefig('../../Data/Visuals/dashboards/sw_dashboard.pdf')
     
-
-
+vis_sw_dashboard(hr='San Joaquin River', date='2022-04-30', hydrograph_length=10)
+#%%
 #  Define function for imports
 def vis_imports_dashboard(date='2001-04-30', hydrograph_length = 10):
     
@@ -151,7 +151,7 @@ def vis_imports_dashboard(date='2001-04-30', hydrograph_length = 10):
     date = datetime.strptime(date, '%Y-%m-%d')
     
     #  Convert dataframe date to datetime type
-    df.date = pd.to_datetime(df.date, format='%m/%d/%y')
+    df.date = pd.to_datetime(df.date, format='mixed')
     
     #  Modify HR regions shapefile to properly facilitate plotting
     hr_shapes1 = hr_shapes[(hr_shapes.HR_NAME)=='Sacramento River']
@@ -203,8 +203,8 @@ def vis_imports_dashboard(date='2001-04-30', hydrograph_length = 10):
     #  Add figure title
     plt.suptitle("Delta exporting basins\n" + pd.to_datetime(date).strftime('%b %Y'), fontsize=16)
     plt.savefig('../../Data/Visuals/dashboards/imports_dashboard.pdf')
-
-
+vis_imports_dashboard(date='2001-04-30', hydrograph_length = 10)
+#%%
 #  Define function for surface water dashboard visualizations
 def vis_gw_dashboard(hr='San Joaquin River', date='2010-03-31', hydrograph_length=10):
     
@@ -306,8 +306,8 @@ def vis_gw_dashboard(hr='San Joaquin River', date='2010-03-31', hydrograph_lengt
     plt.suptitle(hr+ " - " + pd.to_datetime(date).strftime('%b %Y'), fontsize=16)
     
     plt.savefig('../../Data/Visuals/dashboards/gw_dashboard.pdf')
-
-
+vis_gw_dashboard(hr='San Joaquin River', date='2022-03-31', hydrograph_length=10)
+#%%
 
 #  Define function for surface water dashboard visualizations
 def vis_streamflow_dashboard(hr='San Joaquin River', date='2011-11-30', hydrograph_length=10):
@@ -411,6 +411,4 @@ def vis_streamflow_dashboard(hr='San Joaquin River', date='2011-11-30', hydrogra
     plt.suptitle(hr+ "\n" + pd.to_datetime(date).strftime('%b %Y'), fontsize=16)
     plt.savefig('../../Data/Visuals/dashboards/streamflow_dashboard.pdf')
 
-
-
-
+vis_streamflow_dashboard(hr='Sacramento River', date='2022-11-30', hydrograph_length=10)
