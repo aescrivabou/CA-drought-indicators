@@ -88,7 +88,7 @@ def download_reservoir_data(
 
 
 # Download all data
-download_reservoir_data(
-             startyear = 1991,
-             endyear = 2023,
-             directory = '../../Data/Downloaded/cdec/')
+# download_reservoir_data(
+#              startyear = 1991,
+#              endyear = 2023,
+#              directory = '../../Data/Downloaded/cdec/')
