@@ -5,7 +5,7 @@ Created on Wed Apr 12 15:58:06 2023
 
 @author: alvar
 """
-# I AM ADDING THIS
+# I AM ADDING THIS (trial 2)
 import numpy as np
 import pandas as pd
 import dataretrieval.nwis as nwis
