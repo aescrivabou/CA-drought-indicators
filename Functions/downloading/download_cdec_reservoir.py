@@ -11,12 +11,15 @@ Created on Tue Apr  4 10:17:54 2023
 import pandas as pd
 import os
 from tqdm import tqdm
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 ## define downloading function
 def download_reservoir_data(
-             startyear = 2019,
-             endyear = 2021,
-             directory = '../NIDIS/Data/Processed/cdec/'): 
+             startdate = '1-1-1991',
+             enddate = '12-31-2023',
+             directory = '../NIDIS/Data/Processed/cdec/',
+             stations = 'nan'): 
 
     """Downloads raw reservoir data
     
@@ -43,12 +46,12 @@ def download_reservoir_data(
     ## download reservoir data from cdec
 
     # create subfolder for downloaded files
-    subfolder = "reservoir"
-    path = os.path.join(directory, subfolder)
-    os.makedirs(path, exist_ok=True)
+    # subfolder = "reservoir"
+    # path = os.path.join(directory, subfolder)
+    # os.makedirs(path, exist_ok=True)
        
     # import sensor list    
-    reservoirstations = pd.read_csv('../../Data/Input_Data/cdec/reservoirstations_hrs.csv')
+    reservoirstations = stations
     reservoircapacity = pd.read_csv('../../Data/Input_Data/cdec/reservoir_capacity.csv')
     
     # reservoirs
@@ -57,8 +60,14 @@ def download_reservoir_data(
     reservoirstations = reservoirstations[['station','name', 'Latitude','Longitude', 'River_Basin', 'HR_NAME']].reset_index(drop=True)
     
     reservoirs = pd.DataFrame()
-    startdate = str(startyear-1) + '-01-01' #We use the previous year because data is for the last day of the month (and we update this as the first day of the following month)
-    enddate = str(endyear) + '-12-31'
+
+    startdate = datetime.strptime(startdate, '%m-%d-%Y')
+    startdate = startdate - relativedelta(months=1)
+    startdate = startdate.strftime('%m-%d-%Y')
+    enddate = datetime.strptime(enddate, '%m-%d-%Y')
+    enddate = enddate - relativedelta(months=1)
+    enddate = enddate.strftime('%m-%d-%Y')
+    
     sensor_num = 15
     dur_code = 'M' #monthly
     reservoirs = pd.DataFrame()
@@ -80,15 +89,12 @@ def download_reservoir_data(
     reservoirs['date'] = pd.to_datetime(dict(year=reservoirs.year, month=reservoirs.month, day=1))
     reservoirs['year'] = reservoirs['date'].dt.year
     #Subseting data for the actual year we want to start
+    startdate = pd.to_datetime(startdate)
+    startyear = startdate.year
     reservoirs = reservoirs.loc[reservoirs.year>startyear-1]
     reservoirs = reservoirs[['station', 'sensor_type', 'value', 'data_flag', 'units', 'date', 'month', 'year', 'name', 
                              'Latitude', 'Longitude', 'River_Basin', 'HR_NAME' , 'capacity']]
     reservoirs = reservoirs.dropna(subset=['sensor_type'])
-    reservoirs.to_csv(directory + 'reservoir/reservoirs.csv')
-
-
-# Download all data
-# download_reservoir_data(
-#              startyear = 1991,
-#              endyear = 2023,
-#              directory = '../../Data/Downloaded/cdec/')
+    # reservoirs.to_csv(directory + 'reservoir/reservoirs.csv')
+    
+    return reservoirs
