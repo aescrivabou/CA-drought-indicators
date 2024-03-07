@@ -96,18 +96,21 @@ snow_data = load_or_download_data(parameter_type='snow', directory=snow_director
 
 snow_data_new = add_new_data (df = snow_data, parameter_type = 'snow', date_column = 'DATE TIME', id_column = 'STATION_ID', directory= snow_directory, stations = snotels)
 get_dates (snow_data, snow_data_new, 'DATE TIME')
-   
+snow_data_new.to_csv(snow_directory)
+
 #%%
 # sf data is daily
 strmflw_stations = pd.read_csv("../../Data/Input_Data/usgs/sg_usgs_hr.csv")
 # strmflw_stations = strmflw_stations.iloc[:5,:]
 
-strmflw_directory = r'../../Data\Downloaded/usgs/streamflow_daily_data.csv'
+strmflw_directory = r'..\..\Data\Downloaded/usgs/streamflow_daily_data.csv'
 strmflw_data = load_or_download_data(parameter_type='streamflow', directory=strmflw_directory, 
                                   startdate='1991-01-01' , enddate='2023-12-31', stations=strmflw_stations) #year-month-day
 
 strmflw_data_new = add_new_data (df = strmflw_data, parameter_type = 'streamflow', date_column = 'datetime', id_column = 'site_no', directory= strmflw_directory, stations = strmflw_stations)
 get_dates (strmflw_data, strmflw_data_new, 'datetime')
+strmflw_data_new.to_csv(strmflw_directory)
+
 #%%
 # reservoir data is monthly
 rsvr_stations= pd.read_csv('../../Data/Input_Data/cdec/reservoirstations_hrs.csv')
@@ -119,6 +122,8 @@ rsvr_data = load_or_download_data(parameter_type='reservoir', directory=rsvr_dir
 rsvr_data_new = add_new_data (df = rsvr_data, parameter_type = 'reservoir', 
                                      date_column = 'date', id_column = 'station', directory= rsvr_directory, stations = rsvr_stations)
 get_dates (rsvr_data, rsvr_data_new, 'date')
+rsvr_data_new.to_csv(rsvr_directory)
+
 #%%%
 # pet and pr is monthly
 pr_pet_directory = '../../Data/Downloaded/pr'
@@ -127,11 +132,3 @@ pr_pet_data = load_or_download_data(parameter_type='prcp and et', directory = pr
 pr_pet_data_new = add_new_data (df = pr_pet_data, parameter_type = 'prcp and et', 
                                 date_column = 'nan', id_column = 'nan', directory= pr_pet_directory, stations = 'nan')
 
-#%%
-
-# script_path = 'data_download_usgs.py'
-
-# # Execute the script using exec
-# with open(script_path, 'r') as script_file:
-#     script_code = script_file.read()
-#     exec(script_code)
