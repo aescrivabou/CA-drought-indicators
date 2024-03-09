@@ -1,54 +1,54 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Feb 24 12:12:31 2024
+Created on Fri Mar  8 21:51:35 2024
 
 @author: armen
 """
-import os
-import pandas as pd
-import geopandas as gpd
-import rasterio as rio
-import xarray as xr
-import numpy as np
-import datetime
-import calendar
-from percentile_average_function import func_for_tperiod
 
-import timeit
+import time
+import subprocess
+import sys
 
-def measure_script_execution(script_path):
-    # Read the script code
-    with open(script_path, 'r') as script_file:
-        script_code = script_file.read()
+def execute_and_time(script_path):
+    # Record the start time
+    start_time = time.time()
 
-    # Define a function to execute the script
-    def execute_script():
-        exec(script_code)
+    try:
+        # Use sys.executable to get the Python interpreter executable
+        subprocess.run([sys.executable, script_path], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error executing the script: {e}")
+        return
 
-    # Measure the execution time using timeit
-    execution_time_minutes = timeit.timeit(execute_script, number=1) / 60  # Convert seconds to minutes
+    # Record the end time
+    end_time = time.time()
 
-    print(f"Script execution time: {round(execution_time_minutes, 1)} minutes")
+    # Calculate the elapsed time
+    execution_time_minutes = (end_time - start_time) / 60
+
+    # Print the result
+    print(f"{script_path} execution time: {round(execution_time_minutes, 1)} minutes")
 
 
-#%% 3.1
+# 3.1 prcp and et
 script_path = 'pr_pet_obtain_regional_summaries.py'
-measure_script_execution(script_path)
+execute_and_time(script_path)
 
 script_path = 'pr_and_et_indicators.py'
-measure_script_execution(script_path)
-#%% 3.3 surface water drought indicator
+execute_and_time(script_path)
+
+# 3.3 surface water drought indicator
 script_path = 'surface_water_drought_indicator.py'
-measure_script_execution(script_path)
+execute_and_time(script_path)
 
-#%% 3.4 Groundwater status
+# 3.4 Groundwater status
 script_path = 'groundwater_drought.py'
-measure_script_execution(script_path)
+execute_and_time(script_path)
 
-#%% 3.5 streamflow conditions
+# 3.5 streamflow conditions
 script_path = 'streamflow_indicator.py'
-measure_script_execution(script_path)
+execute_and_time(script_path)
 
-#%% 3.6 imports indicator
+# 3.6 imports indicator
 script_path = 'imports_indicator.py'
-measure_script_execution(script_path)
+execute_and_time(script_path)
