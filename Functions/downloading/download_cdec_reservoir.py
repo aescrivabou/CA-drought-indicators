@@ -43,12 +43,6 @@ def download_reservoir_data(
     value as the first day of the following month to be consistent with the snow data
     """
 
-    ## download reservoir data from cdec
-
-    # create subfolder for downloaded files
-    # subfolder = "reservoir"
-    # path = os.path.join(directory, subfolder)
-    # os.makedirs(path, exist_ok=True)
        
     # import sensor list    
     reservoirstations = stations
@@ -95,6 +89,5 @@ def download_reservoir_data(
     reservoirs = reservoirs[['station', 'sensor_type', 'value', 'data_flag', 'units', 'date', 'month', 'year', 'name', 
                              'Latitude', 'Longitude', 'River_Basin', 'HR_NAME' , 'capacity']]
     reservoirs = reservoirs.dropna(subset=['sensor_type'])
-    # reservoirs.to_csv(directory + 'reservoir/reservoirs.csv')
     
     return reservoirs

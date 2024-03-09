@@ -18,9 +18,6 @@ def download_streamflow_data(
              stations = 'nan',
              ): 
 
-    ## import streamgage site list
-    
-    # stations = pd.read_csv("../../Data/Input_Data/usgs/sg_usgs_hr.csv")
     stations.update(stations[['site']].astype(str))
     sites = list(stations['site'])
     

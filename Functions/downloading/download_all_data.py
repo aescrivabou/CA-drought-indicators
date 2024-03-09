@@ -34,9 +34,8 @@ def load_or_download_data(parameter_type, directory, startdate, enddate, station
     file_path = directory
     if parameter_type != 'prcp and et':
         if os.path.exists(file_path) :
-            df = pd.read_csv(file_path)
+            df = pd.read_csv(file_path,index_col=0)
             print(f'{parameter_type} data exists')
-
         else:
             df = download_data(parameter_type, startdate, enddate, directory, stations)
         return df
@@ -85,20 +84,24 @@ def get_dates (df, df_new, date_column):
     new_end_date = df_new[date_column].max()
     print(f"Start Date: {start_date}\nEnd Date: {end_date}\nNew End Date: {new_end_date}")
     
-#%%
+    
 # snow data is daily
 snotels = pd.read_csv('../../Data/Input_Data/cdec/snotels3.csv')
 # snotels = snotels.iloc[:5,:]
 
 snow_directory = '../../Data/Downloaded/cdec/snow/snow_stations.csv'
+snow_regional_directory = '../../Data/Downloaded/cdec/snow/SnowRegional.csv'
 snow_data = load_or_download_data(parameter_type='snow', directory=snow_directory , 
                                   startdate='1-1-1991', enddate='12-31-2023', stations=snotels) #month-day-year
 
 snow_data_new = add_new_data (df = snow_data, parameter_type = 'snow', date_column = 'DATE TIME', id_column = 'STATION_ID', directory= snow_directory, stations = snotels)
 get_dates (snow_data, snow_data_new, 'DATE TIME')
-snow_data_new.to_csv(snow_directory)
 
-#%%
+snow_data_new, snow_regional = snow_percentile(snow_data_new)
+snow_data_new.to_csv(snow_directory)
+snow_regional.to_csv(snow_regional_directory)
+
+
 # sf data is daily
 strmflw_stations = pd.read_csv("../../Data/Input_Data/usgs/sg_usgs_hr.csv")
 # strmflw_stations = strmflw_stations.iloc[:5,:]
@@ -111,7 +114,7 @@ strmflw_data_new = add_new_data (df = strmflw_data, parameter_type = 'streamflow
 get_dates (strmflw_data, strmflw_data_new, 'datetime')
 strmflw_data_new.to_csv(strmflw_directory)
 
-#%%
+
 # reservoir data is monthly
 rsvr_stations= pd.read_csv('../../Data/Input_Data/cdec/reservoirstations_hrs.csv')
 # rsvr_stations = rsvr_stations.iloc[:5,:]
@@ -124,11 +127,10 @@ rsvr_data_new = add_new_data (df = rsvr_data, parameter_type = 'reservoir',
 get_dates (rsvr_data, rsvr_data_new, 'date')
 rsvr_data_new.to_csv(rsvr_directory)
 
-#%%%
+
 # pet and pr is monthly
 pr_pet_directory = '../../Data/Downloaded/pr'
 pr_pet_data = load_or_download_data(parameter_type='prcp and et', directory = pr_pet_directory, 
                                   startdate=1991 , enddate=2023, stations='nan')
 pr_pet_data_new = add_new_data (df = pr_pet_data, parameter_type = 'prcp and et', 
                                 date_column = 'nan', id_column = 'nan', directory= pr_pet_directory, stations = 'nan')
-

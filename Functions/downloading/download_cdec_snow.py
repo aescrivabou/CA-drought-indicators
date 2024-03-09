@@ -12,8 +12,7 @@ import os
 snotels = pd.read_csv('../../Data/Input_Data/cdec/snotels3.csv')
 
 def download_snow_data(startdate, enddate, stations = snotels): 
-    # import snotel list     
-
+    
     sensor_num = 82
     dur_code = 'D'
     snotels = stations
@@ -24,7 +23,6 @@ def download_snow_data(startdate, enddate, stations = snotels):
         datasnow01 = pd.read_csv(url, on_bad_lines='skip')
         snow = pd.concat([snow, datasnow01])
     
-    # snow = pd.read_csv("C:/Users/armen/Desktop/snow.csv")
     snow['DATE TIME'] = pd.to_datetime(snow['DATE TIME'])
     
     # calculate April 1st 'normal' for each sensor
@@ -36,7 +34,7 @@ def download_snow_data(startdate, enddate, stations = snotels):
     return snow
 
 def snow_percentile(snow):
-    
+    snow = snow.iloc[:,:12] # we cross out columns that are assosiated with snow regional percnetile calculation as it will be performed in this function
     snow_normal = snow.loc[(snow['month'] == 4) & (snow['day'] == 1)]
     snow_normal = snow_normal.dropna(subset=['VALUE'])
     snow_normal = snow_normal[(snow_normal["DATE TIME"] >= "1991-01-01") & (snow_normal["DATE TIME"] <= "2021-12-31")]
@@ -69,35 +67,3 @@ def snow_percentile(snow):
     snow = pd.merge(snow, snotels, left_on='STATION_ID', right_on='station')
     
     return snow,regional
-
-#%%
-# sample of how snow data is downloaded and subsequently appending the new data to the pre-existing dataset
-# import pandas as pd
-# from datetime import datetime
-# import os
-# from dateutil.relativedelta import relativedelta
-# from download_data import download_data, load_or_download_data
-
-# snotels = pd.read_csv('../../Data/Input_Data/cdec/snotels3.csv')
-# snotels = snotels.iloc[:5,:]
-# snow_directory = '../../Data/Downloaded/cdec/snow/snow_stations.csv'
-
-# snow_data = load_or_download_data(directory=snow_directory, parameter_type='snow', startdate='1-2-2022', enddate='12-31-2023', stations=snotels)
-
-
-# def append_new_data (df, parameter_type, date_column, id_column, directory, stations): 
-#     last_row = df.iloc[-1]
-#     startdate = last_row[date_column]
-#     startdate = pd.to_datetime(startdate) + relativedelta(days=1) # 1 day is added because i want the new data to start the day after
-#     enddate = startdate  + relativedelta(months=1) - relativedelta(days=1) # 1 day is subtracted because i want the new data to be end of the month
-#     startdate = startdate.strftime("%Y-%m-%d")
-#     enddate = enddate.strftime("%Y-%m-%d")
-    
-#     df_append = download_data(parameter_type, startdate = startdate, enddate = enddate, stations = stations)
-#     df_new = pd.concat([df, df_append])
-#     df_new = df_new.sort_values(by=[id_column, date_column], ascending=[True, True])
-#     # snow_data_new = snow_percentile(snow_data_new)
-    
-#     return df_new
-
-# snow_data_new = append_new_data (snow_data, parameter_type = 'snow', date_column = 'DATE TIME', id_column = 'STATION_ID', directory= snow_directory, stations = snotels)
