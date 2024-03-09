@@ -4,7 +4,15 @@ Created on Sat Feb 24 12:12:31 2024
 
 @author: armen
 """
-
+import os
+import pandas as pd
+import geopandas as gpd
+import rasterio as rio
+import xarray as xr
+import numpy as np
+import datetime
+import calendar
+from percentile_average_function import func_for_tperiod
 
 import timeit
 
@@ -44,28 +52,3 @@ measure_script_execution(script_path)
 #%% 3.6 imports indicator
 script_path = 'imports_indicator.py'
 measure_script_execution(script_path)
-
-
-
-#%%
-import pandas as pd
-sflow_percentile = pd.read_csv ('../../Data/Processed/streamflow_indicator/streamflow_individual_gages_indicator.csv', index_col=0)
-sflow_directory = r'../../Data\Downloaded/usgs/streamflow_daily_data.csv'
-sflow_data = pd.read_csv(sflow_directory, index_col=0)
-sflow_data = sflow_data.rename(columns={'datetime': 'date'})
-
-#%%
-def get_dates (df, df_new, date_column):
-    df[date_column] = pd.to_datetime(df[date_column])
-    df_new[date_column] = pd.to_datetime(df_new[date_column])
-    start_date = df[date_column].min()
-    end_date = df[date_column].max()
-    new_start_date = df_new[date_column].min()
-    new_end_date = df_new[date_column].max()
-    print(f"Start Date: {start_date}\nEnd Date: {end_date}\nStart Date: {new_start_date}\nEnd Date: {new_end_date}")
-    
-get_dates(sflow_data, sflow_percentile, 'date')
-
-#%%
-
-
