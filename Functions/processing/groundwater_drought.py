@@ -11,6 +11,7 @@ import numpy as np
 import geopandas as gpd
 from datetime import date
 import os
+from datetime import datetime
 
 #Data from: https://data.cnra.ca.gov/dataset/periodic-groundwater-level-measurements
 gwdata = pd.read_csv('../../Data/Downloaded/groundwater/periodic_gwl_bulkdatadownload/measurements.csv')
@@ -24,12 +25,14 @@ stations_gdf = gpd.GeoDataFrame(stations, geometry=gpd.points_from_xy(stations.l
 stations_gdf = stations_gdf.set_crs('epsg:4326')
 stations_gdf = gpd.sjoin(stations_gdf, hr)
 
+end_date = datetime.now().strftime('%Y-%m-%d') #today's date
+
 #Mergind data with stations
 gwdata = gwdata.merge(stations_gdf, on='site_code')
 
 def well_percentile(df, date_column = 'msmt_date', value_column = 'gse_gwe',
                     station_id_column = 'stn_id', initial_date = '1990-01-01',
-                    end_date = '2023-05-01', subset = ['HR_NAME', ['Sacramento River']], 
+                    end_date = end_date, subset = ['HR_NAME', ['Sacramento River']], 
                     maxgwchange = 30, pctg_data_valid=0):
     """TBD
     
