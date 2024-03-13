@@ -63,8 +63,9 @@ def add_new_data (df, parameter_type, date_column, id_column, directory, station
         
         df_append = download_data(parameter_type, startdate, enddate, directory, stations)
         df_new = pd.concat([df, df_append])
+        df_new[date_column] = pd.to_datetime(df_new[date_column], format='mixed')
         df_new = df_new.sort_values(by=[id_column, date_column], ascending=[True, True])
-        # snow_data_new = snow_percentile(snow_data_new)
+        df_new[date_column] = df_new[date_column].astype(str)
         print(f'dates downloaded: {startdate}, {enddate}')
         return df_new
 
@@ -84,7 +85,7 @@ def get_dates (df, df_new, date_column):
     new_end_date = df_new[date_column].max()
     print(f"Start Date: {start_date}\nEnd Date: {end_date}\nNew End Date: {new_end_date}")
     
-    
+
 # snow data is daily
 snotels = pd.read_csv('../../Data/Input_Data/cdec/snotels3.csv')
 # snotels = snotels.iloc[:5,:]
@@ -134,3 +135,8 @@ pr_pet_data = load_or_download_data(parameter_type='prcp and et', directory = pr
                                   startdate=1991 , enddate=2023, stations='nan')
 pr_pet_data_new = add_new_data (df = pr_pet_data, parameter_type = 'prcp and et', 
                                 date_column = 'nan', id_column = 'nan', directory= pr_pet_directory, stations = 'nan')
+
+# GW data is periodic
+script_path = 'download_gw.py'
+script_content = open(script_path).read()
+exec(script_content)
