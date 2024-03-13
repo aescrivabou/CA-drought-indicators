@@ -26,7 +26,7 @@ directory_path = '../../Data/Visuals/dashboards'
 os.makedirs(directory_path, exist_ok=True)
 
 #  Import real data and indicator visualization function
-from dashboard_auxiliar_functions import vis_data_indicator, dial, color_function, color_function_df
+from dashboard_auxiliar_functions import vis_data_indicator, dial, color_function, color_function_df, convert_input_date_format
 
 #  Define general parameters for matplotlib formatting
 ppic_coltext = '#333333'
@@ -64,6 +64,7 @@ def vis_sw_dashboard(hr='San Joaquin River', date='2001-04-30', hydrograph_lengt
     df = pd.read_csv('../../Data/Processed/surface_water_drougth_indicator/total_storage_percentiles.csv')
     df_rsv = pd.read_csv('../../Data/Processed/surface_water_drougth_indicator/individual_reservoir_percentiles.csv')
     hr_shapes = gpd.read_file('../../Data/Input_Data/HRs/i03_Hydrologic_Regions.shp').to_crs('epsg:3857')
+    date = convert_input_date_format(date)
     date = datetime.strptime(date, '%Y-%m-%d')
     
     #  Convert dataframe date to datetime type
@@ -151,6 +152,7 @@ def vis_imports_dashboard(date='2001-04-30', hydrograph_length = 10):
     df = pd.read_csv('../../Data/Processed/imports/total_storage_percentiles.csv')
     df_rsv = pd.read_csv('../../Data/Processed/imports/individual_reservoir_percentiles.csv')
     hr_shapes = gpd.read_file('../../Data/Input_Data/HRs/i03_Hydrologic_Regions.shp').to_crs('epsg:3857')
+    date = convert_input_date_format(date)
     date = datetime.strptime(date, '%Y-%m-%d')
     
     #  Convert dataframe date to datetime type
@@ -236,6 +238,7 @@ def vis_gw_dashboard(hr='San Joaquin River', date='2010-03-31', hydrograph_lengt
     df = pd.read_csv('../../Data/Processed/groundwater/state_wells_regional_analysis.csv')
     df_wells = pd.read_csv('../../Data/Processed/groundwater/state_wells_individual_analysis.csv')
     hr_shapes = gpd.read_file('../../Data/Input_Data/HRs/i03_Hydrologic_Regions.shp').to_crs('epsg:3857')
+    date = convert_input_date_format(date)
     date = datetime.strptime(date, '%Y-%m-%d')
     
     #  Convert dataframe date to datetime type
@@ -341,7 +344,7 @@ def vis_streamflow_dashboard(hr='San Joaquin River', date='2011-11-30', hydrogra
     df_gages = pd.read_csv('../../Data/Processed/streamflow_indicator/streamflow_individual_gages_indicator.csv')
     hr_shapes = gpd.read_file('../../Data/Input_Data/HRs/i03_Hydrologic_Regions.shp').to_crs('epsg:3857')
     rivers_shape = gpd.read_file('../../Data/Input_Data/Major_Rivers/NHD_Major_Rivers.shp').to_crs('epsg:3857')
-    # date = datetime.strptime(date, '%Y-%m-%d').date()
+    date = convert_input_date_format(date)
     date = datetime.strptime(date, '%Y-%m-%d')
     #date = date.replace(tzinfo=pytz.UTC)
 
@@ -414,7 +417,8 @@ def vis_streamflow_dashboard(hr='San Joaquin River', date='2011-11-30', hydrogra
     plt.suptitle(hr+ "\n" + pd.to_datetime(date).strftime('%b %Y'), fontsize=16)
     plt.savefig('../../Data/Visuals/dashboards/streamflow_dashboard.pdf')
 
-vis_sw_dashboard(hr='San Joaquin River', date='2024-01-31', hydrograph_length=10)
-vis_streamflow_dashboard(hr='San Joaquin River', date='2024-01-31', hydrograph_length=10)
-vis_gw_dashboard(hr='San Joaquin River', date='2023-09-30', hydrograph_length=10) # works only for yyyy-3-31 and yyyy-9-30
-vis_imports_dashboard(date='2024-01-31', hydrograph_length = 10)
+
+vis_sw_dashboard(hr='San Joaquin River', date='3-2022', hydrograph_length=10)
+vis_streamflow_dashboard(hr='Sacramento River', date='11-2022', hydrograph_length=10)
+vis_gw_dashboard(hr='San Joaquin River', date='2022-03', hydrograph_length=10) # works only for March (3) and Sep (9)
+vis_imports_dashboard(date='2022-03', hydrograph_length = 10)
