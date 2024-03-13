@@ -11,12 +11,12 @@ Created on Thu Jun 22 11:08:17 2023
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from datetime import datetime
-from datetime import timedelta
+from datetime import datetime, timedelta
 from matplotlib import rcParams
 from cycler import cycler
 import math
 from PIL import Image
+import calendar
 
 #  Define function for developing visualizations
 def vis_data_indicator(ax, subplot, df, date, hr=None, data=None, ind=None, hydrograph_length=10):
@@ -265,3 +265,20 @@ def color_function_df(df, df_field = 'corrected_percentile'):
     df.loc[df[df_field]<0.1, 'color_pctl'] = drought_col[4]
     return df['color_pctl']
 
+def convert_input_date_format (date_str):
+    """
+    Input: String in the format 'YYYY-MM' or 'MM-YYYY'. 
+
+    Returns:
+        str: String representing the last day of the month in 'YYYY-MM-DD' format.
+    """
+    try:
+        date_obj = datetime.strptime(date_str, '%Y-%m')
+        date_obj.strftime('%Y%m%d')
+    except ValueError:
+        date_obj = datetime.strptime(date_str, '%m-%Y')
+        date_obj.strftime('%Y%m%d')
+    last_day_of_month = calendar.monthrange(date_obj.year, date_obj.month)[1]
+    last_day_date = date_obj.replace(day=last_day_of_month)
+    last_day_date = last_day_date.strftime('%Y-%m-%d')
+    return last_day_date

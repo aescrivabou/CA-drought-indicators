@@ -8,23 +8,10 @@ Created on Mon Apr 10 16:15:06 2023
 
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-from datetime import datetime as dt
-import scipy
-from scipy.stats import shapiro, norm, skewnorm, gamma
-from sklearn.cluster import KMeans
 import geopandas as gpd
-import mapclassify
-import contextily as ctx
-from datetime import date, timedelta
-import seaborn as sns
-from matplotlib.dates import DateFormatter
-import matplotlib.dates as mdates
-import math
-from PIL import Image
-from matplotlib import rcParams
-from cycler import cycler
-
+from datetime import date
+import os
+from datetime import datetime
 
 #Data from: https://data.cnra.ca.gov/dataset/periodic-groundwater-level-measurements
 gwdata = pd.read_csv('../../Data/Downloaded/groundwater/periodic_gwl_bulkdatadownload/measurements.csv')
@@ -38,13 +25,14 @@ stations_gdf = gpd.GeoDataFrame(stations, geometry=gpd.points_from_xy(stations.l
 stations_gdf = stations_gdf.set_crs('epsg:4326')
 stations_gdf = gpd.sjoin(stations_gdf, hr)
 
+end_date = datetime.now().strftime('%Y-%m-%d') #today's date
+
 #Mergind data with stations
 gwdata = gwdata.merge(stations_gdf, on='site_code')
 
-
 def well_percentile(df, date_column = 'msmt_date', value_column = 'gse_gwe',
                     station_id_column = 'stn_id', initial_date = '1990-01-01',
-                    end_date = '2023-05-01', subset = ['HR_NAME', ['Sacramento River']], 
+                    end_date = end_date, subset = ['HR_NAME', ['Sacramento River']], 
                     maxgwchange = 30, pctg_data_valid=0):
     """TBD
     
@@ -78,7 +66,7 @@ def well_percentile(df, date_column = 'msmt_date', value_column = 'gse_gwe',
     """
     
     #First we filter the data with the initial subset and date
-    df[date_column] = pd.to_datetime(df[date_column])
+    df[date_column] = pd.to_datetime(df[date_column], format='mixed')
     if subset is not None:
         df = df.loc[df[subset[0]].isin(subset[1])]
     df = df.loc[df[date_column]>=initial_date]
@@ -93,7 +81,7 @@ def well_percentile(df, date_column = 'msmt_date', value_column = 'gse_gwe',
     df.loc[df[date_column].dt.month>6,'semester']=2
     
     #Obtain median groundwater elevation by semester
-    dfsem = df.groupby([subset[0], station_id_column, 'year', 'semester']).median().reset_index()
+    dfsem = df.groupby([subset[0], station_id_column, 'year', 'semester']).median(numeric_only=True).reset_index()
     dfsem['month']=3
     dfsem.loc[dfsem.semester>1, 'month']=9
     dfsem['day']=30
@@ -188,5 +176,6 @@ hrs = list(gwdata['HR_NAME'].unique())
 all_wells_individual_analysis = well_percentile(gwdata, subset = ['HR_NAME', hrs])
 all_wells_regional_analysis = regional_pctl_analysis(all_wells_individual_analysis, stat='median')
 
+os.makedirs('../../Data/Processed/groundwater/', exist_ok=True)
 all_wells_individual_analysis.to_csv('../../Data/Processed/groundwater/state_wells_individual_analysis.csv')
 all_wells_regional_analysis.to_csv('../../Data/Processed/groundwater/state_wells_regional_analysis.csv')

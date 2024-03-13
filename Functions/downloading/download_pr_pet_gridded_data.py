@@ -14,11 +14,9 @@ import os
 
 
 ## define downloading function
-def download(indicators = ['pr', 'pet'],
+def download_pr_pet_data(indicators = ['pr', 'pet'],
              startyear = 1980,
              endyear = 2023,
-             startmonth = 1,
-             endmonth = 3,
              directory = '../../Data/Downloaded/'): 
 
     """Downloads raw hydroclimatic data 
@@ -45,7 +43,7 @@ def download(indicators = ['pr', 'pet'],
         
     """
     
-    year = list(range(startyear, endyear))
+    year = list(range(startyear, endyear+1))
            
     ## downloading precipitation from gridMET
     
@@ -89,13 +87,3 @@ def download(indicators = ['pr', 'pet'],
                 url = 'https://www.northwestknowledge.net/metdata/data/' + '%s' %(i + '_') + '%s' %(j) + '.nc'
                 filename = directory + '%s' %(i + '/') + '%s' %(i +'_') + '%s' %(j) + '.nc'
                 urllib.request.urlretrieve(url, filename)
-    
-
-
-# download 1991 through 2023
-download(indicators = ['pr', 'pet'],
-             startyear = 1990,
-             endyear = 2024,
-             startmonth = 1,
-             endmonth = 12,
-             directory = '../../Data/Downloaded/')

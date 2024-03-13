@@ -7,9 +7,6 @@ Created on Fri Apr 21 16:24:46 2023
 """
 
 import pandas as pd
-import numpy as np
-import scipy.stats as stats
-import seaborn as sns
 from percentile_average_function import func_for_tperiod
 
 
@@ -38,7 +35,6 @@ all_hr_data = all_hr_data.merge(hr_df, on='hrid')
 all_hr_data['pet_minus_pr'] = all_hr_data.pet_value - all_hr_data.pr_value
 all_hr_data.loc[all_hr_data['pet_minus_pr']<0,'pet_minus_pr'] = 0
 
-
 pr_percentile = func_for_tperiod(df=all_hr_data, date_column = 'date', value_column = 'pr_value',
                      input_timestep = 'M', analysis_period = '1Y',
                      function = 'percentile', grouping_column= 'HR_NAME',
@@ -66,4 +62,3 @@ et_minus_pr_percentile['percentile'] = 1 - et_minus_pr_percentile.percentile
 pr_percentile.to_csv('../../Data/Processed/pr_pet_hr_indicators/pr_percentile.csv')
 et_percentile.to_csv('../../Data/Processed/pr_pet_hr_indicators/pet_percentile.csv')
 et_minus_pr_percentile.to_csv('../../Data/Processed/pr_pet_hr_indicators/pet_minus_pr_percentile.csv')
-

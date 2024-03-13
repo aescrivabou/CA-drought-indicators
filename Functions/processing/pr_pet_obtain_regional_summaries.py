@@ -80,9 +80,6 @@ def obtainregionalsummary(input_folder = '../../Data/Downloaded/',
         
     """
     
-    year = list(range(startyear, endyear))
-    count = endyear - startyear
-    
     # read hydrologic region shapefile
     shape_path_filename = '../../Data/Input_Data/HRs/i03_Hydrologic_Regions.shp'
     #shape_path_filename = r'W:/Projects/NIDIS/Data//HRs/Hydrologic_Regions.shp'
@@ -103,11 +100,17 @@ def obtainregionalsummary(input_folder = '../../Data/Downloaded/',
         
         pet = pd.DataFrame(columns=['date', 'pet_value'])
         
-        for i in range(count):
-            filepath = input_folder +'pet/pet_' + '%s' %(year[i]) + '.nc'
+        for year in range(startyear, endyear + 1):
+            filepath = input_folder +'pet/pet_' + '%s' %(year) + '.nc'
             ds = xr.open_dataset(filepath)
-            start = str(datetime.date(year[i], startmonth, 1))
-            end = str(datetime.date(year[i], endmonth, calendar.monthrange(year[i],endmonth)[1]))
+            if year == startyear:
+                start = str(datetime.date(year, startmonth, 1))
+            else:
+                start = str(datetime.date(year, 1, 1))
+            if year == endyear:
+                end = str(datetime.date(year, endmonth, calendar.monthrange(year, endmonth)[1]))
+            else:
+                end = str(datetime.date(year, 12, calendar.monthrange(year, 12)[1]))
             date = pd.date_range(start, end)
             for m in date:
                 t = '%s' %(m)
@@ -125,7 +128,7 @@ def obtainregionalsummary(input_folder = '../../Data/Downloaded/',
         pet['year'] = pet['date'].dt.year
         pet['day'] = 1
         pet['date']= pd.to_datetime(pet[['year','month','day']])
-        pet = pet.groupby(['year', 'month']).sum().reset_index()
+        pet = pet.groupby(['year', 'month'])['pet_value'].sum().reset_index()
         pet['day'] = 1
         pet['date']= pd.to_datetime(pet[['year','month','day']])
         pet = pet.drop(['year','month','day'], axis=1)
@@ -138,11 +141,17 @@ def obtainregionalsummary(input_folder = '../../Data/Downloaded/',
         
         precipitation = pd.DataFrame(columns=['date', 'pr_value'])
         
-        for i in range(count):
-            filepath = input_folder +'pr/pr_' + '%s' %(year[i]) + '.nc'
+        for year in range(startyear, endyear + 1):
+            filepath = input_folder +'pr/pr_' + '%s' %(year) + '.nc'
             ds = xr.open_dataset(filepath)
-            start = str(datetime.date(year[i], startmonth, 1))
-            end = str(datetime.date(year[i], endmonth, calendar.monthrange(year[i],endmonth)[1]))
+            if year == startyear:
+                start = str(datetime.date(year, startmonth, 1))
+            else:
+                start = str(datetime.date(year, 1, 1))
+            if year == endyear:
+                end = str(datetime.date(year, endmonth, calendar.monthrange(year, endmonth)[1]))
+            else:
+                end = str(datetime.date(year, 12, calendar.monthrange(year, 12)[1]))
             date = pd.date_range(start, end)
             for m in date:
                 t = '%s' %(m)
@@ -158,35 +167,43 @@ def obtainregionalsummary(input_folder = '../../Data/Downloaded/',
         precipitation['date'] = pd.to_datetime(precipitation['date'])    
         precipitation['month'] = precipitation['date'].dt.month
         precipitation['year'] = precipitation['date'].dt.year
-    
-        precipitation = precipitation.groupby(['year', 'month']).sum().reset_index()
+        precipitation = precipitation.groupby(['year', 'month'])['pr_value'].sum().reset_index()
         precipitation['day'] = 1
         precipitation['date']= pd.to_datetime(precipitation[['year','month','day']])
         precipitation = precipitation.drop(['year','month','day'], axis=1)
         
         allindicators = allindicators.merge(precipitation, how='outer', on='date')
         
-        
+    os.makedirs(directory, exist_ok=True)    
     allindicators.to_csv(directory + output_filename)
         
 
-
-for i in range(10):
-    obtainregionalsummary(input_folder = '../../Data/Downloaded/',
+presentmonth = datetime.datetime.now().month
+i=0
+directory = '../../Data/Processed/'
+output_filename = directory + hr_code[i] + '_processed_grided_indicators_1990_2022.csv'
+os.path.exists(output_filename)
+if os.path.exists(output_filename):
+    # File does not exist, run obtainsummary process for this code
+    print(f"The file {output_filename} doesn't exist.") 
+    for i in range(10):
+        obtainregionalsummary(input_folder = '../../Data/Downloaded/',
              region = hr_series[i], 
              name = hr_long_series[i], 
              indicators = ['pr', 'pet'],
              startyear = 1990, startmonth = 1,
-             endyear = 2023, endmonth = 12,
+             endyear = 2022, endmonth = 12,
              directory = '../../Data/Processed/gridded/',
              output_filename = hr_code[i] + '_processed_grided_indicators_1990_2022.csv')
+else:
+    print(f"The file {output_filename} exists.") 
 
-for i in range(10):
-    obtainregionalsummary(input_folder = '../../Data/Downloaded/',
-             region = hr_series[i], 
-             name = hr_long_series[i], 
-             indicators = ['pr', 'pet'],
-             startyear = 2023, startmonth = 1,
-             endyear = 2024, endmonth = 5,
-             directory = '../../Data/Processed/gridded/',
-             output_filename = hr_code[i] + '_processed_grided_indicators_2023.csv')
+    for i in range(10):
+        obtainregionalsummary(input_folder = '../../Data/Downloaded/',
+            region = hr_series[i], 
+            name = hr_long_series[i], 
+            indicators = ['pr', 'pet'],
+            startyear = 2023, startmonth = 1,
+            endyear = 2023, endmonth = presentmonth,
+            directory = '../../Data/Processed/gridded/',
+            output_filename = hr_code[i] + '_processed_grided_indicators_2023.csv')
