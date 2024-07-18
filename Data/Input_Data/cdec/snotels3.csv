@@ -1,0 +1,96 @@
+station,Eastside,YearStart,Data,long,lat,HR,Basin,aprilmean
+EBB,,1981,8700,-119.808,38.561,North Lahontan,Carson,0.44
+PSN,yes,1981,7900,-119.631,38.501,North Lahontan,Carson,0.44
+SPT,yes,1986,6150,-119.81742,38.66627,North Lahontan,Carson,0.44
+EP5,,1981,7800,-120.079,38.849,North Lahontan,Tahoe,0.34
+FLL,yes,1976,6250,-120.056,38.932,North Lahontan,Tahoe,0.34
+HGM,,1970,8000,-119.94,38.853,North Lahontan,Tahoe,0.34
+HVN,yes,1971,8800,-119.917,38.929,North Lahontan,Tahoe,0.34
+MRL,yes,1971,8000,-119.905,39.173,North Lahontan,Tahoe,0.34
+MSK,yes,1981,8900,-119.902,39.326,North Lahontan,Tahoe,0.34
+RP2,yes,1989,7500,-120.14,39.001,North Lahontan,Tahoe,0.34
+TCC,yes,1982,6750,-120.154658,39.171439,North Lahontan,Tahoe,0.34
+WC3,yes,1989,6750,-120.218678,39.135574,North Lahontan,Tahoe,0.34
+BMW,,1986,8700,-119.946,39.458,North Lahontan,Truckee,0.46
+IDC,yes,1981,6500,-120.298548,39.452588,North Lahontan,Truckee,0.46
+IDP,yes,1981,8450,-120.322,39.435,North Lahontan,Truckee,0.46
+INN,yes,1981,6500,-120.293,39.494,North Lahontan,Truckee,0.46
+SQV,yes,1981,8200,-120.276,39.194,North Lahontan,Truckee,0.46
+TK2,yes,1981,6400,-120.194,39.3,North Lahontan,Truckee,0.46
+LBD,yes,1910,9200,-119.377,38.44,North Lahontan,Walker,0.42
+LVM,yes,1986,7200,-119.552,38.305,North Lahontan,Walker,0.42
+SPS,yes,1970,8750,-119.601,38.318,North Lahontan,Walker,0.42
+VRG,yes,1970,9300,-119.234,38.077,North Lahontan,Walker,0.42
+BKL,,1970,5873,-121.25135,39.85292,Sacramento River,Feather,1.6
+FOR,,1980,5202,-121.32168,39.81278,Sacramento River,Feather,1.6
+GRZ,,1970,6900,-120.645,39.917,Sacramento River,Feather,1.6
+HMB,,1981,6500,-121.368,40.115,Sacramento River,Feather,1.6
+PLP,,1978,6800,-120.877777,39.785892,Sacramento River,Feather,1.6
+RTL,,1981,6210,-121.04397,40.12791,Sacramento River,Feather,1.6
+ADM,,1984,6200,-120.792,41.237,Sacramento River,Sacramento,1.55
+BLA,,1988,7050,-121.199783,40.76984,Sacramento River,Sacramento,1.55
+CDP,,1981,7100,-120.303,41.583,Sacramento River,Sacramento,1.55
+MED,,1985,6700,-121.610832,41.591389,Sacramento River,Sacramento,1.55
+SDF,,1984,6750,-122.246529,41.350239,Sacramento River,Sacramento,1.55
+SLT,,1983,5700,-122.480103,41.04398,Sacramento River,Sacramento,1.55
+SNM,,1984,5950,-121.782677,40.778809,Sacramento River,Sacramento,1.55
+STM,,1984,5400,-121.939827,41.16914,Sacramento River,Sacramento,1.55
+BLD,,1978,7200,-120.708694,39.280098,Sacramento River,Yuba and American,1.9
+ALP,,1970,7600,-120.215652,38.804192,Sacramento River,Yuba and American,1.9
+BLC,,1970,5280,-120.708694,39.280098,Sacramento River,Yuba and American,1.9
+CAP,,1970,8000,-120.04158,38.710793,Sacramento River,Yuba and American,1.9
+CSL,,1984,6900,-120.367,39.325,Sacramento River,Yuba and American,1.9
+FRN,,1981,7600,-120.215919,38.80397,Sacramento River,Yuba and American,1.9
+GKS,,1970,5600,-120.5616,39.07468,Sacramento River,Yuba and American,1.9
+HYS,,1980,6600,-120.529633,39.281422,Sacramento River,Yuba and American,1.9
+RBB,,1974,5900,-120.379299,38.911534,Sacramento River,Yuba and American,1.9
+RBP,,1970,5150,-120.376543,38.90238,Sacramento River,Yuba and American,1.9
+SCN,,1972,8750,-120.068,38.747,Sacramento River,Yuba and American,1.9
+SIL,,1986,7100,-120.118195,38.679604,Sacramento River,Yuba and American,1.9
+VVL,,1972,6700,-120.306058,38.943947,Sacramento River,Yuba and American,1.9
+DDM,,1988,9250,-119.654114,38.331596,San Joaquin River,Mokelumne and Stanislaus,1.2
+BLK,,1981,8000,-119.931,38.613,San Joaquin River,Mokelumne and Stanislaus,1.2
+BLS,,1978,6500,-120.195,38.375881,San Joaquin River,Mokelumne and Stanislaus,1.2
+GNL,,1984,8400,-119.893188,38.204308,San Joaquin River,Mokelumne and Stanislaus,1.2
+HHM,,1990,8700,-119.805626,38.490662,San Joaquin River,Mokelumne and Stanislaus,1.2
+REL,,1985,8100,-119.762917,38.242917,San Joaquin River,Mokelumne and Stanislaus,1.2
+SLM,,1987,7750,-119.9373,38.5055,San Joaquin River,Mokelumne and Stanislaus,1.2
+DAN,,1981,9800,-119.257,37.897,San Joaquin River,Tuolumne and Merced,2.06
+GIN,,1982,7050,-119.773,37.767,San Joaquin River,Tuolumne and Merced,2.06
+HRS,,1985,8400,-119.662,38.158,San Joaquin River,Tuolumne and Merced,2.06
+KIB,,1984,6700,-119.877,38.032,San Joaquin River,Tuolumne and Merced,2.06
+PDS,,1981,7650,-119.67,38.047,San Joaquin River,Tuolumne and Merced,2.06
+SLI,,1983,9200,-119.43,38.092,San Joaquin River,Tuolumne and Merced,2.06
+STR,,1989,8200,-119.55,37.637,San Joaquin River,Tuolumne and Merced,2.06
+TUM,,1980,8600,-119.35,37.873,San Joaquin River,Tuolumne and Merced,2.06
+BGP,yes,1989,9800,-118.476967,37.127815,South Lahontan,Owens and Mono,1.01
+CWD,yes,1974,10150,-118.177559,36.483829,South Lahontan,Owens and Mono,1.01
+GEM,yes,1984,10750,-119.17,37.78,South Lahontan,Owens and Mono,1.01
+MHP,yes,1990,9300,-119.031746,37.6124,South Lahontan,Owens and Mono,1.01
+RCK,yes,1985,9700,-118.735023,37.457275,South Lahontan,Owens and Mono,1.01
+SLK,yes,1981,9600,-118.56266,37.175903,South Lahontan,Owens and Mono,1.01
+SWM,yes,1989,10200,-118.562592,37.161964,South Lahontan,Owens and Mono,1.01
+GNF,,1970,6650,-118.765,36.562,Tulare Lake,Kaweah and Tule,0.39
+QUA,,1982,7200,-118.539993,36.117508,Tulare Lake,Kaweah and Tule,0.39
+BCH,,1983,7650,-118.293457,36.126095,Tulare Lake,Kern,0.87
+CBT,,1983,10700,-118.347946,36.563683,Tulare Lake,Kern,0.87
+CHP,,1984,10300,-118.446716,36.497143,Tulare Lake,Kern,0.87
+CSV,,1985,8300,-118.267685,36.198097,Tulare Lake,Kern,0.87
+PSC,,1972,9150,-118.35,35.967,Tulare Lake,Kern,0.87
+UTY,,1970,11400,-118.397,36.65,Tulare Lake,Kern,0.87
+WTM,,1989,8950,-118.572,36.348,Tulare Lake,Kern,0.87
+BCB,,1990,10300,-118.77301,37.066685,Tulare Lake,Kings,1.64
+BIM,,1980,7600,-118.843773,36.715225,Tulare Lake,Kings,1.64
+CRL,,1985,10400,-118.42601,36.777523,Tulare Lake,Kings,1.64
+MTM,,1970,9900,-118.712,36.737,Tulare Lake,Kings,1.64
+STL,,1970,10300,-118.574,36.927,Tulare Lake,Kings,1.64
+UBC,,1987,9700,-118.938293,37.183296,Tulare Lake,Kings,1.64
+WWC,,1970,9100,-118.918,37.03,Tulare Lake,Kings,1.64
+CHM,,1986,7150,-119.492188,37.40839,San Joaquin River,San Joaquin,1.75
+GRM,,1972,7900,-119.232559,37.549599,San Joaquin River,San Joaquin,1.75
+GRV,,1984,6900,-119.292892,37.46344,San Joaquin River,San Joaquin,1.75
+HNT,,1988,7000,-119.220482,37.22757,San Joaquin River,San Joaquin,1.75
+KSP,,1970,9200,-119.103371,37.29818,San Joaquin River,San Joaquin,1.75
+PSR,,1970,6900,-119.520813,37.402821,San Joaquin River,San Joaquin,1.75
+TMR,,1981,7550,-119.200531,37.16375,San Joaquin River,San Joaquin,1.75
+VLC,,1990,10050,-118.905037,37.387859,San Joaquin River,San Joaquin,1.75

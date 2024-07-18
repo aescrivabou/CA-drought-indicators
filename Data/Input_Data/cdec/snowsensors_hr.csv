@@ -1,0 +1,132 @@
+ID,STATION,ELEV,LATITUDE,LONGITUDE,APRIL_1_AV,OPERATOR_A,BASIN,HR_NAME
+CWF,CROWDER FLAT,5100,41.893398,-120.7519,---,Natural Resources Conservation Service,KLAMATH R,North Coast
+MB3,MIDDLE BOULDER 3,6200,41.224838,-122.80616,28.3,CA Dept of Water Resources,SCOTT R,North Coast
+SCT,SCOTT MOUNTAIN,5900,41.272202,-122.719482,16,CA Dept of Water Resources,SCOTT R,North Coast
+PET,PETERSON FLAT,7150,41.302219,-122.527779,29.2,CA Dept of Water Resources,TRINITY R,North Coast
+RRM,RED ROCK MOUNTAIN,6700,41.023621,-122.886627,39.6,CA Dept of Water Resources,TRINITY R,North Coast
+BNK,BONANZA KING,6450,41.083118,-122.631271,40.5,US Bureau of Reclamation,TRINITY R,North Coast
+SHM,SHIMMY LAKE,6400,41.005299,-122.801598,40.3,CA Dept of Water Resources,TRINITY R,North Coast
+HIG,HIGHLAND LAKES,6030,41.091782,-122.491562,29.9,CA Dept of Water Resources,TRINITY R,North Coast
+MUM,MUMBO BASIN,5650,41.197819,-122.525963,22.4,CA Dept of Water Resources,TRINITY R,North Coast
+BFL,BIG FLAT,5100,41.077599,-122.94223,15.8,CA Dept of Water Resources,TRINITY R,North Coast
+DSS,DISMAL SWAMP,7050,41.993,-120.165001,29.2,Natural Resources Conservation Service,SURPRISE VALLEY,North Lahontan
+IDP,INDEPENDENCE LAKE (SCS),8450,39.435001,-120.321999,41.4,Natural Resources Conservation Service,TRUCKEE R,North Lahontan
+SQV,PALISADES TAHOE SNOTEL,8200,39.194,-120.276001,46.5,Natural Resources Conservation Service,TRUCKEE R,North Lahontan
+IDC,INDEPENDENCE CAMP,7000,39.452587,-120.298546,21.8,Natural Resources Conservation Service,TRUCKEE R,North Lahontan
+INN,INDEPENDENCE CREEK,6500,39.493999,-120.292999,12.7,Natural Resources Conservation Service,TRUCKEE R,North Lahontan
+TK2,TRUCKEE 2,6400,39.299999,-120.194,14.3,Natural Resources Conservation Service,TRUCKEE R,North Lahontan
+HVN,HEAVENLY VALLEY,8800,38.929001,-119.917,28.1,Natural Resources Conservation Service,LAKE TAHOE,North Lahontan
+HGM,HAGANS MEADOW,8000,38.853001,-119.940002,16.5,Natural Resources Conservation Service,LAKE TAHOE,North Lahontan
+EP5,ECHO PEAK 5,7800,38.848999,-120.079002,39.5,Natural Resources Conservation Service,LAKE TAHOE,North Lahontan
+RP2,RUBICON PEAK 2,7500,39.000999,-120.139999,29.1,Natural Resources Conservation Service,LAKE TAHOE,North Lahontan
+TCC,TAHOE CITY CROSS,6750,39.17144,-120.154655,16,Natural Resources Conservation Service,LAKE TAHOE,North Lahontan
+WC3,WARD CREEK 3,6750,39.135574,-120.218681,39.4,Natural Resources Conservation Service,LAKE TAHOE,North Lahontan
+FLL,FALLEN LEAF LAKE,6250,38.931999,-120.056,7,Natural Resources Conservation Service,LAKE TAHOE,North Lahontan
+EBB,EBBETTS PASS,8700,38.561001,-119.807999,38.8,Natural Resources Conservation Service,CARSON R,North Lahontan
+HOR,HORSE MEADOW (NRCS),8557,38.836498,-119.887299,---,+,CARSON R,North Lahontan
+MNT,MONITOR PASS,8350,38.669998,-119.614998,---,Natural Resources Conservation Service,CARSON R,North Lahontan
+BSK,BURNSIDE LAKE,8129,38.719398,-119.894203,---,Natural Resources Conservation Service,CARSON R,North Lahontan
+FDC,FORESTDALE CREEK,8017,38.6824,-119.959702,---,+,CARSON R,North Lahontan
+PSN,POISON FLAT,7900,38.500999,-119.630997,16.2,Natural Resources Conservation Service,CARSON R,North Lahontan
+SPT,SPRATT CREEK,6150,38.666271,-119.817421,4.5,Natural Resources Conservation Service,CARSON R,North Lahontan
+LVT,LEAVITT LAKE,9600,38.282001,-119.621002,---,Natural Resources Conservation Service,WALKER R,North Lahontan
+SDW,SUMMIT MEADOW,9313,38.397499,-119.535599,---,Natural Resources Conservation Service,WALKER R,North Lahontan
+VRG,VIRGINIA LAKES RIDGE,9300,38.077,-119.234001,20.3,Natural Resources Conservation Service,WALKER R,North Lahontan
+LBD,LOBDELL LAKE,9200,38.439999,-119.376999,17.3,Natural Resources Conservation Service,WALKER R,North Lahontan
+SPS,SONORA PASS BRIDGE,8750,38.318001,-119.600998,26,Natural Resources Conservation Service,WALKER R,North Lahontan
+LVM,LEAVITT MEADOWS,7200,38.305,-119.552002,8,Natural Resources Conservation Service,WALKER R,North Lahontan
+SDF,SAND FLAT,6750,41.350239,-122.246529,42.4,US Bureau of Reclamation,SACRAMENTO R,Sacramento River
+SLT,SLATE CREEK,5700,41.04398,-122.480103,29,US Bureau of Reclamation,SACRAMENTO R,Sacramento River
+STM,STOUTS MEADOW,5400,41.16914,-121.939827,36,CA Dept of Water Resources,MC CLOUD R,Sacramento River
+CDP,CEDAR PASS,7100,41.583,-120.303001,18.1,Natural Resources Conservation Service,PIT R,Sacramento River
+BLA,BLACKS MOUNTAIN,7050,40.76984,-121.199783,12.7,CA Dept of Water Resources,PIT R,Sacramento River
+MED,MEDICINE LAKE,6700,41.591389,-121.610832,32.6,CA Dept of Water Resources,PIT R,Sacramento River
+ADM,ADIN MOUNTAIN,6200,41.237,-120.792,13.6,Natural Resources Conservation Service,PIT R,Sacramento River
+SNM,SNOW MOUNTAIN,5950,40.778809,-121.782677,27,US Bureau of Reclamation,PIT R,Sacramento River
+NLS,NOEL SPRING,5100,39.537998,-122.667,---,US Army Corps of Engineers,STONY CR,Sacramento River
+LLP,LOWER LASSEN PEAK,8338,40.466602,-121.50811,---,+,FEATHER R,Sacramento River
+KTL,KETTLE ROCK,7300,40.139999,-120.714996,25.5,CA Dept of Water Resources/State Water Project,FEATHER R,Sacramento River
+GRZ,GRIZZLY RIDGE,6900,39.917,-120.644997,29.7,CA Dept of Water Resources/State Water Project,FEATHER R,Sacramento River
+PLP,PILOT PEAK (DWR),6800,39.785892,-120.877777,52.6,CA Dept of Water Resources/State Water Project,FEATHER R,Sacramento River
+GOL,GOLD LAKE,6750,39.674767,-120.617165,36.5,CA Dept of Water Resources/State Water Project,FEATHER R,Sacramento River
+HMB,HUMBUG,6500,40.115002,-121.367996,28,CA Dept of Water Resources/DFM-Hydro-SMN,FEATHER R,Sacramento River
+RTL,RATTLESNAKE,6210,40.127911,-121.043968,14,CA Dept of Water Resources/State Water Project,FEATHER R,Sacramento River
+HRK,HARKNESS FLAT,6200,40.417999,-121.275002,28.5,CA Dept of Water Resources/DFM-Hydro-SMN,FEATHER R,Sacramento River
+BKL,BUCKS LAKE,5873,39.852921,-121.25135,44.7,CA Dept of Water Resources/State Water Project,FEATHER R,Sacramento River
+FOR,FOUR TREES,5202,39.812778,-121.321678,20,CA Dept of Water Resources/State Water Project,FEATHER R,Sacramento River
+MDW,MEADOW LAKE,7200,39.405663,-120.506058,55.5,CA Dept of Water Resources,YUBA R,Sacramento River
+CSL,CENT SIERRA SNOW LAB,6900,39.325001,-120.366997,33.6,Natural Resources Conservation Service,YUBA R,Sacramento River
+RCC,ROBINSON COW CAMP,6480,39.621864,-120.679871,---,CA Dept of Water Resources/DFM-Hydro-SMN,YUBA R,Sacramento River
+SSM,SUNNYSIDE MEADOW,6300,39.698132,-120.782211,---,Yuba County Water Agency,YUBA R,Sacramento River
+SCN,SCHNEIDERS,8750,38.747002,-120.068001,34.5,Sacramento Municipal Utility District,AMERICAN R,Sacramento River
+LOS,LAKE LOIS,8600,38.921036,-120.204445,39.5,CA Dept of Water Resources,AMERICAN R,Sacramento River
+CXS,CARSON PASS,8353,38.692402,-120.002098,---,Natural Resources Conservation Service,AMERICAN R,Sacramento River
+CAP,CAPLES LAKE,8000,38.710793,-120.04158,30.9,CA Dept of Water Resources,AMERICAN R,Sacramento River
+FRN,FORNI RIDGE,7600,38.80397,-120.215919,37,US Bureau of Reclamation,AMERICAN R,Sacramento River
+ALP,ALPHA (SMUD),7600,38.804192,-120.215652,35.9,Sacramento Municipal Utility District,AMERICAN R,Sacramento River
+SIL,SILVER LAKE,7100,38.679604,-120.118195,22.7,CA Dept of Water Resources,AMERICAN R,Sacramento River
+VVL,VAN VLECK,6700,38.943947,-120.306061,35.9,Sacramento Municipal Utility District,AMERICAN R,Sacramento River
+HYS,HUYSINK,6600,39.281422,-120.529633,42.6,US Bureau of Reclamation,AMERICAN R,Sacramento River
+RBB,ROBBS SADDLE,5900,38.911533,-120.379295,21.4,Sacramento Municipal Utility District,AMERICAN R,Sacramento River
+GKS,GREEK STORE,5600,39.07468,-120.5616,21,US Bureau of Reclamation,AMERICAN R,Sacramento River
+BLC,BLUE CANYON,5280,39.280098,-120.708694,9,US Bureau of Reclamation,AMERICAN R,Sacramento River
+RBP,ROBBS POWERHOUSE,5150,38.902382,-120.376541,5.2,Sacramento Municipal Utility District,AMERICAN R,Sacramento River
+HHM,HIGHLAND MEADOW,8700,38.490662,-119.805626,47.9,CA Dept of Water Resources,MOKELUMNE R,San Joaquin River
+BLK,BLUE LAKES,8000,38.612999,-119.931,33.1,Natural Resources Conservation Service,MOKELUMNE R,San Joaquin River
+MDL,MUD LAKE,7900,38.615002,-120.139999,44.9,Sacramento Municipal Utility District,MOKELUMNE R,San Joaquin River
+DDM,DEADMAN CREEK,9250,38.331596,-119.654114,37.2,CA Dept of Water Resources,STANISLAUS R,San Joaquin River
+GNL,GIANELLI MEADOW,8400,38.204308,-119.893188,55.5,US Bureau of Reclamation,STANISLAUS R,San Joaquin River
+REL,LOWER RELIEF VALLEY,8100,38.242916,-119.762917,41.2,CA Dept of Water Resources,STANISLAUS R,San Joaquin River
+SLM,STANISLAUS MEADOW,7750,38.505501,-119.937302,47.5,CA Dept of Water Resources,STANISLAUS R,San Joaquin River
+BLD,BLOODS CREEK,7200,38.451256,-120.034882,35.5,US Bureau of Reclamation,STANISLAUS R,San Joaquin River
+BLS,BLACK SPRINGS,6500,38.375881,-120.195,32,US Bureau of Reclamation,STANISLAUS R,San Joaquin River
+TES,TIOGA PASS ENTRY STATION,9945,37.910854,-119.258453,---,CA Dept of Water Resources/DFM-Hydro-SMN,TUOLUMNE R,San Joaquin River
+DAN,DANA MEADOWS,9800,37.896999,-119.257004,27.7,CA Dept of Water Resources,TUOLUMNE R,San Joaquin River
+SLI,SLIDE CANYON,9200,38.091999,-119.43,41.1,CA Dept of Water Resources,TUOLUMNE R,San Joaquin River
+TUM,TUOLUMNE MEADOWS,8600,37.873001,-119.349998,22.6,CA Dept of Water Resources,TUOLUMNE R,San Joaquin River
+HRS,HORSE MEADOW,8400,38.158001,-119.662003,48.6,CA Dept of Water Resources,TUOLUMNE R,San Joaquin River
+WHW,WHITE WOLF,7900,37.859501,-119.651604,---,National Park Service,TUOLUMNE R,San Joaquin River
+PDS,PARADISE MEADOW,7650,38.047001,-119.669998,41.3,CA Dept of Water Resources,TUOLUMNE R,San Joaquin River
+KIB,LOWER KIBBIE RIDGE,6700,38.032001,-119.876999,27.4,CA Dept of Water Resources,TUOLUMNE R,San Joaquin River
+STR,OSTRANDER LAKE,8200,37.637001,-119.550003,34.8,CA Dept of Water Resources,MERCED R,San Joaquin River
+TNY,TENAYA LAKE,8150,37.838001,-119.447998,33.1,CA Dept of Water Resources,MERCED R,San Joaquin River
+GIN,GIN FLAT,7050,37.766998,-119.773003,34.2,CA Dept of Water Resources,MERCED R,San Joaquin River
+VLC,VOLCANIC KNOB,10050,37.387859,-118.905037,30.1,CA Dept of Water Resources,SAN JOAQUIN R,San Joaquin River
+AGP,AGNEW PASS,9450,37.726631,-119.141731,32.3,CA Dept of Water Resources,SAN JOAQUIN R,San Joaquin River
+KSP,KAISER POINT,9200,37.29818,-119.103371,37.8,US Bureau of Reclamation,SAN JOAQUIN R,San Joaquin River
+GRM,GREEN MOUNTAIN,7900,37.549599,-119.232559,30.8,US Bureau of Reclamation,SAN JOAQUIN R,San Joaquin River
+DPO,DEVILS POSTPILE,7569,37.62941,-119.084671,---,National Park Service,SAN JOAQUIN R,San Joaquin River
+TMR,TAMARACK SUMMIT,7550,37.16375,-119.200531,30.5,US Bureau of Reclamation,SAN JOAQUIN R,San Joaquin River
+CHM,CHILKOOT MEADOW,7150,37.40839,-119.492188,38,US Bureau of Reclamation,SAN JOAQUIN R,San Joaquin River
+HNT,HUNTINGTON LAKE (USBR),7000,37.22757,-119.220482,20.1,US Bureau of Reclamation,SAN JOAQUIN R,San Joaquin River
+PSR,POISON RIDGE,6900,37.402821,-119.520813,28.9,US Bureau of Reclamation,SAN JOAQUIN R,San Joaquin River
+GRV,GRAVEYARD MEADOW,6900,37.46344,-119.292892,18.8,US Bureau of Reclamation,SAN JOAQUIN R,San Joaquin River
+GEM,GEM PASS,10750,37.779999,-119.169998,31.7,CA Dept of Water Resources,MONO LAKE,South Lahontan
+SWM,SAWMILL,10200,37.161964,-118.562592,19.4,CA Dept of Water Resources/DFM-Hydro-SMN,OWENS R,South Lahontan
+CWD,COTTONWOOD LAKES,10150,36.483829,-118.177559,11.6,CA Dept of Water Resources,OWENS R,South Lahontan
+BGP,BIG PINE CREEK,9800,37.127815,-118.476967,17.9,CA Dept of Water Resources,OWENS R,South Lahontan
+RCK,ROCK CREEK LAKES,9700,37.457275,-118.735023,14,CA Dept of Water Resources,OWENS R,South Lahontan
+SLK,SOUTH LAKE,9600,37.175903,-118.56266,16,CA Dept of Water Resources/DFM-Hydro-SMN,OWENS R,South Lahontan
+MHP,MAMMOTH PASS (USBR),9300,37.6124,-119.031746,42.4,US Bureau of Reclamation,OWENS R,South Lahontan
+BSH,BISHOP PASS,11200,37.099998,-118.556999,34,CA Dept of Water Resources/DFM-Hydro-SMN,KINGS R,Tulare Lake
+CRL,CHARLOTTE LAKE,10400,36.777523,-118.42601,27.5,CA Dept of Water Resources/DFM-Hydro-SMN,KINGS R,Tulare Lake
+BCB,BLACKCAP BASIN,10300,37.066685,-118.77301,34.3,CA Dept of Water Resources/DFM-Hydro-SMN,KINGS R,Tulare Lake
+STL,STATE LAKES,10300,36.926998,-118.573997,29,US Army Corps of Engineers,KINGS R,Tulare Lake
+MTM,MITCHELL MEADOW,9900,36.737,-118.711998,32.9,US Army Corps of Engineers,KINGS R,Tulare Lake
+UBC,UPPER BURNT CORRAL,9700,37.183296,-118.938293,34.6,CA Dept of Water Resources/DFM-Hydro-SMN,KINGS R,Tulare Lake
+WWC,WEST WOODCHUCK MEADOW,9100,37.029999,-118.917999,32.8,US Army Corps of Engineers,KINGS R,Tulare Lake
+BIM,BIG MEADOWS (DWR),7600,36.715225,-118.843773,24.6,CA Dept of Water Resources/DFM-Hydro-SMN,KINGS R,Tulare Lake
+FRW,FAREWELL GAP,9500,36.415211,-118.578979,34.5,CA Dept of Water Resources/DFM-Hydro-SMN,KAWEAH R,Tulare Lake
+GNF,GIANT FOREST (USACE),6650,36.562,-118.764999,10,US Army Corps of Engineers,KAWEAH R,Tulare Lake
+QUA,QUAKING ASPEN,7200,36.117508,-118.539993,21,CA Dept of Water Resources/DFM-Hydro-SMN,TULE R,Tulare Lake
+UTY,UPPER TYNDALL CREEK,11400,36.650002,-118.397003,27.7,US Army Corps of Engineers,KERN R,Tulare Lake
+CBT,CRABTREE MEADOW,10700,36.563683,-118.347946,19.8,CA Dept of Water Resources/DFM-Hydro-SMN,KERN R,Tulare Lake
+CHP,CHAGOOPA PLATEAU,10300,36.497143,-118.446716,21.8,CA Dept of Water Resources/DFM-Hydro-SMN,KERN R,Tulare Lake
+PSC,PASCOES,9150,35.966999,-118.349998,24.9,US Army Corps of Engineers,KERN R,Tulare Lake
+WTM,WET MEADOWS,8950,36.348,-118.571999,30.3,US Army Corps of Engineers,KERN R,Tulare Lake
+TUN,TUNNEL GUARD STATION,8900,36.366348,-118.289116,15.6,CA Dept of Water Resources/DFM-Hydro-SMN,KERN R,Tulare Lake
+CSV,CASA VIEJA MEADOWS,8300,36.198097,-118.267685,20.9,CA Dept of Water Resources/DFM-Hydro-SMN,KERN R,Tulare Lake
+BCH,BEACH MEADOWS,7650,36.126095,-118.293457,11,CA Dept of Water Resources/DFM-Hydro-SMN,KERN R,Tulare Lake
+BMW,BIG MEADOWS (SCS),8700,39.458,-119.945999,25.7,Natural Resources Conservation Service,TRUCKEE R,North Lahontan
+MSK,MOUNT ROSE SKI AREA,8900,39.326,-119.902,38.5,Natural Resources Conservation Service,LAKE TAHOE,North Lahontan
+MRL,MARLETTE LAKE,8000,39.173,-119.904999,21.1,Natural Resources Conservation Service,LAKE TAHOE,North Lahontan
