@@ -78,14 +78,17 @@ def load_or_download_data(parameter_type, startdate, enddate, directory, station
             df = pd.read_csv(file_path,index_col=0)
             print(f'{parameter_type} data exists')
         else:
+            os.makedirs(os.path.dirname(directory), exist_ok=True)
             df = download_data(parameter_type, startdate, enddate, directory, stations)
         return df
     if parameter_type == 'prcp and et':
-        files_in_directory = os.listdir(directory)
-        if not files_in_directory:
+        if os.path.exists(file_path):
+            files_in_directory = os.listdir(directory)
+        if os.path.exists(file_path) == False:
+            os.makedirs(directory, exist_ok=True)
             download_data(parameter_type, startdate, enddate, directory, stations)
-        else:
-            pass
+    else:
+        pass
 
 def add_new_data (df, parameter_type, date_column, id_column, directory, stations): 
     """Add new data to an existing dataframe for a specified parameter
@@ -162,6 +165,7 @@ get_dates (snow_data, snow_data_new, 'DATE TIME')
 
 snow_data_new, snow_regional = snow_percentile(snow_data_new)
 
+
 snow_data_new.to_csv(snow_directory)
 snow_regional.to_csv(snow_regional_directory)
 
@@ -195,7 +199,7 @@ rsvr_data_new.to_csv(rsvr_directory)
 # pet and pr is monthly
 pr_pet_directory = '../../Data/Downloaded/pr'
 pr_pet_data = load_or_download_data(parameter_type='prcp and et', directory = pr_pet_directory, 
-                                  startdate=1991 , enddate=2023, stations='nan')
+                                  startdate=1987 , enddate=2024, stations='nan')
 pr_pet_data_new = add_new_data (df = pr_pet_data, parameter_type = 'prcp and et', 
                                 date_column = 'nan', id_column = 'nan', directory= pr_pet_directory, stations = 'nan')
 
