@@ -12,7 +12,7 @@ import os
 
 # get functions for downloading data
 from download_cdec_snow import download_snow_data, snow_percentile
-from data_usgs_streamflow import download_streamflow_data
+from download_usgs_streamflow import download_streamflow_data
 from download_pr_pet_gridded_data import download_pr_pet_data
 from download_cdec_reservoir import download_reservoir_data
 
