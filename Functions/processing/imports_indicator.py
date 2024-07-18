@@ -8,7 +8,7 @@ Created on Sat Apr  8 22:49:49 2023
 
 import pandas as pd
 from percentile_average_function import func_for_tperiod
-
+import os
 
 #reading reservoir and snow data
 reservoir_data = pd.read_csv('../../Data/Downloaded/cdec/reservoir/reservoirs.csv')
@@ -26,6 +26,7 @@ snow_data.loc[(snow_data.HR_NAME == 'Sacramento River') | (snow_data.HR_NAME=='S
 
 #Subseting data for delta_exporting_basins
 reservoir_data = reservoir_data.loc[reservoir_data.export_basin == 'delta_basin']
+reservoir_data['value'] = pd.to_numeric(reservoir_data['value'], errors='coerce')
 snow_data = snow_data.loc[snow_data.export_basin == 'delta_basin']
 
 
@@ -79,6 +80,6 @@ tot_stor_perc.loc[tot_stor_perc.snow_pctl.isna() == True, 'snow_pctl'] = 0.5
 
 tot_stor_perc = tot_stor_perc.rename(columns={'percentile': 'SWDI'})
 
+os.makedirs('../../Data/Processed/imports/', exist_ok=True)
 res_ind.to_csv('../../Data/Processed/imports/individual_reservoir_percentiles.csv')
 tot_stor_perc.to_csv('../../Data/Processed/imports/total_storage_percentiles.csv')
-                             
