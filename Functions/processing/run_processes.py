@@ -8,6 +8,7 @@ Created on Fri Mar  8 21:51:35 2024
 import time
 import subprocess
 import sys
+from tqdm import tqdm
 
 def execute_and_time(script_path):
     """
@@ -29,28 +30,15 @@ def execute_and_time(script_path):
     print(f"{script_path} execution time: {round(execution_time_minutes, 1)} minutes")
 
 
-# 3.1 prcp and et
-script_path = 'pr_pet_obtain_regional_summaries.py'
-execute_and_time(script_path)
+script_paths = [
+    'pr_pet_obtain_regional_summaries.py',  # 3.1 prcp and et
+    'pr_pet_map_indicators.py',             # 3.1 prcp and et
+    'pr_and_et_indicators.py',              # 3.1 prcp and et
+    'surface_water_drought_indicator.py',   # 3.3 surface water drought indicator
+    'groundwater_drought.py',               # 3.4 Groundwater status
+    'streamflow_indicator.py',              # 3.5 streamflow conditions
+    'imports_indicator.py'                  # 3.6 imports indicator
+]
 
-script_path = 'pr_pet_map_indicators.py'
-execute_and_time(script_path)
-
-script_path = 'pr_and_et_indicators.py'
-execute_and_time(script_path)
-
-# 3.3 surface water drought indicator
-script_path = 'surface_water_drought_indicator.py'
-execute_and_time(script_path)
-
-# 3.4 Groundwater status
-script_path = 'groundwater_drought.py'
-execute_and_time(script_path)
-
-# 3.5 streamflow conditions
-script_path = 'streamflow_indicator.py'
-execute_and_time(script_path)
-
-# 3.6 imports indicator
-script_path = 'imports_indicator.py'
-execute_and_time(script_path)
+for script_path in tqdm(script_paths, desc='Executing scripts'):
+    execute_and_time(script_path)
