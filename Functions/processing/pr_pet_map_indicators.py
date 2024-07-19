@@ -98,7 +98,7 @@ def get_region_percentile (hr = 'Sacramento River',analysis_period = '1Y',value_
     # os.makedirs(output_directory, exist_ok=True)
     # prec_df.to_csv(f"{output_directory}/{hr}_pr_data.csv")
     # percentile.to_csv(f"{output_directory}/{hr}_pr_percentile.csv")
-    # percentile.set_index(['lat','lon','date'], inplace=True)
+    percentile.set_index(['lat','lon','date'], inplace=True)
     # df_xarray = percentile.to_xarray()
     # df_xarray.to_netcdf(f"{output_directory}/{hr}_"+file_start+"percentile.nc")
     
@@ -124,6 +124,8 @@ for hr in hr_regions:
                                             value_column = 'potential_evapotranspiration')
     prctl_hr['percentile'] = 1 - prctl_hr['percentile']
     et_prctl_hr_rgns.append (prctl_hr)
+
+os.makedirs('../../Data/Processed/pr_pet_gridded_indicators', exist_ok=True)
 
 pr_prctl_allrgns = pd.concat(pr_prctl_hr_rgns)
 pr_prctl_xarray = pr_prctl_allrgns.to_xarray()
