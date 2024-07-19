@@ -47,7 +47,7 @@ def obtainregionalsummary(input_folder = '../../Data/Downloaded/',
              region = centralcoast, 
              name = 'Central Coast', 
              indicators = ['pr', 'pet'],
-             startyear = 2019, startmonth = 1,
+             startyear = 1991, startmonth = 1,
              endyear = 2021, endmonth = 12,
              directory = '../../Data/Processed/',
              output_filename = 'processed_grided_indicators.csv'): 
@@ -178,7 +178,7 @@ def obtainregionalsummary(input_folder = '../../Data/Downloaded/',
     allindicators.to_csv(directory + output_filename)
         
 
-presentmonth = datetime.datetime.now().month
+latest_month = datetime.datetime.now().month - 1
 i=0
 directory = '../../Data/Processed/'
 output_filename = directory + hr_code[i] + '_processed_grided_indicators_1990_2022.csv'
@@ -197,13 +197,12 @@ if os.path.exists(output_filename):
              output_filename = hr_code[i] + '_processed_grided_indicators_1990_2022.csv')
 else:
     print(f"The file {output_filename} exists.") 
-
     for i in range(10):
         obtainregionalsummary(input_folder = '../../Data/Downloaded/',
             region = hr_series[i], 
             name = hr_long_series[i], 
             indicators = ['pr', 'pet'],
             startyear = 2023, startmonth = 1,
-            endyear = 2023, endmonth = presentmonth,
+            endyear = 2024, endmonth = latest_month,
             directory = '../../Data/Processed/gridded/',
-            output_filename = hr_code[i] + '_processed_grided_indicators_2023.csv')
+            output_filename = hr_code[i] + '_processed_grided_indicators_2023_present.csv')
