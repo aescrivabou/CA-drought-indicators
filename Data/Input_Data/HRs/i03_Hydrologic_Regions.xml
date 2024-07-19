@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+    <idinfo>
+        <citation>
+            <citeinfo>
+                <origin/>
+                <title>Hydrologic Regions</title>
+                <onlink>https://gis.water.ca.gov/arcgis/rest/services/Boundaries/i03_Hydrologic_Regions/FeatureServer</onlink>
+            </citeinfo>
+        </citation>
+        <descript>
+            <abstract>Department of Water Resources Hydrologic Region boundaries derived from i03_DAU_county_cnty2018.</abstract>
+            <purpose>Department of Water Resources Hydrologic Region boundaries derived from i03_DAU_county_cnty2018.</purpose>
+        </descript>
+        <keywords>
+            <theme>
+                <themekt>None</themekt>
+                <themekey>location</themekey>
+                <themekey>California</themekey>
+                <themekey>boundaries</themekey>
+                <themekey>boundaries</themekey>
+                <themekey>California Natural Resources Agency</themekey>
+                <themekey>CAOpenData</themekey>
+                <themekey>California Department of Water Resources</themekey>
+                <themekey>DAU</themekey>
+                <themekey>Hydrologic Region</themekey>
+                <themekey>DWR</themekey>
+                <themekey>hydrologic regions</themekey>
+            </theme>
+        </keywords>
+        <accconst>Other Constraints</accconst>
+        <useconst>DWR makes no warranties or guarantees —either expressed or implied — as to the completeness, accuracy, or correctness of the data. DWR neither accepts nor assumes liability arising from or for any incorrect, incomplete, or misleading subject data.</useconst>
+        <datacred>California Department of Water Resources. Contact: gis@water.ca.gov</datacred>
+    </idinfo>
+    <metainfo>
+        <metd>20210630</metd>
+        <metc>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>California Department of Water Resources</cntorg>
+                </cntorgp>
+            </cntinfo>
+        </metc>
+        <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+        <metstdv>FGDC-STD-001-1998</metstdv>
+        <mettc>local time</mettc>
+    </metainfo>
+</metadata>

@@ -83,4 +83,3 @@ tot_stor_perc = tot_stor_perc.rename(columns={'percentile': 'SWDI'})
 os.makedirs('../../Data/Processed/imports/', exist_ok=True)
 res_ind.to_csv('../../Data/Processed/imports/individual_reservoir_percentiles.csv')
 tot_stor_perc.to_csv('../../Data/Processed/imports/total_storage_percentiles.csv')
-                             

@@ -11,24 +11,38 @@ Created on Thu Jun 22 11:08:17 2023
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from datetime import datetime
-from datetime import timedelta
+from datetime import datetime, timedelta
 from matplotlib import rcParams
 from cycler import cycler
 import math
 from PIL import Image
+import calendar
+
 
 #  Define function for developing visualizations
-def vis_data_indicator(ax, subplot, df, date, hr=None, data=None, ind=None, hydrograph_length=10):
+def vis_data_indicator(ax, df, date, hr=None, data=None, ind=None, hydrograph_length=10, plot_title = 'Evolution of a variable'):
     
-    """TBD
+    """ Creates a temporal plot of a variable or indicator based on the selected hydrograph plot
     
     Parameters
     ----------
     ax : str
-        TBD
-    subplot : integer
-        TBD
+        The axes object to plot on
+    df : str
+        The dataframe containing the data to be plotted
+    date : str
+        The specific date of interest for the plot. Format: yyyy-mm
+    hr : str
+        The hydrologic region of interest for the plot
+    data : list
+        The name(s) of the variable(s), provided as a list of strings.
+    ind : str
+        The name of the indicator column
+    hydrograph_length : integer
+        The length of the hydrograph period in years, measured backward from the selected date.
+        For example, if the date is 2021-10 and hydrograph_length is 10 years, the plot will include data from 2011-10 to 2021-10.
+    plot_title : str
+        The title of the plot
         
     Returns
     -------
@@ -64,19 +78,6 @@ def vis_data_indicator(ax, subplot, df, date, hr=None, data=None, ind=None, hydr
     #  Define US drought monitor color scheme
     dm_colors = [(189/255,190/255,192/255,1), (255/255,255/255,0,1), (252/255,211/255,127/255,1), (255/255,170/255,0,1), (230/255,0,0,1), (115/255,0,0,1), (57/255,57/255,57/255,1)]
     
-    #  Define title of the plot
-    if data == ['reservoir_storage', 'SWC']:
-        if ind == None:
-            plot_title = 'Evolution of water stored in reservoirs and snowpack'
-        else:
-            plot_title = 'Evolution of the surface water drought indicator'
-    if ind == 'pctl_cumgwchange_corr':
-        plot_title = 'Evolution of the groundwater elevation indicator'
-    if ind == 'pctl_gwchange_corr':
-        plot_title = 'Evolution of the groundwater pumping intensity indicator'
-    if ind == 'percentile':
-        plot_title = 'Evolution of the regional streamflow indicator'
-    
     #  Define timeframe as ten years from the date provided
     date2, date1 = date, datetime(year=date.year - hydrograph_length, month=date.month, day=date.day)
     df = df[df.date.between(date1, date2)]
@@ -86,40 +87,40 @@ def vis_data_indicator(ax, subplot, df, date, hr=None, data=None, ind=None, hydr
         df = df[df.HR_NAME==hr]
     
     #  Convert real data to millions of acre-feet
-    if data is not None:
+    if data == ['reservoir_storage', 'SWC']:
         for d in data:
             df[d] = df[d].fillna(0)
             df[d] = df[d]/1000000
     
-    #  Add subplot modifier for determining legend location
-    if subplot==True:
-        bbox = -0.45
-    else:
-        bbox = -0.15
     #  If indicator is called as None, create real data plot
     if ind==None:
-        #  Plot real data line and fill vertically
-        if type(data)=='string':
+        no_inp = len(data)
+        if no_inp == 1:
+            #  Plot real data line and fill vertically
             df.plot(kind='line', ax=ax, x='date', y=data, color='dodgerblue', legend=False)
-            plt.fill_between(df['date'].dt.to_pydatetime(), 0, df[data], color='dodgerblue')
-            plt.legend([data], title=None, frameon=False, loc='center', bbox_to_anchor=(0.5, bbox))
-        else:
-            df['data3'] = df[data[0]]+df[data[1]]
-            df.plot(kind='line', ax=ax, x='date', y='data3', color='orange', legend=False)
-            df.plot(kind='line', ax=ax, x='date', y=data[0], color='dodgerblue', legend=False)
-            plt.fill_between(df['date'].dt.to_pydatetime(), 0, df['data3'], color='orange')
             plt.fill_between(df['date'].dt.to_pydatetime(), 0, df[data[0]], color='dodgerblue')
-            plt.legend([data[1], data[0]], title=None, ncols=2, frameon=False, loc='center', bbox_to_anchor=(0.5, -0.55),fontsize=7)
+
+        if no_inp == 2:
+            #  Plot real data line and fill vertically
+            if type(data)=='string':
+                df.plot(kind='line', ax=ax, x='date', y=data, color='dodgerblue', legend=False)
+                plt.fill_between(df['date'].dt.to_pydatetime(), 0, df[data], color='dodgerblue')
+                plt.legend([data], title=None, frameon=False, loc='center', bbox_to_anchor=(0.5, -.45))
+            else:
+                df['data3'] = df[data[0]]+df[data[1]]
+                df.plot(kind='line', ax=ax, x='date', y='data3', color='orange', legend=False)
+                df.plot(kind='line', ax=ax, x='date', y=data[0], color='dodgerblue', legend=False)
+                plt.fill_between(df['date'].dt.to_pydatetime(), 0, df['data3'], color='orange')
+                plt.fill_between(df['date'].dt.to_pydatetime(), 0, df[data[0]], color='dodgerblue')
+                plt.legend([data[1], data[0]], title=None, ncols=2, frameon=False, loc='center', bbox_to_anchor=(0.5, -0.55),fontsize=7)
             
         #  Formatting
         ax.set_xlabel(None)
-        ax.set_ylabel('Millions of acre-feet', fontsize=8)
+        if data == ['reservoir_storage', 'SWC']:
+            ax.set_ylabel('Millions of acre-feet', fontsize=8)
+        else:
+            ax.set_ylabel('Inches per month', fontsize=8)
         ax.set_title(plot_title, fontsize=9, fontweight = 'bold')
-        #if hr is not None:
-        #    ax.set_title(label=data[0]+' '+hr, fontdict={'fontweight':'bold'})
-        #else:
-        #    ax.set_title(label=data[0]+' Delta exporting basins', fontdict={'fontweight':'bold'})
-
         [ax.spines[edge].set_visible(False) for edge in ['right', 'bottom', 'top', 'left']]
         ax.tick_params(axis='both', which='major', labelsize=8)
     
@@ -132,10 +133,6 @@ def vis_data_indicator(ax, subplot, df, date, hr=None, data=None, ind=None, hydr
         plt.fill_between(df['date'].dt.to_pydatetime(), 0.1, 0.2, color=dm_colors[3], alpha=1.0)
         plt.fill_between(df['date'].dt.to_pydatetime(), 0.0, 0.1, color=dm_colors[4], alpha=1.0)
         plt.fill_between(df['date'].dt.to_pydatetime(), 0.5, df[ind], color='dodgerblue', alpha=0.5)
-        
-        #  Add a dummy plot to generate legend -- not working, unsure why? could probably optimize this part of code
-        # dummy = pd.DataFrame({'name':['Abnormally dry', 'Moderate drought', 'Severe drought', 'Extreme drought', ind], 'x':[date1, date1, date1, date1, date1], 'y':[0, 0, 0, 0, 0]})
-        # dummy.plot.scatter(ax=ax, x='x', y='y', s=0.0, legend=False).legend(title=None, ncols=5, frameon=False, loc='center', bbox_to_anchor=(0.5, -0.25))
         plt.legend([ind, 'Abnormally dry', 'Moderate drought', 'Severe drought', 'Extreme drought'], title=None, ncols=5, frameon=False, loc='center', bbox_to_anchor=(0.5, -0.55),fontsize = 7)
         
         #  Formatting
@@ -144,18 +141,30 @@ def vis_data_indicator(ax, subplot, df, date, hr=None, data=None, ind=None, hydr
         ax.set_ylim([0.0, 1.0])
         ax.tick_params(axis='both', which='major', labelsize=8)
         ax.set_title(plot_title, fontsize=9, fontweight = 'bold')
-        #if hr is not None:
-        #    ax.set_title(label=ind+' '+hr, fontdict={'fontweight':'bold'}, fontsize=8)
-        #else:
-        #    ax.set_title(label=ind+' Delta exporting basins', fontdict={'fontweight':'bold'}, fontsize=8)
         [ax.spines[edge].set_visible(False) for edge in ['right', 'bottom', 'top', 'left']]
         
         
 #This second part includes a function that creates the dial
 
 # function plotting a colored dial
-def dial(arrow_index, ax, figname = 'myDial'):#, ax):
+def dial(arrow_index, ax, figname = 'myDial'):
+        
+    """ Creates a dial plot of the percentile of the hydrologic region 
     
+    Parameters
+    ----------
+    arrow_index : series
+        The indicator percentile of the hydrologic region for the selected time period. Percentile should be converted to percentage
+    ax : str
+        The axes object to plot on
+    figname : str
+        The name of the figure
+        
+    Returns
+    -------
+    figure
+        A dial plot of indicator percenitle of the hydrologic region
+    """
     #  Define general parameters for matplotlib formatting
     ppic_coltext = '#333333'
     ppic_colgrid = '#898989'
@@ -265,3 +274,20 @@ def color_function_df(df, df_field = 'corrected_percentile'):
     df.loc[df[df_field]<0.1, 'color_pctl'] = drought_col[4]
     return df['color_pctl']
 
+def convert_input_date_format (date_str):
+    """
+    Input: String in the format: 'YYYY-MM' or 'MM-YYYY' or 'YYYY-M' or 'M-YYYY'.
+
+    Returns:
+        str: String representing the last day of the month in 'YYYY-MM-DD' format.
+    """
+    try:
+        date_obj = datetime.strptime(date_str, '%Y-%m')
+        date_obj.strftime('%Y%m%d')
+    except ValueError:
+        date_obj = datetime.strptime(date_str, '%m-%Y')
+        date_obj.strftime('%Y%m%d')
+    last_day_of_month = calendar.monthrange(date_obj.year, date_obj.month)[1]
+    last_day_date = date_obj.replace(day=last_day_of_month)
+    last_day_date = last_day_date.strftime('%Y-%m-%d')
+    return last_day_date

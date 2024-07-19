@@ -15,7 +15,6 @@ from percentile_average_function import func_for_tperiod
 reservoir_data = pd.read_csv('../../Data/Downloaded/cdec/reservoir/reservoirs.csv')
 snow_data = pd.read_csv('../../Data/Downloaded/cdec/snow/SnowRegional.csv')
 reservoir_data['value'] = pd.to_numeric(reservoir_data['value'], errors='coerce')
-# reservoir_data = reservoir_data[pd.to_numeric(reservoir_data['value'], errors='coerce').notnull()]
 
 #converting date to datetime
 reservoir_data['date'] = pd.to_datetime(reservoir_data.date)

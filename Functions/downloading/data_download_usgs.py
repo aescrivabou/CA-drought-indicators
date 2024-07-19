@@ -34,3 +34,4 @@ streamflow_all = streamflow_all.merge(stations, left_on='site_no', right_on='sit
 
 os.makedirs('../../Data/Downloaded/usgs/', exist_ok=True)
 streamflow_all.to_csv(os.path.join('../../Data/Downloaded/usgs/streamflow_daily_data.csv'))
+
