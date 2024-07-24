@@ -19,6 +19,7 @@ from PIL import Image
 import contextily as ctx
 import os
 import xarray as xr
+import rioxarray
 from pykrige.ok import OrdinaryKriging
 directory_path = '../../Data/Visuals/dashboards'
 os.makedirs(directory_path, exist_ok=True)
@@ -205,8 +206,8 @@ def vis_imports_dashboard(date='2001-04', hydrograph_length = 10):
     plt.suptitle("Delta exporting basins\n" + pd.to_datetime(date).strftime('%b %Y'), fontsize=16)
     
     plt.savefig('../../Data/Visuals/dashboards/imports_dashboard.pdf')
-vis_imports_dashboard(date='2001-04-30', hydrograph_length = 10)
-#%%
+
+
 #  Define function for surface water dashboard visualizations
 def vis_gw_dashboard(hr='San Joaquin River', date='2010-03', hydrograph_length=10):
     
@@ -512,15 +513,20 @@ def vis_pr_dashboard(hr='San Joaquin River', date='2001-04', hydrograph_length=1
     
     #  First create the map of precipitation status and add precipitation percentile
     ax1 = fig.add_subplot(grid[0:3, 0:3])
-    colors = [(230/255,0,0,1), (255/255,170/255,0,1), (252/255,211/255,127/255,1), (255/255,255/255,0,1), (189/255,190/255,192/255,1), (189/255,190/255,192/255,1), (189/255,190/255,192/255,1), (189/255,190/255,192/255,1)]
+    colors = [
+        (230/255, 0, 0),                   # Red
+        (255/255, 170/255, 0),             # Orange
+        (252/255, 211/255, 127/255),       # Light Orange
+        (255/255, 255/255, 0),             # Yellow
+        (171/255, 217/255, 233/255),       # Light Blue
+        (116/255, 173/255, 209/255),       # Blue
+        (69/255, 117/255, 180/255),        # Darker Blue
+        (128/255, 0, 128/255)              # Purple
+    ] 
     custom_cmap = ListedColormap(colors)
     hr_shapes.plot(ax=ax1, edgecolor='green', facecolor='none', alpha=1)
     ctx.add_basemap(ax=ax1, crs='EPSG:4326', attribution_size=1,source=ctx.providers.CartoDB.Positron)
     img = ax1.contourf(lon, lat, variable_2d, cmap=custom_cmap, levels=[0, 0.1, 0.2, 0.3, 0.5, 0.6, 0.7, 0.8, 1.0], alpha=0.7)
-    cbar = plt.colorbar(img, ax=ax1, orientation='horizontal', ticks=[0, 0.1, 0.2, 0.3, 0.5, 1.0])
-    bbox_ax = ax1.get_position()
-    cbar.ax.tick_params(labelsize=8)
-    cbar.ax.set_position([bbox_ax.x0, bbox_ax.y1 - 0.22, bbox_ax.width, 0.02])
     ax1.get_xaxis().set_visible(False), ax1.get_yaxis().set_visible(False)
     ax1.set_title('Current precipitation condition', fontsize = 9, fontweight = 'bold')
     
@@ -613,7 +619,16 @@ def vis_et_dashboard(hr='San Joaquin River', date='2001-04', hydrograph_length=1
     
     #  First create the map of et status and add evapotranspiration percentile
     ax1 = fig.add_subplot(grid[0:3, 0:3])
-    colors = [(230/255,0,0,1), (255/255,170/255,0,1), (252/255,211/255,127/255,1), (255/255,255/255,0,1), (189/255,190/255,192/255,1), (189/255,190/255,192/255,1), (189/255,190/255,192/255,1), (189/255,190/255,192/255,1)]
+    colors = [
+        (230/255, 0, 0),                   # Red
+        (255/255, 170/255, 0),             # Orange
+        (252/255, 211/255, 127/255),       # Light Orange
+        (255/255, 255/255, 0),             # Yellow
+        (171/255, 217/255, 233/255),       # Light Blue
+        (116/255, 173/255, 209/255),       # Blue
+        (69/255, 117/255, 180/255),        # Darker Blue
+        (128/255, 0, 128/255)              # Purple
+    ] 
     custom_cmap = ListedColormap(colors)
     hr_shapes.plot(ax=ax1, edgecolor='green', facecolor='none', alpha=1)
     ctx.add_basemap(ax=ax1, crs='EPSG:4326', attribution_size=1,source=ctx.providers.CartoDB.Positron)
@@ -653,10 +668,10 @@ def vis_et_dashboard(hr='San Joaquin River', date='2001-04', hydrograph_length=1
     plt.suptitle(hr+ "\n" + pd.to_datetime(date).strftime('%b %Y'), fontsize=16)
     
     plt.savefig('../../Data/Visuals/dashboards/pet_dashboard.pdf')    
-
-vis_sw_dashboard(hr='San Joaquin River', date='2022-03', hydrograph_length=10)
-vis_streamflow_dashboard(hr='Sacramento River', date='2022-03', hydrograph_length=10)
-vis_gw_dashboard(hr='San Joaquin River', date='2022-03', hydrograph_length=10)
-vis_imports_dashboard(date='2022-03', hydrograph_length = 10)
-vis_pr_dashboard(hr='San Joaquin River', date='2017-03', hydrograph_length=10)
+# 
+# vis_sw_dashboard(hr='San Joaquin River', date='2022-03', hydrograph_length=10)
+# vis_streamflow_dashboard(hr='Sacramento River', date='2022-03', hydrograph_length=10)
+# vis_gw_dashboard(hr='San Joaquin River', date='2022-03', hydrograph_length=10) 
+# vis_imports_dashboard(date='2022-03', hydrograph_length = 10)
+vis_pr_dashboard(hr='San Joaquin River', date='2016-03', hydrograph_length=10)
 vis_et_dashboard(hr='San Joaquin River', date='2018-02', hydrograph_length=10)

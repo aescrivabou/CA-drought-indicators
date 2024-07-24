@@ -191,15 +191,30 @@ def dial(arrow_index, ax, figname = 'myDial'):
     rcParams.update(params)
     
     #US Drought colors
-    colors = [(1,1,1,1), (189/255,190/255,192/255,1) , (255/255,255/255,0,1) , (252/255,211/255,127/255,1) , (255/255,170/255,0,1) , (230/255,0,0,1) , (115/255,0,0,1) , (57/255,57/255,57/255,1)]
-     
-    #400-element array with 0-200 for colored half and 201-400 for white half
+    colors = [
+            (230/255, 0, 0, 1),                   # Red
+            (255/255, 170/255, 0, 1),             # Orange
+            (252/255, 211/255, 127/255, 1),       # Light Orange
+            (255/255, 255/255, 0, 1),             # Yellow
+            (171/255, 217/255, 233/255, 1),       # Light Blue
+            (116/255, 173/255, 209/255, 1),       # Blue
+            (69/255, 117/255, 180/255, 1),        # Darker Blue
+            (128/255, 0, 128/255, 1),              # Purple
+            (1, 1, 1, 1), # white
+            (57/255, 57/255, 57/255, 1)] # dark gray
+    
+
+    # 400-element array with 0-200 for colored half and 201-400 for white half
     dcolors = np.zeros(400)
-    dcolors[0:100]=1
-    dcolors[100:140]=2
-    dcolors[140:160]=3
-    dcolors[160:180]=4
-    dcolors[180:200]=5
+    dcolors[0:20] = 7
+    dcolors[20:40] = 6
+    dcolors[40:60] = 5
+    dcolors[60:100] = 4
+    dcolors[100:140] = 3
+    dcolors[140:160] = 2
+    dcolors[160:180] = 1
+    dcolors[180:200] = 0
+    dcolors[200:400] = 8
 
     #Create color palette
     colpal = np.zeros([400,4])
@@ -233,9 +248,9 @@ def dial(arrow_index, ax, figname = 'myDial'):
     arrow_x = .8*math.cos(arrow_angle)
     arrow_y = .8*math.sin(arrow_angle)
     my_arrow = plt.arrow(0,0,-arrow_x*.01,arrow_y*.01, width=.02, head_width=.05,
-                         head_length=0.975, fc=colors[7], ec=colors[7])
+                         head_length=0.975, fc=colors[-1], ec=colors[-1])
     ax.add_artist(my_arrow)
-    circlecenter = plt.Circle((0,0),0.04,color = colors[7])    
+    circlecenter = plt.Circle((0,0),0.04,color = colors[-1])    
     ax.add_artist(circlecenter)
     
     ax.set_aspect('equal')
