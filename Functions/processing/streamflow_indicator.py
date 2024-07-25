@@ -5,7 +5,20 @@ Created on Fri Apr 21 18:20:45 2023
 
 @author: alvar
 """
-
+"""
+Description:
+    This script calculates streamflow indicator for each hydrologic region (HR).
+        The script performs the following tasks:
+        1. Calculates monthly streamflow percentile values from daily for each gage using a 3 month analysis period.
+        2. Computes the median streamflow values for each HR.
+        3. Apply correction to streamflow percentile values by calculating percentile with a 1 month analysis period. 
+        (reason we apply this correction is because medium values will hover around half values and there will be no zeroes or ones (extremes) 
+         and thus by calclating percentile of this median percentiles we are strechting out the median values to be between 0 and 1) 
+        3. Applies a correction to the streamflow percentile values by calculating percentiles using a 1-month analysis period.
+        (This correction is applied because median values tend to cluster around the middle of the range, resulting in fewer 
+         extreme values (near 0 or 1) - By recalculating percentiles of these median values, we distribute the median values
+         more evenly between 0 and 1)
+"""
 import pandas as pd
 from percentile_average_function import func_for_tperiod
 import numpy as np

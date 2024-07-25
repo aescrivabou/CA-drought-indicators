@@ -5,7 +5,15 @@ Created on Fri Apr 21 16:24:46 2023
 
 @author: alvar
 """
-
+"""
+Description:
+    This script calculates precipitation and evapotranspiration indicators for each hydrologic region (HR). 
+        The script performs the following tasks:
+        1. Calculates monthly precipitation (pr) percentile values for each HR using a 1 year analysis period.
+        2. Calculates monthly evapotransiration (et) percentile values for each HR using a 1 year analysis period. 
+        (We use 1 minus percentile to highlight severity as lower values indicate drier conditions)
+        3. Calculates monthly et minus pr percentile values for each HR using a 1 year analysis period.    
+"""
 import pandas as pd
 import os
 from percentile_average_function import func_for_tperiod
@@ -59,7 +67,7 @@ et_minus_pr_percentile = func_for_tperiod(df=all_hr_data, date_column = 'date', 
 pr_percentile['pr_value_in'] = pr_percentile['pr_value']/25.4
 et_percentile['pet_value_in'] = et_percentile['pet_value']/25.4
 
-# Adjust percentile to indicate drought conditions: higher values typically mean higher ET, but for drought indication, we use 1 - percentile to highlight severity as lower values now indicate drier conditions.
+# Adjust percentile to indicate drought conditions: higher values typically mean higher ET, but for drought indication, we use 1 minus percentile to highlight severity as lower values now indicate drier conditions.
 et_percentile['percentile'] = 1 - et_percentile.percentile
 et_minus_pr_percentile['percentile'] = 1 - et_minus_pr_percentile.percentile
 

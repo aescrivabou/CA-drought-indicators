@@ -15,7 +15,7 @@ from datetime import datetime
 from scipy import stats
 
 def get_percentile_selected_period(df, date_column = 'year', value_column = 'gwchange', prct_column = 'pctl_gwchange', baseline_start_year = 1991, baseline_end_year = 2020):
-    """Calculate percentiles based on a fixed baseline period.
+    """Calculates the percentiles based on a fixed baseline period.
     
     Parameters
     ----------
@@ -29,9 +29,9 @@ def get_percentile_selected_period(df, date_column = 'year', value_column = 'gwc
     station_id_column : str
         The column label of the id of the stations or wells
     baseline_start_year: int
-        The start year of the baseline period for obtaining percentiles with a fixed period
+        The start year for obtaining percentiles with a fixed baseline
     baseline_end_year: int
-        The start year of the baseline period for obtaining percentiles with a fixed period
+        The end year for obtaining percentiles with a fixed baseline
         
     Returns
     -------
@@ -58,14 +58,14 @@ stations_gdf = gpd.sjoin(stations_gdf, hr)
 
 end_date = datetime.now().strftime('%Y-%m-%d') #today's date
 
-#Mergind data with stations
+#Merging data with stations
 gwdata = gwdata.merge(stations_gdf, on='site_code')
 
 def well_percentile(df, date_column = 'msmt_date', value_column = 'gse_gwe',
                     station_id_column = 'stn_id', initial_date = '1990-01-01',
                     end_date = end_date, subset = ['HR_NAME', ['Sacramento River']], 
                     maxgwchange = 30, pctg_data_valid=0):
-    """TBD
+    """Calculates the percentiles for groundwater annual and seasonal elevation changes, as well as the cumulative changes for each well.
     
     Parameters
     ----------
@@ -100,7 +100,7 @@ def well_percentile(df, date_column = 'msmt_date', value_column = 'gse_gwe',
     Returns
     -------
     dataframe
-        the original dateframe adding the percentiles for the temporal period
+        The original dateframe adding the percentiles for the temporal period
     """
     
     #First we filter the data with the initial subset and date
@@ -161,7 +161,11 @@ def well_percentile(df, date_column = 'msmt_date', value_column = 'gse_gwe',
     return dfallst
 
 def regional_pctl_analysis(df, grouping_column='HR_NAME', stat = 'all'):
-    """TBD
+    """Calculates the percentiles for groundwater annual and seasonal elevation changes, as well as the cumulative changes for each hydrologic region.
+        Applies a correction to the groundwater percentile values by calculating percentiles.
+        (This correction is applied because median values tend to cluster around the middle of the range, resulting in fewer 
+         extreme values (near 0 or 1) - By recalculating percentiles of these median values, we distribute the median values
+         more evenly between 0 and 1)
     
     Parameters
     ----------
@@ -177,7 +181,7 @@ def regional_pctl_analysis(df, grouping_column='HR_NAME', stat = 'all'):
     Returns
     -------
     dataframe
-        A summary
+        The dateframe of percentiles and corrected percentiles for each hydrologic region
     """
     df['reporting']=1
     if (stat == 'median') or (stat == 'all'):

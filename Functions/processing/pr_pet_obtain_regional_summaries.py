@@ -52,12 +52,14 @@ def obtainregionalsummary(input_folder = '../../Data/Downloaded/',
              directory = '../../Data/Processed/',
              output_filename = 'processed_grided_indicators.csv'): 
 
-    """Summarizing hydro-climatic data at a hydrologic region
+    """Calculates average monthly hydro-climatic data (precipitation and estimated evapotranspiration) from daily data for each hydrologic region  
     
     Parameters
     ----------
-    region :
-    name :
+    region :str
+        The name of the hydrologic region to analyze in short series format
+    name : str
+        The name of the hydrologic region to analyze in long series format
     indicators : list
         Potential hydroclimatic variables include:
             'aet' : actual evapotranspiration (source: TERRACLIMATE; format: netCDF)
@@ -72,17 +74,15 @@ def obtainregionalsummary(input_folder = '../../Data/Downloaded/',
     directory = str
         The path to the directory where the data will be downloaded
         
-    
     Returns
     -------
     datafiles
-        TBD
+        CSV files for each hydrologic region, each containing average pr and pet values for a specified time period
         
     """
     
     # read hydrologic region shapefile
     shape_path_filename = '../../Data/Input_Data/HRs/i03_Hydrologic_Regions.shp'
-    #shape_path_filename = r'W:/Projects/NIDIS/Data//HRs/Hydrologic_Regions.shp'
     
     # read hydrologic region
     hr = gpd.read_file(shape_path_filename).to_crs("EPSG:4326").query(region)

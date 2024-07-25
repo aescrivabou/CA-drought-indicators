@@ -54,15 +54,17 @@ def func_for_tperiod(df, date_column = 'date', value_column = 'VALUE',
     grouping_column: str,optional
         The column label for groups (such as each station, each hydrologic region
         etc.) to obtain percentiles independently
-    correcting_no_reporting : if True, weights the percentile function by 'weighting_column'
+    correcting_no_reporting : boolean
+        If True, weights the percentile function by 'weighting_column'
         to account for stations not reporting data some months
-    correcting_column = the column to weight the percentiles. To obtain storage
+    correcting_column: series
+        The column to weight the percentiles. To obtain storage
         percentiles, we use the ratio of water stored with respect the capacity
         of the reservoir to obtain the percentile
-    baseline_start_year = to obtain percentiles with a fixed baseline, this
-        parameter indicates the beginning of the baseline
-    baseline_end_year = to obtain percentiles with a fixed baseline, this
-        parameter indicates the end of the baseline
+    baseline_start_year: int
+        The start year for obtaining percentiles with a fixed baseline
+    baseline_end_year: int
+        The start year for obtaining percentiles with a fixed baseline
     
     Returns
     -------

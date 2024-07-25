@@ -12,12 +12,12 @@ from tqdm import tqdm
 
 def execute_and_time(script_path):
     """
-    Execute a Python script and measure its execution time.
+    Execute a Python script and measure its execution time
     
     Parameters
     ----------
     script_path : str
-        The file path of the Python script to be executed.
+        The file path of the Python script to be executed
     """
     start_time = time.time()
     try:

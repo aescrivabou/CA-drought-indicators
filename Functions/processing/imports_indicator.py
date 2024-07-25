@@ -5,7 +5,15 @@ Created on Sat Apr  8 22:49:49 2023
 
 @author: alvar
 """
-
+"""
+Description:
+    This script calculates imports indicators using reservoir and snow data for the delta region. 
+        The script performs the following tasks:
+        1. Calculates monthly individual reservoir percentile values using a 1 month analysis period.
+        2. Calculates monthly individual snow gauge percentile values using a 1 month analysis period.
+        3. Calculated monthly reservoir percentile values at the hydrologic region scale using a 1 month analysis period.
+        4. Calculates monthly total storage (sum of reservoir storage and snow) percentile at the hydrologic region scale using a 1 month analysis period.
+"""
 import pandas as pd
 from percentile_average_function import func_for_tperiod
 import os
