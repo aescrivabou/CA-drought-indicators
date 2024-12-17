@@ -323,7 +323,7 @@ def vis_gw_dashboard(hr='San Joaquin River', date='2010-03', hydrograph_length=1
     plt.yticks([])
     ax2.set_title('Regional groundwater elevation indicator', fontsize = 9, fontweight = 'bold')
     
-    #  Third create the drought monitor dial for indicator "pctl_cumgwchange_corr"
+    #  Third create the drought monitor dial for indicator "pctl_gwchange_corr"
     arrow_index = 100*df.pctl_gwchange_corr[(df.date==date) & (df.HR_NAME==hr)].iloc[0]
     fig0, axs = plt.subplots()  #  Add figure for indicator semicircle
     dial(arrow_index=arrow_index, ax=axs, figname='myDial')
@@ -668,10 +668,10 @@ def vis_et_dashboard(hr='San Joaquin River', date='2001-04', hydrograph_length=1
     plt.suptitle(hr+ "\n" + pd.to_datetime(date).strftime('%b %Y'), fontsize=16)
     
     plt.savefig('../../Data/Visuals/dashboards/pet_dashboard.pdf')    
-# 
-# vis_sw_dashboard(hr='San Joaquin River', date='2022-03', hydrograph_length=10)
-# vis_streamflow_dashboard(hr='Sacramento River', date='2022-03', hydrograph_length=10)
-# vis_gw_dashboard(hr='San Joaquin River', date='2022-03', hydrograph_length=10) 
-# vis_imports_dashboard(date='2022-03', hydrograph_length = 10)
-vis_pr_dashboard(hr='San Joaquin River', date='2016-03', hydrograph_length=10)
-vis_et_dashboard(hr='San Joaquin River', date='2018-02', hydrograph_length=10)
+#
+vis_sw_dashboard(hr='San Joaquin River', date='2022-03', hydrograph_length=10)
+vis_streamflow_dashboard(hr='Sacramento River', date='2022-03', hydrograph_length=10)
+vis_gw_dashboard(hr='San Joaquin River', date='2022-03', hydrograph_length=10) 
+vis_imports_dashboard(date='2022-03', hydrograph_length = 10)
+vis_pr_dashboard(hr='San Joaquin River', date='2022-03', hydrograph_length=10)
+vis_et_dashboard(hr='San Joaquin River', date='202-03', hydrograph_length=10)

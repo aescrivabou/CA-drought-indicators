@@ -180,10 +180,10 @@ def obtainregionalsummary(input_folder = '../../Data/Downloaded/',
 
 latest_month = datetime.datetime.now().month - 1
 i=0
-directory = '../../Data/Processed/'
+directory = '../../Data/Processed/gridded'
 output_filename = directory + hr_code[i] + '_processed_grided_indicators_1990_2022.csv'
 os.path.exists(output_filename)
-if os.path.exists(output_filename):
+if not os.path.exists(output_filename):
     # File does not exist, run obtainsummary process for this code
     print(f"The file {output_filename} doesn't exist.") 
     for i in range(10):
