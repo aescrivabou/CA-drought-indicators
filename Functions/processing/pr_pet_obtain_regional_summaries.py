@@ -120,7 +120,8 @@ def obtainregionalsummary(input_folder = '../../Data/Downloaded/',
                 mean = np.nanmean(da_clip.values)
                 pet.loc['%s' %(m)] = ['%s' %(m), mean]
             ds.close()
-        
+            print(year)
+
         # summarize by month
         
         pet['date'] = pd.to_datetime(pet['date'])    
@@ -161,7 +162,8 @@ def obtainregionalsummary(input_folder = '../../Data/Downloaded/',
                 mean = np.nanmean(da_clip.values)
                 precipitation.loc['%s' %(m)] = ['%s' %(m), mean]
             ds.close()
-    
+            print(year)
+
         #summarize by month
         
         precipitation['date'] = pd.to_datetime(precipitation['date'])    
@@ -203,6 +205,6 @@ else:
             name = hr_long_series[i], 
             indicators = ['pr', 'pet'],
             startyear = 2023, startmonth = 1,
-            endyear = 2024, endmonth = latest_month,
+            endyear = 2024, endmonth = latest_month,  #latest_month works if you have data up until recent month, else it fails
             directory = '../../Data/Processed/gridded/',
             output_filename = hr_code[i] + '_processed_grided_indicators_2023_present.csv')
