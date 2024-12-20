@@ -668,7 +668,7 @@ def vis_et_dashboard(hr='San Joaquin River', date='2001-04', hydrograph_length=1
     plt.suptitle(hr+ "\n" + pd.to_datetime(date).strftime('%b %Y'), fontsize=16)
     
     plt.savefig('../../Data/Visuals/dashboards/pet_dashboard.pdf')    
-#
+
 vis_sw_dashboard(hr='San Joaquin River', date='2022-03', hydrograph_length=10)
 vis_streamflow_dashboard(hr='Sacramento River', date='2022-03', hydrograph_length=10)
 vis_gw_dashboard(hr='San Joaquin River', date='2022-03', hydrograph_length=10) 

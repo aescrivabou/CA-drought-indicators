@@ -98,21 +98,21 @@ def vis_data_indicator(ax, df, date, hr=None, data=None, ind=None, hydrograph_le
         if no_inp == 1:
             #  Plot real data line and fill vertically
             df.plot(kind='line', ax=ax, x='date', y=data, color='dodgerblue', legend=False)
-            plt.fill_between(df['date'].dt.to_pydatetime(), 0, df[data[0]], color='dodgerblue')
+            ax.fill_between(df['date'].dt.to_pydatetime(), 0, df[data[0]], color='dodgerblue')
 
         if no_inp == 2:
             #  Plot real data line and fill vertically
             if type(data)=='string':
                 df.plot(kind='line', ax=ax, x='date', y=data, color='dodgerblue', legend=False)
-                plt.fill_between(df['date'].dt.to_pydatetime(), 0, df[data], color='dodgerblue')
-                plt.legend([data], title=None, frameon=False, loc='center', bbox_to_anchor=(0.5, -.45))
+                ax.fill_between(df['date'].dt.to_pydatetime(), 0, df[data], color='dodgerblue')
+                ax.legend([data], title=None, frameon=False, loc='center', bbox_to_anchor=(0.5, -.45))
             else:
                 df['data3'] = df[data[0]]+df[data[1]]
                 df.plot(kind='line', ax=ax, x='date', y='data3', color='orange', legend=False)
                 df.plot(kind='line', ax=ax, x='date', y=data[0], color='dodgerblue', legend=False)
-                plt.fill_between(df['date'].dt.to_pydatetime(), 0, df['data3'], color='orange')
-                plt.fill_between(df['date'].dt.to_pydatetime(), 0, df[data[0]], color='dodgerblue')
-                plt.legend([data[1], data[0]], title=None, ncols=2, frameon=False, loc='center', bbox_to_anchor=(0.5, -0.55),fontsize=7)
+                ax.fill_between(df['date'].dt.to_pydatetime(), 0, df['data3'], color='orange')
+                ax.fill_between(df['date'].dt.to_pydatetime(), 0, df[data[0]], color='dodgerblue')
+                ax.legend([data[1], data[0]], title=None, ncols=2, frameon=False, loc='center', bbox_to_anchor=(0.5, -0.55),fontsize=7)
             
         #  Formatting
         ax.set_xlabel(None)
@@ -128,12 +128,12 @@ def vis_data_indicator(ax, df, date, hr=None, data=None, ind=None, hydrograph_le
     else:
         #  Plot indicator data line and fill drought status bins horizontally
         df.plot(kind='line', ax=ax, x='date', y=ind, color='dodgerblue', legend=False)
-        plt.fill_between(df['date'].dt.to_pydatetime(), 0.3, 0.5, color=dm_colors[1], alpha=1.0)
-        plt.fill_between(df['date'].dt.to_pydatetime(), 0.2, 0.3, color=dm_colors[2], alpha=1.0)
-        plt.fill_between(df['date'].dt.to_pydatetime(), 0.1, 0.2, color=dm_colors[3], alpha=1.0)
-        plt.fill_between(df['date'].dt.to_pydatetime(), 0.0, 0.1, color=dm_colors[4], alpha=1.0)
-        plt.fill_between(df['date'].dt.to_pydatetime(), 0.5, df[ind], color='dodgerblue', alpha=0.5)
-        plt.legend([ind, 'Abnormally dry', 'Moderate drought', 'Severe drought', 'Extreme drought'], title=None, ncols=5, frameon=False, loc='center', bbox_to_anchor=(0.5, -0.55),fontsize = 7)
+        ax.fill_between(df['date'].dt.to_pydatetime(), 0.3, 0.5, color=dm_colors[1], alpha=1.0)
+        ax.fill_between(df['date'].dt.to_pydatetime(), 0.2, 0.3, color=dm_colors[2], alpha=1.0)
+        ax.fill_between(df['date'].dt.to_pydatetime(), 0.1, 0.2, color=dm_colors[3], alpha=1.0)
+        ax.fill_between(df['date'].dt.to_pydatetime(), 0.0, 0.1, color=dm_colors[4], alpha=1.0)
+        ax.fill_between(df['date'].dt.to_pydatetime(), 0.5, df[ind], color='dodgerblue', alpha=0.5)
+        ax.legend([ind, 'Abnormally dry', 'Moderate drought', 'Severe drought', 'Extreme drought'], title=None, ncols=5, frameon=False, loc='center', bbox_to_anchor=(0.5, -0.55),fontsize = 7)
         
         #  Formatting
         ax.set_xlabel(None)
