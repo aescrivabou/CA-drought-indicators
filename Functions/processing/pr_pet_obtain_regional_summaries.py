@@ -180,7 +180,7 @@ def obtainregionalsummary(input_folder = '../../Data/Downloaded/',
 
 latest_month = datetime.datetime.now().month - 1
 i=0
-directory = '../../Data/Processed/gridded'
+directory = '../../Data/Processed/gridded/'
 output_filename = directory + hr_code[i] + '_processed_grided_indicators_1990_2022.csv'
 os.path.exists(output_filename)
 if not os.path.exists(output_filename):
