@@ -49,32 +49,6 @@ def vis_data_indicator(ax, df, date, hr=None, data=None, ind=None, hydrograph_le
     figure
         A temporal plot of the hydrograph or indicators to include in the dash
     """
-    
-    #  Define general parameters for matplotlib formatting
-    ppic_coltext = '#333333'
-    ppic_colgrid = '#898989'
-    ppic_colors = ['#e98426','#649ea5','#0d828a','#776972','#004a80','#3e7aa8','#b44b27','#905a78','#d2aa1d','#73a57a','#4fb3ce']
-    
-    params = {
-       'axes.labelsize': 8,
-       'axes.labelweight': 'bold',
-       'font.size': 8,
-       'legend.fontsize': 8,
-       'xtick.labelsize': 8,
-       'ytick.labelsize': 8,
-       'text.usetex': False,
-       'font.family': 'Arial',
-       'text.color' : ppic_coltext,
-       'axes.labelcolor' : ppic_coltext,
-       'xtick.color' : ppic_coltext,
-       'ytick.color': ppic_coltext,
-       'grid.color' : ppic_colgrid,
-       'figure.figsize': [7.0, 7],
-       'axes.prop_cycle' : cycler(color=ppic_colors)
-       }
-    
-    rcParams.update(params)
-
     #  Define US drought monitor color scheme
     dm_colors = [(189/255,190/255,192/255,1), (255/255,255/255,0,1), (252/255,211/255,127/255,1), (255/255,170/255,0,1), (230/255,0,0,1), (115/255,0,0,1), (57/255,57/255,57/255,1)]
     
@@ -89,8 +63,8 @@ def vis_data_indicator(ax, df, date, hr=None, data=None, ind=None, hydrograph_le
     #  Convert real data to millions of acre-feet
     if data == ['reservoir_storage', 'SWC']:
         for d in data:
-            df[d] = df[d].fillna(0)
-            df[d] = df[d]/1000000
+            df.loc[:, d] = df.loc[:, d].fillna(0)
+            df.loc[:, d] = df.loc[:, d] / 1000000
     
     #  If indicator is called as None, create real data plot
     if ind==None:
@@ -98,20 +72,20 @@ def vis_data_indicator(ax, df, date, hr=None, data=None, ind=None, hydrograph_le
         if no_inp == 1:
             #  Plot real data line and fill vertically
             df.plot(kind='line', ax=ax, x='date', y=data, color='dodgerblue', legend=False)
-            ax.fill_between(df['date'].dt.to_pydatetime(), 0, df[data[0]], color='dodgerblue')
+            ax.fill_between(df['date'].values, 0, df[data[0]], color='dodgerblue')
 
         if no_inp == 2:
             #  Plot real data line and fill vertically
             if type(data)=='string':
                 df.plot(kind='line', ax=ax, x='date', y=data, color='dodgerblue', legend=False)
-                ax.fill_between(df['date'].dt.to_pydatetime(), 0, df[data], color='dodgerblue')
+                ax.fill_between(df['date'].values, 0, df[data], color='dodgerblue')
                 ax.legend([data], title=None, frameon=False, loc='center', bbox_to_anchor=(0.5, -.45))
             else:
-                df['data3'] = df[data[0]]+df[data[1]]
+                df.loc[:,'data3'] = df.loc[:,data[0]] + df.loc[:,data[1]]
                 df.plot(kind='line', ax=ax, x='date', y='data3', color='orange', legend=False)
                 df.plot(kind='line', ax=ax, x='date', y=data[0], color='dodgerblue', legend=False)
-                ax.fill_between(df['date'].dt.to_pydatetime(), 0, df['data3'], color='orange')
-                ax.fill_between(df['date'].dt.to_pydatetime(), 0, df[data[0]], color='dodgerblue')
+                ax.fill_between(df['date'].values, 0, df['data3'], color='orange')
+                ax.fill_between(df['date'].values, 0, df[data[0]], color='dodgerblue')
                 ax.legend([data[1], data[0]], title=None, ncols=2, frameon=False, loc='center', bbox_to_anchor=(0.5, -0.55),fontsize=7)
             
         #  Formatting
@@ -128,11 +102,11 @@ def vis_data_indicator(ax, df, date, hr=None, data=None, ind=None, hydrograph_le
     else:
         #  Plot indicator data line and fill drought status bins horizontally
         df.plot(kind='line', ax=ax, x='date', y=ind, color='dodgerblue', legend=False)
-        ax.fill_between(df['date'].dt.to_pydatetime(), 0.3, 0.5, color=dm_colors[1], alpha=1.0)
-        ax.fill_between(df['date'].dt.to_pydatetime(), 0.2, 0.3, color=dm_colors[2], alpha=1.0)
-        ax.fill_between(df['date'].dt.to_pydatetime(), 0.1, 0.2, color=dm_colors[3], alpha=1.0)
-        ax.fill_between(df['date'].dt.to_pydatetime(), 0.0, 0.1, color=dm_colors[4], alpha=1.0)
-        ax.fill_between(df['date'].dt.to_pydatetime(), 0.5, df[ind], color='dodgerblue', alpha=0.5)
+        ax.fill_between(df['date'].values, 0.3, 0.5, color=dm_colors[1], alpha=1.0)
+        ax.fill_between(df['date'].values, 0.2, 0.3, color=dm_colors[2], alpha=1.0)
+        ax.fill_between(df['date'].values, 0.1, 0.2, color=dm_colors[3], alpha=1.0)
+        ax.fill_between(df['date'].values, 0.0, 0.1, color=dm_colors[4], alpha=1.0)
+        ax.fill_between(df['date'].values, 0.5, df[ind], color='dodgerblue', alpha=0.5)
         ax.legend([ind, 'Abnormally dry', 'Moderate drought', 'Severe drought', 'Extreme drought'], title=None, ncols=5, frameon=False, loc='center', bbox_to_anchor=(0.5, -0.55),fontsize = 7)
         
         #  Formatting
@@ -165,31 +139,6 @@ def dial(arrow_index, ax, figname = 'myDial'):
     figure
         A dial plot of indicator percenitle of the hydrologic region
     """
-    #  Define general parameters for matplotlib formatting
-    ppic_coltext = '#333333'
-    ppic_colgrid = '#898989'
-    ppic_colors = ['#e98426','#649ea5','#0d828a','#776972','#004a80','#3e7aa8','#b44b27','#905a78','#d2aa1d','#73a57a','#4fb3ce']
-    
-    params = {
-       'axes.labelsize': 14,
-       'axes.labelweight': 'bold',
-       'font.size': 14,
-       'legend.fontsize': 14,
-       'xtick.labelsize': 14,
-       'ytick.labelsize': 14,
-       'text.usetex': False,
-       'font.family': 'Arial',
-       'text.color' : ppic_coltext,
-       'axes.labelcolor' : ppic_coltext,
-       'xtick.color' : ppic_coltext,
-       'ytick.color': ppic_coltext,
-       'grid.color' : ppic_colgrid,
-       'figure.figsize': [7.0, 7],
-       'axes.prop_cycle' : cycler(color=ppic_colors)
-       }
-    
-    rcParams.update(params)
-    
     #US Drought colors
     colors = [
             (230/255, 0, 0, 1),                   # Red
