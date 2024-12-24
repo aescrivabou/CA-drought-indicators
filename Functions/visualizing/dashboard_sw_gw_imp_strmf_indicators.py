@@ -23,17 +23,8 @@ import rioxarray
 from pykrige.ok import OrdinaryKriging
 directory_path = '../../Data/Visuals/dashboards'
 os.makedirs(directory_path, exist_ok=True)
-
 #  Import real data and indicator visualization function
 from dashboard_auxiliar_functions import vis_data_indicator, dial, color_function_df, convert_input_date_format
-
-#  Define general parameters for matplotlib formatting
-ppic_coltext = '#333333'
-ppic_colgrid = '#898989'
-ppic_colors = ['#e98426','#649ea5','#0d828a','#776972','#004a80','#3e7aa8','#b44b27','#905a78','#d2aa1d','#73a57a','#4fb3ce']
-
-#  Define US drought monitor color scheme
-dm_colors_dial = [(1,1,1,1), (189/255,190/255,192/255,1), (255/255,255/255,0,1), (252/255,211/255,127/255,1), (255/255,170/255,0,1), (230/255,0,0,1), (115/255,0,0,1), (57/255,57/255,57/255,1)]
 
 #  Define function for surface water dashboard visualizations
 def vis_sw_dashboard(hr='San Joaquin River', date='2001-04', hydrograph_length=10):
@@ -61,12 +52,11 @@ def vis_sw_dashboard(hr='San Joaquin River', date='2001-04', hydrograph_length=1
     date = convert_input_date_format(date)
     date = datetime.strptime(date, '%Y-%m-%d')
     
-    hr_shapes = gpd.read_file('../../Data/Input_Data/HRs/i03_Hydrologic_Regions.shp').to_crs('epsg:3310')
     
     # load files
     hr_rsvr_prc_df = pd.read_csv('../../Data/Processed/surface_water_drougth_indicator/total_storage_percentiles.csv')
     df_ind_rsv_hr = pd.read_csv('../../Data/Processed/surface_water_drougth_indicator/individual_reservoir_percentiles.csv')
-    hr_shapes_res = hr_shapes
+    hr_shapes = gpd.read_file('../../Data/Input_Data/HRs/i03_Hydrologic_Regions.shp').to_crs('epsg:3310')
     ca_boundary = hr_shapes.dissolve() 
     
     # Subset the dataframe to include only data for the hydrologic region of interest and select HR regions
@@ -122,7 +112,6 @@ def vis_sw_dashboard(hr='San Joaquin River', date='2001-04', hydrograph_length=1
     plt.yticks([])
     ax2.set_title('Regional surface water drought indicator\n(reservoir storage plus snowpack)', fontsize = 9, fontweight = 'bold')
     
-    
     #  Third create the real data plot
     ax3 = fig.add_subplot(grid[3, 0:])
     vis_data_indicator(ax=ax3, df=hr_rsvr_prc_df, date=date, hr=hr, data=['reservoir_storage', 'SWC'], ind=None, hydrograph_length=10, plot_title = 'Evolution of water stored in reservoirs and snowpack')
@@ -135,10 +124,10 @@ def vis_sw_dashboard(hr='San Joaquin River', date='2001-04', hydrograph_length=1
     plt.suptitle(hr+ "\n" + pd.to_datetime(date).strftime('%b %Y'), fontsize=16)
     plt.savefig('../../Data/Visuals/dashboards/sw_dashboard.pdf')
     
-#  Define function for imports
+#  Define function for delta visualizations 
 def vis_imports_dashboard(date='2001-04', hydrograph_length = 10):
     
-    """This function generates the water dashboard for Delta imports
+    """This function generates the surface water dashboard for Delta imports
     
     Parameters
     ----------
@@ -161,7 +150,6 @@ def vis_imports_dashboard(date='2001-04', hydrograph_length = 10):
     #delta
     delta_rsvr_prc_df = pd.read_csv('../../Data/Processed/imports/total_storage_percentiles.csv')
     ind_rsv_delta_df = pd.read_csv('../../Data/Processed/imports/individual_reservoir_percentiles.csv')
-    
     
     #  Modify delta HR regions shapefile to properly facilitate plotting
     hr_shapes_sac = hr_shapes[(hr_shapes.HR_NAME)=='Sacramento River']
@@ -226,7 +214,7 @@ def vis_imports_dashboard(date='2001-04', hydrograph_length = 10):
     plt.suptitle("Delta exporting basins\n" + pd.to_datetime(date).strftime('%b %Y'), fontsize=16)
     plt.savefig('../../Data/Visuals/dashboards/imports_dashboard.pdf')
 
-#  Define function for surface water dashboard visualizations
+#  Define function for groundwater visualizations
 def vis_gw_dashboard(hr='San Joaquin River', date='2010-03', hydrograph_length=10):
     
     """This function generates the groundwater dashboard
@@ -302,7 +290,6 @@ def vis_gw_dashboard(hr='San Joaquin River', date='2010-03', hydrograph_length=1
     df_wells_buffered['geometry'] = df_wells_buffered.geometry.buffer(buffer_distance_meters)
     ds = ds.rio.clip(df_wells_buffered.geometry)
     
-    
     #  Create figure objects and develop gridding system to implement components of dashboard
     fig = plt.figure(figsize=(8, 7))
     grid = plt.GridSpec(nrows=11, ncols=6, hspace=1.0, wspace=1.0)
@@ -350,7 +337,7 @@ def vis_gw_dashboard(hr='San Joaquin River', date='2010-03', hydrograph_length=1
     plt.yticks([])
     ax3.set_title('Regional pumping intesity indicator', fontsize = 9, fontweight = 'bold')
     
-    # #  Fourth create the real data plot
+    #  Fourth create the real data plot
     ax4 = fig.add_subplot(grid[6:8, 0:])    
     vis_data_indicator(ax=ax4, df=hr_gw_prc_df, date=date, hr=hr, data=None, ind='pctl_gwelev', hydrograph_length=10, plot_title = 'Evolution of the groundwater elevation indicator')
     
@@ -361,7 +348,7 @@ def vis_gw_dashboard(hr='San Joaquin River', date='2010-03', hydrograph_length=1
     plt.suptitle(hr+ " - " + pd.to_datetime(date).strftime('%b %Y'), fontsize=16)
     plt.savefig('../../Data/Visuals/dashboards/gw_dashboard.pdf')
 
-#  Define function for surface water dashboard visualizations
+#  Define function for streamflow visualizations
 def vis_streamflow_dashboard(hr='San Joaquin River', date='2011-11', hydrograph_length=10):
     """This function generates the streamflow dashboard
     
@@ -410,7 +397,6 @@ def vis_streamflow_dashboard(hr='San Joaquin River', date='2011-11', hydrograph_
     
     hr_sf_prc_df = df_field_to_datetime(hr_sf_prc_df)
     df_gages = df_field_to_datetime(df_gages)
-    
     
     # Subset data to include only the hydrologic region of interest
     hr_shapes_sf = hr_shapes_sf[hr_shapes_sf.HR_NAME==hr].dissolve(by='HR_NAME')
@@ -468,7 +454,8 @@ def vis_streamflow_dashboard(hr='San Joaquin River', date='2011-11', hydrograph_
     
     plt.suptitle(hr+ "\n" + pd.to_datetime(date).strftime('%b %Y'), fontsize=16)
     plt.savefig('../../Data/Visuals/dashboards/streamflow_dashboard.pdf')
-
+    
+#  Define function for precipitation visualizations
 def vis_pr_dashboard(hr='San Joaquin River', date='2001-04', hydrograph_length=10):
     
     """This function generates the precipitation dashboard
@@ -531,7 +518,7 @@ def vis_pr_dashboard(hr='San Joaquin River', date='2001-04', hydrograph_length=1
     fig = plt.figure(figsize=(8, 7))
     grid = plt.GridSpec(nrows=5, ncols=7, hspace=1.0, wspace=1.0)
     
-    #  First create the map of et status and add evapotranspiration percentile
+    #  First create the map of pr status
     ax1 = fig.add_subplot(grid[0:3, 0:3])
     colors = [
         (230/255, 0, 0),                   # Red
@@ -571,7 +558,6 @@ def vis_pr_dashboard(hr='San Joaquin River', date='2001-04', hydrograph_length=1
     ax3 = fig.add_subplot(grid[3, 0:])
     vis_data_indicator(ax=ax3, df=hr_pr_prc_df, date=date, hr=hr, data=['pr_value'], ind=None, hydrograph_length=10, plot_title = 'Evolution of Precipitation')
        
-    
     #  Fourth create the indicator plot
     ax4 = fig.add_subplot(grid[4, 0:])
     vis_data_indicator(ax=ax4, df=hr_pr_prc_df, date=date, hr=hr, data=None, ind='percentile', hydrograph_length=10, plot_title = 'Evolution of the regional precipitation indicator')
@@ -580,7 +566,7 @@ def vis_pr_dashboard(hr='San Joaquin River', date='2001-04', hydrograph_length=1
     plt.suptitle(hr+ "\n" + pd.to_datetime(date).strftime('%b %Y'), fontsize=16)
     plt.savefig('../../Data/Visuals/dashboards/pr_dashboard.pdf')
     
-#  Define function for surface water dashboard visualizations
+#  Define function for evapotranspiration visualizations
 def vis_et_dashboard(hr='San Joaquin River', date='2001-04', hydrograph_length=10):
     
     """This function generates the evapotranspiration dashboard
@@ -644,7 +630,7 @@ def vis_et_dashboard(hr='San Joaquin River', date='2001-04', hydrograph_length=1
     fig = plt.figure(figsize=(8, 7))
     grid = plt.GridSpec(nrows=5, ncols=7, hspace=1.0, wspace=1.0)
     
-    #  First create the map of et status and add evapotranspiration percentile
+    #  First create the map of et status
     ax1 = fig.add_subplot(grid[0:3, 0:3])
     colors = [
         (230/255, 0, 0),                   # Red
@@ -682,8 +668,7 @@ def vis_et_dashboard(hr='San Joaquin River', date='2001-04', hydrograph_length=1
     
     #  Third create the real data plot
     ax3 = fig.add_subplot(grid[3, 0:])
-    vis_data_indicator(ax=ax3, df=hr_pet_prc_df, date=date, hr=hr, data=['pet_value'], ind=None, hydrograph_length=10, plot_title = 'Evolution of Evapotranspiration')
-       
+    vis_data_indicator(ax=ax3, df=hr_pet_prc_df, date=date, hr=hr, data=['pet_value'], ind=None, hydrograph_length=10, plot_title = 'Evolution of Evapotranspiration') 
     
     #  Fourth create the indicator plot
     ax4 = fig.add_subplot(grid[4, 0:])
