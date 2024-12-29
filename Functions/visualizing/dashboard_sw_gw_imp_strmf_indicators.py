@@ -379,9 +379,7 @@ def vis_streamflow_dashboard(hr='San Joaquin River', date='2011-11', hydrograph_
     df_gages = pd.read_csv('../../Data/Processed/streamflow_indicator/streamflow_individual_gages_indicator.csv')
     rivers_shape = gpd.read_file('../../Data/Input_Data/Major_Rivers/NHD_Major_Rivers.shp').to_crs('epsg:3310')
     hr_shapes_sf = hr_shapes
-    
-    rivers_shape = gpd.read_file(r"C:\Users\armen\Desktop\nidis\ploting files\rivers_shape\rivers_shape.shp").to_crs('epsg:3310')
-    
+        
     #  Create function for properly converting datetime with timezones removed
     hr_sf_prc_df.date = hr_sf_prc_df.date.str[:10]
     df_gages.date = df_gages.date.str[:10]
@@ -508,7 +506,7 @@ def vis_pr_dashboard(hr='San Joaquin River', date='2001-04', hydrograph_length=1
     #  Modify regional pr and et data to properly facilitate plotting
     hr_pr_prc_df = pd.read_csv(r'../../Data/Processed/pr_pet_hr_indicators/pr_percentile.csv')
     hr_pr_prc_df.date = pd.to_datetime(hr_pr_prc_df.date, format='%Y-%m-%d')
-    
+    hr_pr_prc_df.pr_value = hr_pr_prc_df.pr_value/2.54
     hr_pr_prc_df_selected_data = hr_pr_prc_df.loc[hr_pr_prc_df.date == date]
     hr_pr_prc_df_selected_data['color_pctl'] = color_function_df(hr_pr_prc_df_selected_data, 'percentile')  # Assign colors based on percentile for plotting
     date_colors = hr_pr_prc_df_selected_data.loc[hr_pr_prc_df_selected_data.date == date, ['HR_NAME', 'color_pctl']] # Extract colors for the specified date, grouped by hydrologic region
@@ -618,6 +616,7 @@ def vis_et_dashboard(hr='San Joaquin River', date='2001-04', hydrograph_length=1
     
     #  Modify regional pr and et data to properly facilitate plotting
     hr_pet_prc_df = pd.read_csv(r'../../Data/Processed/pr_pet_hr_indicators/pet_percentile.csv')
+    hr_pet_prc_df.pet_value = hr_pet_prc_df.pet_value/2.54
     hr_pet_prc_df.date = pd.to_datetime(hr_pet_prc_df.date, format='%Y-%m-%d')
     
     hr_pet_prc_df_selected_data = hr_pet_prc_df.loc[hr_pet_prc_df.date == date]
