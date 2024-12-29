@@ -75,7 +75,7 @@ def load_or_download_data(parameter_type, startdate, enddate, directory, station
     file_path = directory
     if parameter_type != 'prcp and et':
         if os.path.exists(file_path) :
-            df = pd.read_csv(file_path,index_col=0)
+            df = pd.read_csv(file_path,index_col=0, low_memory=False)
             print(f'{parameter_type} data exists')
         else:
             os.makedirs(os.path.dirname(directory), exist_ok=True)
@@ -114,25 +114,28 @@ def add_new_data (df, parameter_type, date_column, id_column, directory, station
         The updated dataframe with the newly added data.
     """
     if parameter_type != 'prcp and et':
-        last_row = df.iloc[-1]
-        startdate = last_row[date_column]
-        startdate = pd.to_datetime(startdate) + relativedelta(days=1) # An additional day is included to ensure that the new data start on the day following
-        enddate = date.today()
-        if parameter_type in ('snow', 'streamflow'):
-            startdate = startdate.strftime("%Y-%m-%d")
-            enddate = enddate.strftime("%Y-%m-%d")
-        
-        if parameter_type == 'reservoir':
-            startdate = startdate.strftime("%m-%d-%Y")
-            enddate = enddate.strftime("%m-%d-%Y")
-        
-        df_append = download_data(parameter_type, startdate, enddate, directory, stations)
-        df_new = pd.concat([df, df_append])
-        df_new[date_column] = pd.to_datetime(df_new[date_column], format='mixed')
-        df_new = df_new.sort_values(by=[id_column, date_column], ascending=[True, True])
-        df_new[date_column] = df_new[date_column].astype(str)
-        print(f'dates downloaded: {startdate}, {enddate}')
-        return df_new
+        startdate = df[date_column].max()
+        startdate = pd.to_datetime(startdate).tz_localize(None) + relativedelta(days=1) # An additional day is included to ensure that the new data start on the day following
+        enddate = pd.to_datetime(date.today())
+        if startdate >= enddate:
+            print('Data is up to date')
+            return df
+        else:
+            if parameter_type in ('snow', 'streamflow'):
+                startdate = startdate.strftime("%Y-%m-%d")
+                enddate = enddate.strftime("%Y-%m-%d")
+            
+            if parameter_type == 'reservoir':
+                startdate = startdate.strftime("%m-%d-%Y")
+                enddate = enddate.strftime("%m-%d-%Y")
+            
+            df_append = download_data(parameter_type, startdate, enddate, directory, stations)
+            df_new = pd.concat([df, df_append])
+            df_new[date_column] = pd.to_datetime(df_new[date_column], format='mixed')
+            df_new = df_new.sort_values(by=[id_column, date_column], ascending=[True, True])
+            df_new[date_column] = df_new[date_column].astype(str)
+            print(f'dates downloaded: {startdate}, {enddate}')
+            return df_new
 
     if parameter_type == 'prcp and et':
         files_in_directory = os.listdir(pr_pet_directory)
