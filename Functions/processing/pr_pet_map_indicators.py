@@ -8,6 +8,7 @@ import pandas as pd
 import geopandas as gpd
 import xarray as xr
 import numpy as np
+from datetime import datetime
 from percentile_average_function import func_for_tperiod
 from tqdm import tqdm
 import os
@@ -61,7 +62,7 @@ def get_region_percentile (hr = 'Sacramento River',analysis_period = '1Y',value_
     
     input_folder = input_directory
     variable_df = pd.DataFrame()
-    for year_n in range(analysis_start_year,analysis_end_year): 
+    for year_n in range(analysis_start_year, analysis_end_year+1): 
         filepath = input_folder + file_start + '%s' %(year_n) + '.nc'
         ds = xr.open_dataset(filepath)
         da = ds[value_column].sel(lon=slice(minx, maxx),lat=slice(maxy, miny))
@@ -107,10 +108,11 @@ def get_region_percentile (hr = 'Sacramento River',analysis_period = '1Y',value_
 shape_path_filename = '../../Data/Input_Data/HRs/i03_Hydrologic_Regions.shp'
 hrs = gpd.read_file(shape_path_filename).to_crs("EPSG:4326")
 hr_regions = hrs['HR_NAME'].unique()
+current_year = datetime.now().year
 
 pr_prctl_hr_rgns = []
 for hr in hr_regions:
-    prctl_hr  = get_region_percentile(analysis_period = '1Y',hr = hr, baseline_start_year = 1991, baseline_end_year = 2020, analysis_start_year = 1987, analysis_end_year = 2024,
+    prctl_hr  = get_region_percentile(analysis_period = '1Y',hr = hr, baseline_start_year = 1991, baseline_end_year = 2020, analysis_start_year = 1987, analysis_end_year = current_year,
                                             input_directory = '../../Data/Downloaded/pr/', hr_directory = '../../Data/Input_Data/HRs/i03_Hydrologic_Regions.shp', 
                                             output_directory = '../../Data/Processed/pr_pet_gridded_indicators/',
                                             value_column = 'precipitation_amount')
@@ -118,7 +120,7 @@ for hr in hr_regions:
 
 et_prctl_hr_rgns = []
 for hr in hr_regions:
-    prctl_hr  = get_region_percentile(analysis_period = '1Y',hr = hr, baseline_start_year = 1991, baseline_end_year = 2020, analysis_start_year = 1987, analysis_end_year = 2024,
+    prctl_hr  = get_region_percentile(analysis_period = '1Y',hr = hr, baseline_start_year = 1991, baseline_end_year = 2020, analysis_start_year = 1987, analysis_end_year = current_year,
                                             input_directory = '../../Data/Downloaded/pet/', hr_directory = '../../Data/Input_Data/HRs/i03_Hydrologic_Regions.shp', 
                                             output_directory = '../../Data/Processed/pr_pet_gridded_indicators/',
                                             value_column = 'potential_evapotranspiration')
