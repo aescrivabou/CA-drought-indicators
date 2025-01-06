@@ -6,7 +6,7 @@ Created on Wed Apr 12 15:58:06 2023
 @author: alvar
 """
 
-import numpy as np1
+import numpy as np
 import pandas as pd
 import dataretrieval.nwis as nwis
 
