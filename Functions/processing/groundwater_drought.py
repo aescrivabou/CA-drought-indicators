@@ -8,23 +8,41 @@ Created on Mon Apr 10 16:15:06 2023
 
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-from datetime import datetime as dt
-import scipy
-from scipy.stats import shapiro, norm, skewnorm, gamma
-from sklearn.cluster import KMeans
 import geopandas as gpd
-import mapclassify
-import contextily as ctx
-from datetime import date, timedelta
-import seaborn as sns
-from matplotlib.dates import DateFormatter
-import matplotlib.dates as mdates
-import math
-from PIL import Image
-from matplotlib import rcParams
-from cycler import cycler
+from datetime import date
+import os
+from datetime import datetime
+from scipy import stats
 
+def get_percentile_selected_period(df, date_column = 'year', value_column = 'gwchange', prct_column = 'pctl_gwchange', baseline_start_year = 1991, baseline_end_year = 2020):
+    """Calculates the percentiles based on a fixed baseline period.
+    
+    Parameters
+    ----------
+    df : dataframe
+        The input dataframe that has a datetime and a value column to obtain
+        the percentiles
+    date_column : str
+        The column label of the datetime column
+    value_column : str
+        The column label of the columns with the values
+    station_id_column : str
+        The column label of the id of the stations or wells
+    baseline_start_year: int
+        The start year for obtaining percentiles with a fixed baseline
+    baseline_end_year: int
+        The end year for obtaining percentiles with a fixed baseline
+        
+    Returns
+    -------
+    series
+        A series with percentiles calculated over the baseline period for the selected value column.
+    """
+    df_for_arr = df.loc[(df[date_column]>(baseline_start_year-1)) & (df[date_column]<(baseline_end_year+1))]
+    arr = df_for_arr[value_column]
+    arr = arr.dropna()
+    # df[prct_column] = 0.01*stats.percentileofscore(arr, df[value_column])            
+    return  0.01*stats.percentileofscore(arr, df[value_column])
 
 #Data from: https://data.cnra.ca.gov/dataset/periodic-groundwater-level-measurements
 gwdata = pd.read_csv('../../Data/Downloaded/groundwater/periodic_gwl_bulkdatadownload/measurements.csv')
@@ -38,15 +56,16 @@ stations_gdf = gpd.GeoDataFrame(stations, geometry=gpd.points_from_xy(stations.l
 stations_gdf = stations_gdf.set_crs('epsg:4326')
 stations_gdf = gpd.sjoin(stations_gdf, hr)
 
-#Mergind data with stations
-gwdata = gwdata.merge(stations_gdf, on='site_code')
+end_date = datetime.now().strftime('%Y-%m-%d') #today's date
 
+#Merging data with stations
+gwdata = gwdata.merge(stations_gdf, on='site_code')
 
 def well_percentile(df, date_column = 'msmt_date', value_column = 'gse_gwe',
                     station_id_column = 'stn_id', initial_date = '1990-01-01',
-                    end_date = '2023-05-01', subset = ['HR_NAME', ['Sacramento River']], 
+                    end_date = end_date, subset = ['HR_NAME', ['Sacramento River']], 
                     maxgwchange = 30, pctg_data_valid=0):
-    """TBD
+    """Calculates the percentiles for groundwater annual and seasonal elevation changes, as well as the cumulative changes for each well.
     
     Parameters
     ----------
@@ -59,8 +78,11 @@ def well_percentile(df, date_column = 'msmt_date', value_column = 'gse_gwe',
         The column label of the columns with the values
     station_id_column : str
         The column label of the id of the stations or wells
-    inpitial_date: str
+    initial_date: str
         The initial data to be included in the calculations. String in
+        datetime format
+    end_date: str
+        The end data to be included in the calculations. String in
         datetime format
     subset: list
         A list that includes in the first place the column label to subset the
@@ -70,15 +92,19 @@ def well_percentile(df, date_column = 'msmt_date', value_column = 'gse_gwe',
         filtered only with the fields included in the second list (in this case
         'Sacramento River' and 'South Coast'). It could also be by basin, and
         select specific basins.
+    maxgwchange: int
+        The maximum allowable change in groundwater levels; values exceeding this threshold will be considered outliers.
+    pctg_data_valid: int
+        The threshold percentage for valid data; station data with validity exceeding this percentage will be filtered out.
         
     Returns
     -------
     dataframe
-        the original dateframe adding the percentiles for the temporal period
+        The original dateframe adding the percentiles for the temporal period
     """
     
     #First we filter the data with the initial subset and date
-    df[date_column] = pd.to_datetime(df[date_column])
+    df[date_column] = pd.to_datetime(df[date_column], format='mixed')
     if subset is not None:
         df = df.loc[df[subset[0]].isin(subset[1])]
     df = df.loc[df[date_column]>=initial_date]
@@ -93,7 +119,7 @@ def well_percentile(df, date_column = 'msmt_date', value_column = 'gse_gwe',
     df.loc[df[date_column].dt.month>6,'semester']=2
     
     #Obtain median groundwater elevation by semester
-    dfsem = df.groupby([subset[0], station_id_column, 'year', 'semester']).median().reset_index()
+    dfsem = df.groupby([subset[0], station_id_column, 'year', 'semester']).median(numeric_only=True).reset_index()
     dfsem['month']=3
     dfsem.loc[dfsem.semester>1, 'month']=9
     dfsem['day']=30
@@ -113,28 +139,33 @@ def well_percentile(df, date_column = 'msmt_date', value_column = 'gse_gwe',
             
             #Percentile of gw elev annual change
             dfst = dfst.reset_index(drop=True)
-            dfst['pctl_gwchange'] = dfst.gwchange.rank(pct=True)
+            dfst['pctl_gwchange'] = get_percentile_selected_period(df=dfst, prct_column = 'pctl_gwchange')
             dfst['half_gwchange']=dfst.gwchange*0.5
             dfst['cumgwchange'] = dfst.half_gwchange.cumsum()
             dfst.loc[dfst['gwchange'].isna(),'cumgwchange']=np.nan
-            dfst['pctl_cumgwchange'] = dfst['cumgwchange'].rank(pct=True)
+            dfst['pctl_cumgwchange'] = get_percentile_selected_period(df=dfst, value_column='cumgwchange')
                         
+            
             #Perentile of seasonal gw elevation
             dfstsem1 = dfst.loc[dfst.semester==1]
-            dfstsem1['pctl_gwelev'] = dfstsem1[value_column].rank(pct=True)
-            #dfstsem1['pctl_cumgwchange'] = dfstsem1['cumgwchange'].rank(pct=True)
+            dfstsem1['pctl_gwelev'] = get_percentile_selected_period(df = dfstsem1, value_column = value_column)
+            dfstsem1['pctl_cumgwchange'] = get_percentile_selected_period(df = dfstsem1, value_column = 'cumgwchange')
             dfstsem2 = dfst.loc[dfst.semester==2]
-            dfstsem2['pctl_gwelev'] = dfstsem2[value_column].rank(pct=True)
-            #dfstsem2['pctl_cumgwchange'] = dfstsem2['cumgwchange'].rank(pct=True)
+            dfstsem2['pctl_gwelev'] = get_percentile_selected_period(df = dfstsem2, value_column = value_column)
+            dfstsem2['pctl_cumgwchange'] = get_percentile_selected_period(df = dfstsem2, value_column = 'cumgwchange')
             dfst = pd.concat([dfstsem1, dfstsem2]).sort_values(by='date')
-
+            
             dfallst = pd.concat([dfallst,dfst])
     
     dfallst = dfallst.reset_index(drop=True)
     return dfallst
 
 def regional_pctl_analysis(df, grouping_column='HR_NAME', stat = 'all'):
-    """TBD
+    """Calculates the percentiles for groundwater annual and seasonal elevation changes, as well as the cumulative changes for each hydrologic region.
+        Applies a correction to the groundwater percentile values by calculating percentiles.
+        (This correction is applied because median values tend to cluster around the middle of the range, resulting in fewer 
+         extreme values (near 0 or 1) - By recalculating percentiles of these median values, we distribute the median values
+         more evenly between 0 and 1)
     
     Parameters
     ----------
@@ -150,7 +181,7 @@ def regional_pctl_analysis(df, grouping_column='HR_NAME', stat = 'all'):
     Returns
     -------
     dataframe
-        A summary
+        The dateframe of percentiles and corrected percentiles for each hydrologic region
     """
     df['reporting']=1
     if (stat == 'median') or (stat == 'all'):
@@ -188,5 +219,6 @@ hrs = list(gwdata['HR_NAME'].unique())
 all_wells_individual_analysis = well_percentile(gwdata, subset = ['HR_NAME', hrs])
 all_wells_regional_analysis = regional_pctl_analysis(all_wells_individual_analysis, stat='median')
 
+os.makedirs('../../Data/Processed/groundwater/', exist_ok=True)
 all_wells_individual_analysis.to_csv('../../Data/Processed/groundwater/state_wells_individual_analysis.csv')
 all_wells_regional_analysis.to_csv('../../Data/Processed/groundwater/state_wells_regional_analysis.csv')

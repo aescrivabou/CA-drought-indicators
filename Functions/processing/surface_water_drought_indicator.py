@@ -5,14 +5,24 @@ Created on Sat Apr  8 22:49:49 2023
 
 @author: alvar
 """
-
+"""
+Description:
+    This script calculates surface water drought indicator using reservoir and snow data for each hydrologic region (HR).
+        The script performs the following tasks:
+        1. Calculates monthly individual reservoir percentile values using a 1 month analysis period.
+        2. Calculates monthly individual snow gauge percentile values using a 1 month analysis period.
+        3. Calculated monthly reservoir percentile values at the hydrologic region scale using a 1 month analysis period.
+        4. Calculates monthly total storage (sum of reservoir storage and snow) percentile at the hydrologic region scale using a 1 month analysis period.
+"""
 import pandas as pd
+import os
 from percentile_average_function import func_for_tperiod
 
 
 #reading reservoir and snow data
 reservoir_data = pd.read_csv('../../Data/Downloaded/cdec/reservoir/reservoirs.csv')
 snow_data = pd.read_csv('../../Data/Downloaded/cdec/snow/SnowRegional.csv')
+reservoir_data['value'] = pd.to_numeric(reservoir_data['value'], errors='coerce')
 
 #converting date to datetime
 reservoir_data['date'] = pd.to_datetime(reservoir_data.date)
@@ -67,6 +77,6 @@ tot_stor_perc.loc[tot_stor_perc.snow_pctl.isna() == True, 'snow_pctl'] = 0.5
 
 tot_stor_perc = tot_stor_perc.rename(columns={'percentile': 'SWDI'})
 
+os.makedirs('../../Data/Processed/surface_water_drougth_indicator/', exist_ok=True)
 res_ind.to_csv('../../Data/Processed/surface_water_drougth_indicator/individual_reservoir_percentiles.csv')
 tot_stor_perc.to_csv('../../Data/Processed/surface_water_drougth_indicator/total_storage_percentiles.csv')
-                             

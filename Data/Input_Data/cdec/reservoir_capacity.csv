@@ -1,0 +1,201 @@
+station,dam,lake,stream,capacity
+APN,Alpine,Alpine Lake,Lagunitas Creek,8892
+ANT,Antelope,Antelope,Indian Creek,22566
+AST,Austrian,Lake Austrian,Los Gatos Creek,6200
+BRT,Barrett,Barrett Lake,Cottonwood Creek,34805
+BRV,Bear Valley,Big Bear Lake,Bear Creek,74000
+BRD,Beardsley,Beardsley Lake,M Fork Stanislaus River,97800
+BTH,Bethany Forebay,Bethany Forebay,Delta,5250
+BLB,Black Butte Rereg,Black Butte,Stony Creek,143700
+BOC,Boca,Boca Reservoir,Little Truckee River,40870
+BMP,Bon Tempe,Bon Tempe Reservoir,Lagunitas Creek,4300
+BQC,Bouquet Canyon,Bouquet Reservoir,Bouquet Creek,36505
+BWN,Bowman,Bowman Lake,Canyon Creek,68510
+BWS,Bowman Spaulding Diversion,Lake Spaulding System,none,144591
+BDP,Bridgeport,Bridgeport Reservoir,E Fork Walker River,44100
+BIO,Briones,Briones Lake,Bear Creek,67520
+BUC,Buchanan,Eastman Lake,Chowchilla River,150000
+BCL,Bucks,Bucks Lake,Bucks Creek,103000
+BTV,Butt Valley,Butt Valley Reservoir,Butt Creek,49930
+CCH,Cachuma,Cachuma Lake,Santa Ynez,193305
+CVE,Calaveras,Calaveras Reservoir,Calaveras Creek,100000
+CMN,Camanche,Camanche Reservoir,Mokelumne River,417120
+CFW,Camp Far West,Camp Far West,Bear River,104500
+ALM,Canyon,Lake Almanor,N Fork Feather River,1308000
+CPL,Caples,Caples Lake,Silver Fork American River,22340
+CSI,Casitas,Lake Casitas,Casitas Creek,254000
+CAS,Castaic,Castaic Lake,Castaic Creek,325000
+SLW,Cedar Springs,Lake Silverwood,Mojave River,78000
+CHB,Chabot,Lake Chabot,San Leandro Creek,10281
+CHV,Cherry Valley,Cherry Lake,Cherry Creek,273500
+CHY,Cherry Valley,Cherry Lake,Cherry Creek,268000
+JNN,Chet Harrit,Lake Jennings,Quail Canyon Creek,9790
+CLK,Clear Lake,Clear Lake,Lost Creek,526800
+CLA,Clear Lake Imp,Clear Lake,Cache Creek,313000
+CGS,Cogswell,Cogswell Reservoir,W Fork San Gabriel River,10438
+CMB,Combie,Lake Combie,Bear River,5555
+CTG,Courtright,Helms Creek,Helms Creek,123300
+CYC,Coyote Percolation,Coyote Reservoir,Coyote Creek,23666
+COY,Coyote Valley,Lake Mendocino,Russian River,122400
+MNC,Coyote Valley,Lake Mendocino,Russian River,122400
+CNV,Crane Valley Storage,Crane Valley Lake,N Fork San Joaquin River,45410
+CUY,Cuyamaca,Cuyamaca Lake,Boulder Creek,11740
+MHV,Davis,Lake Mohave,Colorado River,1810000
+DLV,Del Valle,Lake Del Valle,Arroyo Valle,77100
+DMV,Diamond Valley,Diamond Valley Lake,Domenigoni Valley Creek,800000
+DNP,Don Pedro,New Don Pedro Reservoir,Tuolumne River,2030000
+DON,Donnells,Donnells Reservoir,M Fork Stanislaus,64320
+DNN,Donner,Donner Lake,Truckee River,9700
+DNL,Donner,Donner Lake,Truckee River,10300
+DWN,Dwinnell,Dwinnell,Shasta River,50000
+EPK,East Park,East Park Reservoir,Stony Creek,51000
+ELC,El Capitan,El Capitan,San Diego River,112807
+ENR,Eleanor,Lake Eleanor,Tuolumne River,28600
+ENG,Englebright Narrows,Englebright Lake,Yuba River,70000
+FRM,Farmington,null,Littlejohn Creek,52000
+FLR,Florence,Florence Lake,S Fork San Joaquin River,64406
+FOL,Folsom,Folsom Lake,American River,977000
+FRL,French Lake,French Lake,Canyon Creek,13940
+FMD,French Meadows,French Meadows Reservoir,M Fork American,136400
+FRD,Frenchman,Frenchman Lake,Little Last Chance Creek,55477
+MIL,Friant,Millerton Lake,San Joaquin River,520500
+GLK,Gem Lake,Gem Lake,Rush Creek,17228
+GBR,Gerber,Gerber Lake,Klamath River,94720
+GBL,Gibraltar,Gibraltar Lake,Santa Ynez River,9998
+PWL,Glen Canyon,Lake Powell,Colorado River,24322000
+GNT,Grant Lake,Grant Lake,Rush Creek,47525
+DAV,Grizzly Valley,Lake Davis,Big Grizzly Creek,83000
+HWE,Haiwee,Haiwee Reservoir,Rose Valley,46600
+HNS,Henshaw,Lake Henshaw,San Luis Rey River,50000
+HID,Hidden,Hensley Lake,Fresno River,90000
+MEA,Hoover,Lake Mead,Colorado River,26159008
+HNT,Huntington,Huntington Lake,San Joaquin River,89800
+ICH,Ice House,Ice House Reservoir,S Fork Silver Creek,43496
+INP,Independence,Independence Lake,Independence Creek,17295
+INL,Independence,Independence Lake,Independence Creek,17500
+MMW,Indian Ole,Mountain Meadows,N Fork Feather River Tributary,24800
+INV,Indian Valley,Indian Valley Reservoir,Cache Creek Tributary,300000
+IRC,Iron Canyon,Iron Canyon Reservoir,Pit River Tribuatary,24300
+ISB,Isabella,Lake Isabella,Kern River,568000
+JCK,Jackson Meadows,Jackson Meadows Res,M Fork Yuba River,69205
+ATN,James H Turner,Lake San Antonio,Salinas River Tributary,331060
+KNT,Kent,Kent Lake,Lagunitas Creek,32900
+KRH,Kerckhoff Diversion,Kerckhoff Reservoir,San Joaquin,4200
+KES,Keswick,Keswick Reservoir,Sacramento River,23772
+LGR,La Grange,null,Tuolumne River,500
+LFY,Lafayette,Lafayette,Lafayette Creek,4250
+LGT,Lagunitas,Lagunitas Lake,Lagunitas Creek,341
+HMT,Lake Hemet,Lake Hemet,San Jacinto River,14000
+HNN,Lake Hennessey,Lake Hennessey,Conn Creek,31000
+HDG,Lake Hodges,Lake Hodges,San Dieguito River,30251
+LVD,Lake Loveland,Lake Loveland,Sweetwater River,25400
+TAH,Lake Tahoe,Lake Tahoe,Truckee River,732000
+LVY,Lake Valley,Lake Valley Reservoir,N Fork American River,8127
+LRA,Leroy Anderson,Anderson Lake,Coyote Creek,89100
+LEW,Lewiston,Lewiston Lake,Trinity River,14660
+LNG,Lexington,Los Gatos Creek,Los Gatos Creek,21430
+LGV,Little Grass Valley,Little Grass Valley Reservoir,S Fork Feather River,93010
+CRW,Long Valley,Lake Crowley,Owens River,183465
+LON,Loon Lake,Loon Lake,Rubicon River Tributary,69306
+LBS,Los Banos,Los Banos Reservoir,San Joaquin River,34600
+LSB,Los Banos,Los Banos Reservoir,Los Banos Creek,34600
+LVQ,Los Vaqueros,Los Vaqueros Reservoir,Kellogg Creek,160000
+LWB,Lower Bear River,Lower Bear Reservoir,Bear River,48750
+CRY,Lower Crystal Springs,Crystal Springs Reservoir,San Mateo Creek,68865
+HHL,Lower Hell Hole,Hell Hole Reservoir,Rubicon River,207600
+LYS,Lyons,Lyons Reservoir,S Fork Stanislaus River,6228
+SWB,Main Strawberry,Pinecrest Lake,S Fork Stanislaus,18312
+MPL,Mammoth Pool,Mammoth Pool Reservoir,San Joaquin River,123000
+EDN,Mark Edson,Stumpy Meadows Lake,Rubicon River,20000
+MRT,Martis Creek Reservoir,Martis Creek,Martis Creek,20400
+MAT,Matilija,Matilija Reservoir,Matilija Creek,1800
+MHW,Matthews,Lake Matthews,De Luz Creek Tributary,179300
+MCO,McCloud,McCloud Reservoir,McCloud River,35300
+MCS,McSwain,Lake McSwain,Merced River,9730
+MMR,Miramar,Miramar,none,6682
+MDO,Modesto Reservoir,,Tuolumne River,29000
+BER,Montecello,Lake Berryessa,Putah Creek,1602000
+MOR,Morena,Morena Lake,Cottonwood Creek,50694
+MRR,Murray,Murray Reservoir,Chaparral Canyon,4684
+NCM,Nacimiento,Lake Nacimiento,Nacimiento River,382770
+NAT,Natoma,Lake Natoma,American River,9000
+BUL,New Bullards Bar,Bullards Bar Reservoir,N Fork Yuba River,966000
+MCR,New Exchequer,Lake McClure,Merced River,1024600
+EXC,New Exchequer,Lake McClure,Merced River,1024600
+NHG,New Hogan,New Hogan Lake,Calaveras River,317000
+NML,New Melones,New Melones Reservoir,Stanislaus River,2400000
+SPM,New Spicer Meadow,New Spicer Meadow Reservoir,N Fork Stanislaus River,189000
+NCA,Nicasio,Nicasio Reservoir,Nicasio Creek,22400
+ONF,O Neill Forebay,,San Luis Creek,56400
+HTH,O Shanessey,Hetch-Hetchy Reservoir,Tuolumne River,360000
+ORO,Oroville,Lake Oroville,Feather River,3537577
+LOT,Otay,Lower Otay,Otay River,49849
+PAR,Pardee Reservoir,Pardee Res,Mokelumne River,203795
+HVS,Parker Dam,Lake Havasu,Colorado River,648000
+PRR,Perris,Perris Lake,none,131452
+SCD,Pillsbury,Lake Pillsbury,Eel River,80500
+PLL,Pillsbury,Lake Pillsbury,Eel River,80500
+PNF,Pine Flat,Pine Flat Dam,Kings River,1000000
+PT6,Pit No. 6,Pit No. 6,Pit River,15890
+PT7,Pit No. 7,Pit No. 7,Pit River,34610
+BIT,Pit Number 3,Lake Britton,Pit River,40620
+PVP,Potter Valley PH,null,EF Russian River,null
+PRS,Prosser,Prosser Reservoir,Prosser Creek,29800
+PYM,Pyramid,Pyramid Lake,Piru Creek,180000
+QUL,Quail,Quail Lake,none,5654
+RLC,Railroad Canyon,Railroad Canyon Reservoir,San Jacinto River,11847
+RDN,Redinger,Redinger Lake,San Joaquin River,35000
+RLF,Relief,Relief Reservoir,M Fork Stanislaus River,15554
+RLL,Rollins,Rollins Reservoir,Bear River,66000
+RTD,Ruth,Ruth Lake,Mad River,61000
+SDB,Saddlebag,Saddlebag Lake,Lee Vining Creek,9465
+SLN,Salinas,Santa Margarita Lake,Salinas River,26000
+SLS,Salt Springs,,N Fork Mokelumne River,141900
+SNN,San Andreas,San Andreas Lake,San Mateo Creek Tributary,19027
+SAT,San Antonio,San Antonio Reservoir,Alameda Creek Tributary,50500
+SGB,San Gabriel No. 1,San Gabriel Reservoir,San Gabriel,44440
+SLF,San Luis,San Luis Reservoir (CVP),San Luis Creek,971000
+SNL,San Luis,San Luis Reservoir,San Luis Creek,2041000
+LUS,San Luis,San Luis Reservoir (SWP),San Luis Creek,1062000
+SPB,San Pablo,San Pablo Reservoir,San Pablo,43193
+SVT,San Vicente,San Vicente Reservoir,San Vicente Creek,249358
+PRU,Santa Felicia,Lake Piru,Piru Creek,83244
+SGC,Santiago Creek,,Santiago Creek,25000
+SFL,Scotts Flat,Scotts Flat Reservoir,Deer Creek,49000
+SVO,Seven Oaks,null,Santa Ana River,145600
+SHA,Shasta,Lake Shasta,Sacramento River,4552000
+SHV,Shaver,Shaver Lake,San Joaquin River,135283
+SIV,Silver,Silver Lake,Silver Fork American River,8640
+SKN,Skinner Clearwell,Skinner Lake,none,43800
+SLB,Slab Creek,Slab Creek Reservoir,S Fork American River,16600
+SLC,Sly Creek,,Lost Creek,65050
+JNK,Sly Park,Jenkinson Lake,Cosumnes River,41000
+SOL,Solano,Lake Solano,Putah Creek,720
+SLJ,Soulajule,Soulajule,San Francisco Bay,10700
+SLK,South Lake,South Lake,Bishop Creek,12900
+SPG,Spaulding,Spaulding Lake,S Fork Yuba River,74773
+STP,Stampede,Stampede Lake,Little Truckee River,226500
+STG,Stony Gorge,Stony Gorge Reservoir,Stony Creek,50000
+SCC,Success,Lake Success,Tule River,82300
+STD,Sutherland,Sutherland Lake,Santa Ysabel Creek,29508
+SW3,Sweetwater,Sweetwater Reservoir,Sweetwater Creek,27700
+TRM,Terminus,Lake Kaweah,Kaweah River,185600
+TAB,Thermalito,Thermalito Afterbay,Feather River,57041
+TMT,Thermalito,Thermalito System,Feather River,81264
+TNM,Tinemaha,Tinemaha Reservoir,Owens River,16405
+CLE,Trinity,Trinity Lake,Trinity River,2447650
+TUL,Tulloch,Tulloch Reservoir,Stanislaus River,67000
+TLC,Turlock,Turlock Lake,Tuolumne River,45600
+TWT,Twitchell,Twitchell Reservoir,Cuyama River,240000
+UNV,Union Valley,Union Valley Reservoir,S Fork American River,266369
+KLM,Upper Klamath,Upper Klamath,Klamath River,515615
+SJT,Upper San Joaquin R Total,null,San Joaquin River,617300
+USL,Upper San Leandro,U San Leandro R,Alameda Creek,37960
+VIL,Vail,Vail Reservoir,Temecula Creek,51000
+TAE,Vermilion Valley,Thomas A. Edison,S Fork San Joaquin River,125000
+EDS,Vermillion Valley,Thomas A. Edison Lake,S Fork San Joaquin River,125000
+VLP,Villa Park,Villa Park Reservoir,Santiago Creek,15600
+WRS,Warm Springs,Warm Springs Reservoir,Russian River,381000
+WHR,Whale Rock,Whale Rock Lake,Old Creek,38967
+WHI,Whiskeytown,Whiskeytown Lake,Clear Creek,241100
+WSN,Wishon,Lake Wishon,Helms Creek,128300

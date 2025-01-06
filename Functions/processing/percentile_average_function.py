@@ -54,15 +54,17 @@ def func_for_tperiod(df, date_column = 'date', value_column = 'VALUE',
     grouping_column: str,optional
         The column label for groups (such as each station, each hydrologic region
         etc.) to obtain percentiles independently
-    correcting_no_reporting : if True, weights the percentile function by 'weighting_column'
+    correcting_no_reporting : boolean
+        If True, weights the percentile function by 'weighting_column'
         to account for stations not reporting data some months
-    correcting_column = the column to weight the percentiles. To obtain storage
+    correcting_column: series
+        The column to weight the percentiles. To obtain storage
         percentiles, we use the ratio of water stored with respect the capacity
         of the reservoir to obtain the percentile
-    baseline_start_year = to obtain percentiles with a fixed baseline, this
-        parameter indicates the beginning of the baseline
-    baseline_end_year = to obtain percentiles with a fixed baseline, this
-        parameter indicates the end of the baseline
+    baseline_start_year: int
+        The start year for obtaining percentiles with a fixed baseline
+    baseline_end_year: int
+        The start year for obtaining percentiles with a fixed baseline
     
     Returns
     -------
@@ -102,12 +104,12 @@ def func_for_tperiod(df, date_column = 'date', value_column = 'VALUE',
         if (period_dict[analysis_period][0] == "D") and (input_timestep == 'M'):
             raise NameError('For the selected analysis_period, the input_timestep has to be daily (D)')
         elif (period_dict[analysis_period][0] == "D") and (input_timestep == 'D'):
-            dfgroup = dfgroup.groupby(pd.Grouper(key=date_column, freq="1D")).mean().reset_index()
+            dfgroup = dfgroup.groupby(pd.Grouper(key=date_column, freq="1D")).mean(numeric_only=True).reset_index()
         else:
-            dfgroup = dfgroup.groupby(pd.Grouper(key=date_column, freq="1M")).mean().reset_index()
+            dfgroup = dfgroup.groupby(pd.Grouper(key=date_column, freq="1M")).mean(numeric_only=True).reset_index()
             
         #Add a column with the average value for the period of analysis
-        dfgroup['value_period'] = dfgroup[value_column].rolling(period_dict[analysis_period][1]).mean(nan='Ignore')
+        dfgroup['value_period'] = dfgroup[value_column].rolling(period_dict[analysis_period][1]).mean()
         dfgroup['month'] = pd.DatetimeIndex(dfgroup[date_column]).month
         if period_dict[analysis_period][0] == "M":
             dfgroup['day']=1
@@ -140,5 +142,3 @@ def func_for_tperiod(df, date_column = 'date', value_column = 'VALUE',
     if grouping_column is not None:
         newdf = newdf.sort_values(by = [grouping_column, date_column]).reset_index(drop=True)
     return newdf
-        
-        
