@@ -42,3 +42,4 @@ script_paths = [
 
 for script_path in tqdm(script_paths, desc='Executing scripts'):
     execute_and_time(script_path)
+    print(f'{script_path} complete')

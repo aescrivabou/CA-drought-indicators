@@ -14,6 +14,7 @@ import xarray as xr
 import numpy as np
 import datetime
 import calendar
+from dateutil.relativedelta import relativedelta
 
 shape_path_filename = '../../Data/Input_Data/HRs/i03_Hydrologic_Regions.shp'
 hrs = gpd.read_file(shape_path_filename).to_crs("EPSG:4326")
@@ -121,7 +122,7 @@ def obtainregionalsummary(input_folder = '../../Data/Downloaded/',
                 pet.loc['%s' %(m)] = ['%s' %(m), mean]
             ds.close()
             print(year)
-
+        
         # summarize by month
         
         pet['date'] = pd.to_datetime(pet['date'])    
@@ -163,7 +164,6 @@ def obtainregionalsummary(input_folder = '../../Data/Downloaded/',
                 precipitation.loc['%s' %(m)] = ['%s' %(m), mean]
             ds.close()
             print(year)
-
         #summarize by month
         
         precipitation['date'] = pd.to_datetime(precipitation['date'])    
@@ -179,8 +179,10 @@ def obtainregionalsummary(input_folder = '../../Data/Downloaded/',
     os.makedirs(directory, exist_ok=True)    
     allindicators.to_csv(directory + output_filename)
         
+latest_date = datetime.datetime.now() - relativedelta(months=1)
+latest_month = latest_date.month
+latest_year = latest_date.year
 
-latest_month = datetime.datetime.now().month - 1
 i=0
 directory = '../../Data/Processed/gridded/'
 output_filename = directory + hr_code[i] + '_processed_grided_indicators_1990_2022.csv'
@@ -205,6 +207,6 @@ else:
             name = hr_long_series[i], 
             indicators = ['pr', 'pet'],
             startyear = 2023, startmonth = 1,
-            endyear = 2024, endmonth = latest_month,  #latest_month works if you have data up until recent month, else it fails
+            endyear = latest_year, endmonth = latest_month,
             directory = '../../Data/Processed/gridded/',
             output_filename = hr_code[i] + '_processed_grided_indicators_2023_present.csv')
