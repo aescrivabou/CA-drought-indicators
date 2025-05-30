@@ -11,16 +11,6 @@ This repository contains documents, code and visuals related to different projec
 ## 2. Contents
 The different folders in this repository include the outcomes of the different projects:
 
-Phase 1: 
+Phase 1 (2020 - 2023): [Linking Indicators of Drought Hazard to Multi-Sectoral Impacts: An Application to California](https://github.com/aescrivabou/CA-drought-indicators/tree/main/Phase%201) 
 
-re are three folders in this directory, including:
-
-* **[Documents](https://github.com/aescrivabou/CA-drought-indicators/tree/main/Documents)**: includes the description of three methodologies developed during the project (including sources of data, code, and results) and the slides of the final workshop:
-  * [Methodology 1. User-oriented drought indicators in California](https://github.com/aescrivabou/CA-drought-indicators/blob/main/Documents/01_User-oriented%20drought%20indicators.pdf)
-  * [Methodology 2. System drought indicator for users with complex supply portfolios](https://github.com/aescrivabou/CA-drought-indicators/blob/main/Documents/02_System%20drought%20indicator%20for%20users%20with%20complex%20portfolios.pdf)
-  * [Methodology 3. Linking drought indicators with impacts in highly-managed water systems](https://github.com/aescrivabou/CA-drought-indicators/blob/main/Documents/03_Linking%20drought%20indicators%20with%20impacts%20in%20managed%20systems.pdf)
-  * [Final workshop slides](https://github.com/aescrivabou/CA-drought-indicators/blob/main/Documents/230508_NIDIS_Final%20Workshop.pdf)
-* **[Functions](https://github.com/aescrivabou/CA-drought-indicators/tree/main/Functions)**: includes all the code developed during the project. It is explained and linked properly in the description of the three methodologies
-* **[Data](https://github.com/aescrivabou/CA-drought-indicators/tree/main/Data)**: Includes the input data, the data downloaded to develop the indicators, the processed data (or intermediate results), and the results and visuals. As some of this data is too large, we include links to dropbox files, but following the methods and code described, anyone should be able to reproduce all results.
-
-
+Phase 2 (2023 - 2025): [Refining multi-sectoral drought hazard indicators oriented to assess drought impacts](https://github.com/aescrivabou/CA-drought-indicators/tree/main/Phase%202)
