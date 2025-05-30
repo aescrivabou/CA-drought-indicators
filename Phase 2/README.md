@@ -1,20 +1,24 @@
-# Linking Indicators of Drought Hazard to Multi-Sectoral Impacts: An Application to California
-**Principal Investigators:** Alvar Escriva-Bou (lead investigator) escriva@ucla.edu (UCLA); Ellen Hanak and Jeffrey Mount (Public Policy Institute of California)
+# Refining multi-sectoral drought hazard indicators oriented to assess drought impacts
 
-**External Collaborators:** Michael Dettinger (Scripps Institution of Oceanography, UC San Diego); Ted Grantham (UC Berkeley); Josué Medellín-Azuara (UC Merced); and Kurt Schwabe (UC Riverside)
+**Principal Investigators:** Alvar Escriva-Bou (lead investigator) aescriva@ucdavis.edu (UC Davis and UCLA); Josué Medellín-Azuara (UC Merced); Kurt Schwabe (UC Riverside); John Abatzoglou (UC Merced); and Greg Pierce (UCLA).
 
-**Other members of the team:** Andrew Ayres, Annabelle Rosser and Spencer Cole (PPIC)
+**Other members of the team:** Armen Konialian (UCLA)
 
-**Supported with funding from:** The National Oceanic and Atmospheric Administration’s (NOAA) National Integrated Drought Information System (NIDIS) award number NA20OAR4310365
+**Supported with funding from:** The National Oceanic and Atmospheric Administration’s (NOAA) National Integrated Drought Information System (NIDIS) throught the University Corporation for Atmoshperic Research Subaward SUBAWD004693
 
-**IMPORTANT NOTE: AS OF SEPTEMBER 5, 2023, THIS REPOSITORY IS STILL UNDER DEVELOPMENT AND REVIEW. PLEASE, CONTACT THE DEVELOPERS BEFORE USING ANY OF THE CODE OR RESULTS**
+
+**IMPORTANT NOTE: AS OF May 30, 2025, THIS REPOSITORY IS STILL UNDER DEVELOPMENT AND REVIEW. PLEASE, CONTACT THE DEVELOPERS BEFORE USING ANY OF THE CODE OR RESULTS**
 
 ## 1. Objective
 This repository serves to fulfill the commitments of the grant by compiling the deliverables developed during the project.
 
+The tasks were:
+
+
 The expected outputs of the project were:
 
-*	A framework to develop multi-sectoral drought hazard indicators.
+*	An open-source repository with a summary of the methods, the code and the data to produce the source-specific drought indicators for all hydrologic regions. This might be in draft form for review and posterior incorporation of feedback.
+ framework to develop multi-sectoral drought hazard indicators.
 *	An innovative methodology for linking drought hazard indicators and impacts.
 *	Open access data and methods for drought hazard indicators and impacts.
 *	Exploratory mapping tools, including sector-specific drought hazard indicator maps and drought risk profiles.
