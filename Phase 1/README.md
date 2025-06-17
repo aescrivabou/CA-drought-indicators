@@ -24,7 +24,7 @@ This repository contains the methods, code and data related to all the outputs e
 ## 2. Contents
 There are three folders in this directory, including:
 
-* **[Documents](https://github.com/aescrivabou/CA-drought-indicators/tree/main/Documents)**: includes the description of three methodologies developed during the project (including sources of data, code, and results) and the slides of the final workshop:
+* **[Documents](https://github.com/aescrivabou/CA-drought-indicators/tree/main/Phase%201/Documents)**: includes the description of three methodologies developed during the project (including sources of data, code, and results) and the slides of the final workshop:
   * [Methodology 1. User-oriented drought indicators in California](https://github.com/aescrivabou/CA-drought-indicators/blob/main/Phase%201/Documents/01_User-oriented%20drought%20indicators.pdf)
   * [Methodology 2. System drought indicator for users with complex supply portfolios](https://github.com/aescrivabou/CA-drought-indicators/blob/main/Phase%201/Documents/02_System%20drought%20indicator%20for%20users%20with%20complex%20portfolios.pdf)
   * [Methodology 3. Linking drought indicators with impacts in highly-managed water systems](https://github.com/aescrivabou/CA-drought-indicators/blob/main/Phase%201/Documents/03_Linking%20drought%20indicators%20with%20impacts%20in%20managed%20systems.pdf)
